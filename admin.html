@@ -1115,9 +1115,6 @@ const supabase =
 const DOMAIN =
   "https://clicktracker-zeyw.vercel.app";
 
-const CREATE_CLIENT_URL =
-  `${SUPABASE_URL}/functions/v1/create-client`;
-
 let businesses = [];
 
 
@@ -2245,11 +2242,6 @@ document
 
       try {
 
-        console.log(
-          "Enviando petición a:",
-          CREATE_CLIENT_URL
-        );
-
         const {
           data: {
             session
@@ -2265,88 +2257,41 @@ document
 
         }
 
-        const response =
-          await fetch(
-            CREATE_CLIENT_URL,
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "application/json",
-
-                "Authorization":
-                  `Bearer ${session.access_token}`,
-
-                "apikey":
-                  SUPABASE_KEY
-              },
-
-              body:
-                JSON.stringify({
-                  full_name,
-                  email,
-                  password,
-                  business_id
-                })
-            }
-          );
-
-        let responseData = null;
-        let responseText = "";
-
-        try {
-
-          responseText =
-            await response.text();
-
-          if (responseText) {
-
-            responseData =
-              JSON.parse(
-                responseText
-              );
-
-          }
-
-        } catch (parseError) {
-
-          console.error(
-            "Error leyendo respuesta:",
-            parseError
-          );
-
-        }
-
-        console.log(
-          "Respuesta create-client:",
+        const {
+          data,
+          error
+        } =
+        await supabase.functions.invoke(
+          "create-client",
           {
-            status: response.status,
-            statusText: response.statusText,
-            data: responseData,
-            text: responseText
+            body: {
+              full_name,
+              email,
+              password,
+              business_id
+            }
           }
         );
 
-        if (!response.ok) {
+        if (error) {
 
-          const serverError =
-            responseData?.error ||
-            responseData?.message ||
-            responseText ||
-            `Error HTTP ${response.status}`;
+          console.error(
+            "Error Edge Function:",
+            error
+          );
 
           throw new Error(
-            serverError
+            error.message ||
+            "No se pudo conectar con la función create-client."
           );
 
         }
 
-        if (!responseData?.success) {
+        if (!data?.success) {
 
           throw new Error(
-            responseData?.error ||
-            responseData?.message ||
+            data?.error ||
+            data?.message ||
             "La función no confirmó la creación del cliente."
           );
 
