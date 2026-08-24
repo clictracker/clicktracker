@@ -1,584 +1,302 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ClicTracker | Convierte cada toque en una oportunidad</title>
+    <title>ClicTracker</title>
 
-  <meta
-    name="description"
-    content="ClicTracker conecta tus tarjetas NFC con reseñas, redes sociales y estadísticas en tiempo real."
-  />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8fa;
+            color: #111827;
+        }
 
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --dark: #0f172a;
-      --text: #475569;
-      --light: #f8fafc;
-      --border: #e2e8f0;
-      --white: #ffffff;
-    }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 35px 20px 30px;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        /* LOGO */
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--white);
-      color: var(--dark);
-    }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 18px;
+        }
 
-    /* NAVBAR */
+        .logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
 
-    nav {
-      width: 100%;
-      height: 75px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 8%;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        /* NEGOCIO */
 
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      text-decoration: none;
-      color: var(--dark);
-      letter-spacing: -1px;
-    }
+        .business-name {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-    .logo span {
-      color: var(--primary);
-    }
+        .business-description {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
+        /* BOTONES */
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
 
-    .nav-links a:hover {
-      color: var(--primary);
-    }
+        .link-button {
+            width: 100%;
+            min-height: 58px;
 
-    .login-btn {
-      padding: 11px 20px;
-      border-radius: 10px;
-      background: var(--primary);
-      color: white !important;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    .login-btn:hover {
-      background: var(--primary-dark);
-    }
+            position: relative;
 
-    /* HERO */
+            padding: 15px 50px;
 
-    .hero {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 8%;
-      background:
-        radial-gradient(
-          circle at top right,
-          #dbeafe,
-          transparent 35%
-        ),
-        var(--light);
-    }
+            border: none;
+            border-radius: 14px;
 
-    .hero-content {
-      max-width: 800px;
-      text-align: center;
-    }
+            background: white;
+            color: #111827;
 
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      background: #dbeafe;
-      color: var(--primary-dark);
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 25px;
-    }
+            text-decoration: none;
 
-    h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.05;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-    }
+            font-size: 16px;
+            font-weight: 600;
 
-    h1 span {
-      color: var(--primary);
-    }
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      font-size: 19px;
-      line-height: 1.7;
-      color: var(--text);
-    }
+            transition: 0.2s ease;
+        }
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 35px;
-      flex-wrap: wrap;
-    }
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+        }
 
-    .btn {
-      padding: 15px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
-    }
+        .icon {
+            position: absolute;
+            left: 20px;
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
+            width: 24px;
+            height: 24px;
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    .btn-secondary {
-      border: 1px solid var(--border);
-      color: var(--dark);
-      background: white;
-    }
+            font-size: 20px;
+        }
 
-    .btn-secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
+        /* MAPA */
 
-    /* FEATURES */
+        .map-title {
+            text-align: center;
+            margin-top: 35px;
+            margin-bottom: 12px;
 
-    .features {
-      padding: 100px 8%;
-      max-width: 1300px;
-      margin: auto;
-    }
+            font-size: 18px;
+            font-weight: 700;
+        }
 
-    .section-title {
-      text-align: center;
-      max-width: 700px;
-      margin: auto auto 60px;
-    }
+        .map-container {
+            width: 100%;
+            height: 280px;
 
-    .section-title h2 {
-      font-size: 42px;
-      letter-spacing: -2px;
-      margin-bottom: 15px;
-    }
+            overflow: hidden;
 
-    .section-title p {
-      color: var(--text);
-      font-size: 17px;
-      line-height: 1.6;
-    }
+            border-radius: 16px;
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+            background: #e5e7eb;
 
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 35px;
-      background: white;
-      transition: 0.25s;
-    }
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-    }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
 
-    .icon {
-      width: 55px;
-      height: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 15px;
-      background: #dbeafe;
-      font-size: 25px;
-      margin-bottom: 22px;
-    }
+            border: 0;
+        }
 
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
+        /* FOOTER */
 
-    .card p {
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 15px;
-    }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
 
-    /* HOW IT WORKS */
+            font-size: 12px;
+            color: #9ca3af;
+        }
 
-    .how {
-      padding: 100px 8%;
-      background: var(--light);
-    }
+        .footer strong {
+            color: #6b7280;
+        }
 
-    .steps {
-      max-width: 1000px;
-      margin: 60px auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
+        /* MOBILE */
 
-    .step {
-      text-align: center;
-    }
+        @media (max-width: 400px) {
 
-    .step-number {
-      width: 55px;
-      height: 55px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary);
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-    }
+            .container {
+                padding: 25px 15px;
+            }
 
-    .step h3 {
-      margin-bottom: 10px;
-    }
+            .business-name {
+                font-size: 22px;
+            }
 
-    .step p {
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 15px;
-    }
+            .link-button {
+                min-height: 55px;
+            }
 
-    /* CTA */
-
-    .cta {
-      padding: 100px 8%;
-      text-align: center;
-    }
-
-    .cta-box {
-      max-width: 1000px;
-      margin: auto;
-      padding: 70px 30px;
-      border-radius: 30px;
-      background: var(--dark);
-      color: white;
-    }
-
-    .cta-box h2 {
-      font-size: 42px;
-      margin-bottom: 15px;
-      letter-spacing: -2px;
-    }
-
-    .cta-box p {
-      color: #cbd5e1;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 30px 8%;
-      text-align: center;
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 800px) {
-      nav {
-        padding: 0 5%;
-      }
-
-      .nav-links a:not(.login-btn) {
-        display: none;
-      }
-
-      .hero {
-        min-height: 600px;
-        padding: 70px 6%;
-      }
-
-      .cards,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .features,
-      .how,
-      .cta {
-        padding: 70px 6%;
-      }
-
-      .section-title h2,
-      .cta-box h2 {
-        font-size: 34px;
-      }
-    }
-  </style>
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+<div class="container">
 
-  <nav>
-    <a href="#" class="logo">
-      Clic<span>Tracker</span>
-    </a>
+    <!-- LOGO -->
 
-    <div class="nav-links">
-      <a href="#funciona">Cómo funciona</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#contacto" class="login-btn">Iniciar sesión</a>
+    <div class="logo-container">
+
+        <img
+            src="https://via.placeholder.com/180"
+            alt="Logo del negocio"
+            class="logo"
+        >
+
     </div>
-  </nav>
 
 
-  <!-- HERO -->
+    <!-- INFORMACIÓN DEL NEGOCIO -->
 
-  <section class="hero">
+    <h1 class="business-name">
+        Restaurante XYZ
+    </h1>
 
-    <div class="hero-content">
+    <p class="business-description">
+        ¡Gracias por visitarnos!
+    </p>
 
-      <div class="badge">
-        🚀 NFC + Analytics para negocios
-      </div>
 
-      <h1>
-        Convierte cada <span>clic</span> en una oportunidad.
-      </h1>
+    <!-- ENLACES -->
 
-      <p>
-        ClicTracker conecta tus tarjetas NFC con Google Reviews,
-        redes sociales, WhatsApp y mucho más, mientras registras
-        cada interacción en tiempo real.
-      </p>
+    <div class="links">
 
-      <div class="hero-buttons">
+        <!-- GOOGLE -->
 
-        <a href="#funciona" class="btn btn-primary">
-          Descubre cómo funciona
+        <a
+            href="https://www.google.com"
+            class="link-button"
+            target="_blank"
+        >
+
+            <span class="icon">⭐</span>
+
+            Google Reviews
+
         </a>
 
-        <a href="#beneficios" class="btn btn-secondary">
-          Ver beneficios
+
+        <!-- INSTAGRAM -->
+
+        <a
+            href="https://www.instagram.com"
+            class="link-button"
+            target="_blank"
+        >
+
+            <span class="icon">◎</span>
+
+            Instagram
+
         </a>
 
-      </div>
 
-    </div>
+        <!-- FACEBOOK -->
 
-  </section>
+        <a
+            href="https://www.facebook.com"
+            class="link-button"
+            target="_blank"
+        >
 
+            <span class="icon">f</span>
 
-  <!-- BENEFICIOS -->
+            Facebook
 
-  <section class="features" id="beneficios">
-
-    <div class="section-title">
-
-      <h2>Todo tu negocio en un solo toque.</h2>
-
-      <p>
-        Una tarjeta NFC. Una página inteligente.
-        Todas tus interacciones bajo control.
-      </p>
-
-    </div>
+        </a>
 
 
-    <div class="cards">
+        <!-- PAGINA WEB -->
 
-      <div class="card">
+        <a
+            href="https://www.google.com"
+            class="link-button"
+            target="_blank"
+        >
 
-        <div class="icon">⭐</div>
+            <span class="icon">🌐</span>
 
-        <h3>Más reseñas</h3>
+            Página web
 
-        <p>
-          Facilita a tus clientes dejar una reseña en Google
-          con solo acercar su celular.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">📊</div>
-
-        <h3>Estadísticas reales</h3>
-
-        <p>
-          Descubre cuántas personas interactúan con tus enlaces
-          y cuáles son los canales más utilizados.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">🔗</div>
-
-        <h3>Todos tus enlaces</h3>
-
-        <p>
-          Google Reviews, Instagram, WhatsApp, Facebook,
-          página web y ubicación en un solo lugar.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- COMO FUNCIONA -->
-
-  <section class="how" id="funciona">
-
-    <div class="section-title">
-
-      <h2>Así de fácil.</h2>
-
-      <p>
-        ClicTracker convierte una simple tarjeta NFC
-        en una herramienta inteligente para tu negocio.
-      </p>
+        </a>
 
     </div>
 
 
-    <div class="steps">
+    <!-- MAPA -->
 
-      <div class="step">
+    <h2 class="map-title">
+        📍 Encuéntranos
+    </h2>
 
-        <div class="step-number">1</div>
+    <div class="map-container">
 
-        <h3>Acerca el celular</h3>
-
-        <p>
-          Tu cliente acerca su smartphone a la tarjeta NFC.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">2</div>
-
-        <h3>Explora tu página</h3>
-
-        <p>
-          Accede a Google Reviews, Instagram, WhatsApp
-          y todos los enlaces de tu negocio.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">3</div>
-
-        <h3>Analiza los resultados</h3>
-
-        <p>
-          Visualiza todos los clics e interacciones
-          desde tu panel de estadísticas.
-        </p>
-
-      </div>
+        <iframe
+            src="https://www.google.com/maps?q=Miraflores,Lima,Peru&output=embed"
+            loading="lazy"
+            allowfullscreen
+        >
+        </iframe>
 
     </div>
 
-  </section>
 
+    <!-- FOOTER -->
 
-  <!-- CTA -->
+    <div class="footer">
 
-  <section class="cta" id="contacto">
-
-    <div class="cta-box">
-
-      <h2>Empieza a medir cada interacción.</h2>
-
-      <p>
-        Dale a tu negocio una forma más inteligente de conectar
-        con tus clientes.
-      </p>
-
-      <a href="#" class="btn btn-primary">
-        Comenzar con ClicTracker
-      </a>
+        Powered by <strong>ClicTracker</strong>
 
     </div>
 
-  </section>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    © 2026 ClicTracker. Todos los derechos reservados.
-
-  </footer>
+</div>
 
 </body>
 </html>
