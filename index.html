@@ -1,302 +1,443 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-    <title>ClicTracker</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <title>ClicTracker</title>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7f8fa;
-            color: #111827;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 35px 20px 30px;
-        }
+    :root {
+      --background: #05070b;
+      --surface: #0d111a;
+      --surface-hover: #121827;
+      --border: #222938;
+      --text: #ffffff;
+      --text-secondary: #8d96a8;
+      --blue: #2563eb;
+    }
 
-        /* LOGO */
+    html {
+      min-height: 100%;
+      background: var(--background);
+    }
 
-        .logo-container {
-            text-align: center;
-            margin-bottom: 18px;
-        }
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(37, 99, 235, 0.10),
+          transparent 35%
+        ),
+        var(--background);
 
-        .logo {
-            width: 90px;
-            height: 90px;
-            object-fit: contain;
-            border-radius: 50%;
-        }
+      color: var(--text);
+    }
 
-        /* NEGOCIO */
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 24px 20px 45px;
+    }
 
-        .business-name {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+    /* HEADER */
 
-        .business-description {
-            text-align: center;
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 45px;
+    }
 
-        /* BOTONES */
+    .clictracker-logo {
+      width: 115px;
+      height: auto;
+      object-fit: contain;
+    }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 13px;
-        }
+    /* INFORMACIÓN DEL NEGOCIO */
 
-        .link-button {
-            width: 100%;
-            min-height: 58px;
+    .business-info {
+      text-align: center;
+      margin-bottom: 38px;
+    }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    .business-logo {
+      width: 95px;
+      height: 95px;
 
-            position: relative;
+      margin: 0 auto 20px;
 
-            padding: 15px 50px;
+      border-radius: 50%;
 
-            border: none;
-            border-radius: 14px;
+      background: #151b27;
+      border: 1px solid var(--border);
 
-            background: white;
-            color: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-            text-decoration: none;
+      overflow: hidden;
+    }
 
-            font-size: 16px;
-            font-weight: 600;
+    .business-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    .business-info h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
 
-            transition: 0.2s ease;
-        }
+    .business-info p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
 
-        .link-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
-        }
+    /* BOTONES */
 
-        .icon {
-            position: absolute;
-            left: 20px;
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
 
-            width: 24px;
-            height: 24px;
+    .link-button {
+      width: 100%;
+      min-height: 68px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      display: flex;
+      align-items: center;
 
-            font-size: 20px;
-        }
+      padding: 14px 18px;
 
-        /* MAPA */
+      text-decoration: none;
+      color: var(--text);
 
-        .map-title {
-            text-align: center;
-            margin-top: 35px;
-            margin-bottom: 12px;
+      background: var(--surface);
 
-            font-size: 18px;
-            font-weight: 700;
-        }
+      border: 1px solid var(--border);
+      border-radius: 17px;
 
-        .map-container {
-            width: 100%;
-            height: 280px;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border 0.2s ease;
+    }
 
-            overflow: hidden;
+    .link-button:hover {
+      transform: translateY(-2px);
+      background: var(--surface-hover);
+      border-color: #334155;
+    }
 
-            border-radius: 16px;
+    .link-button:active {
+      transform: scale(0.98);
+    }
 
-            background: #e5e7eb;
+    .icon {
+      width: 42px;
+      height: 42px;
 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
+      margin-right: 12px;
 
-            border: 0;
-        }
+      border-radius: 12px;
 
-        /* FOOTER */
+      background: rgba(255, 255, 255, 0.04);
 
-        .footer {
-            text-align: center;
-            margin-top: 30px;
+      font-size: 22px;
+    }
 
-            font-size: 12px;
-            color: #9ca3af;
-        }
+    .link-text {
+      flex: 1;
 
-        .footer strong {
-            color: #6b7280;
-        }
+      text-align: left;
 
-        /* MOBILE */
+      font-size: 16px;
+      font-weight: 600;
+    }
 
-        @media (max-width: 400px) {
+    .arrow {
+      font-size: 24px;
+      color: #64748b;
+    }
 
-            .container {
-                padding: 25px 15px;
-            }
+    /* UBICACIÓN */
 
-            .business-name {
-                font-size: 22px;
-            }
+    .location {
+      margin-top: 42px;
+    }
 
-            .link-button {
-                min-height: 55px;
-            }
+    .location-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
-        }
-    </style>
+      margin-bottom: 15px;
+
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .location-title span {
+      color: var(--blue);
+    }
+
+    .map-container {
+      width: 100%;
+      height: 260px;
+
+      overflow: hidden;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--border);
+
+      background: var(--surface);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+
+      margin-top: 42px;
+
+      font-size: 12px;
+
+      color: #5f6878;
+    }
+
+    footer strong {
+      color: #8baeff;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 480px) {
+
+      .container {
+        padding: 20px 16px 40px;
+      }
+
+      .top-bar {
+        margin-bottom: 35px;
+      }
+
+      .clictracker-logo {
+        width: 105px;
+      }
+
+      .business-info h1 {
+        font-size: 25px;
+      }
+
+      .link-button {
+        min-height: 64px;
+      }
+
+      .map-container {
+        height: 230px;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <main class="container">
 
-    <!-- LOGO -->
+    <!-- LOGO CLICTRACKER ARRIBA A LA DERECHA -->
 
-    <div class="logo-container">
+    <header class="top-bar">
 
-        <img
-            src="https://via.placeholder.com/180"
-            alt="Logo del negocio"
-            class="logo"
-        >
+      <img
+        src="logoclicktracker.png"
+        alt="ClicTracker"
+        class="clictracker-logo"
+      >
 
-    </div>
+    </header>
 
 
     <!-- INFORMACIÓN DEL NEGOCIO -->
 
-    <h1 class="business-name">
-        Restaurante XYZ
-    </h1>
+    <section class="business-info">
 
-    <p class="business-description">
-        ¡Gracias por visitarnos!
-    </p>
+      <div class="business-logo">
+
+        <!--
+          AQUÍ IRÁ EL LOGO DEL NEGOCIO.
+          MÁS ADELANTE LO CARGAREMOS DESDE SUPABASE.
+        -->
+
+        <span style="font-size: 35px;">🏪</span>
+
+      </div>
+
+      <h1>Nombre del negocio</h1>
+
+      <p>
+        Todo lo que necesitas,<br>
+        en un solo lugar.
+      </p>
+
+    </section>
 
 
     <!-- ENLACES -->
 
-    <div class="links">
+    <section class="links">
 
-        <!-- GOOGLE -->
+      <a
+        href="#"
+        class="link-button"
+        data-action="google_review"
+      >
 
-        <a
-            href="https://www.google.com"
-            class="link-button"
-            target="_blank"
-        >
+        <div class="icon">⭐</div>
 
-            <span class="icon">⭐</span>
+        <div class="link-text">
+          Déjanos una reseña en Google
+        </div>
 
-            Google Reviews
+        <div class="arrow">›</div>
 
-        </a>
-
-
-        <!-- INSTAGRAM -->
-
-        <a
-            href="https://www.instagram.com"
-            class="link-button"
-            target="_blank"
-        >
-
-            <span class="icon">◎</span>
-
-            Instagram
-
-        </a>
+      </a>
 
 
-        <!-- FACEBOOK -->
+      <a
+        href="#"
+        class="link-button"
+        data-action="instagram"
+      >
 
-        <a
-            href="https://www.facebook.com"
-            class="link-button"
-            target="_blank"
-        >
+        <div class="icon">📸</div>
 
-            <span class="icon">f</span>
+        <div class="link-text">
+          Síguenos en Instagram
+        </div>
 
-            Facebook
+        <div class="arrow">›</div>
 
-        </a>
+      </a>
 
 
-        <!-- PAGINA WEB -->
+      <a
+        href="#"
+        class="link-button"
+        data-action="facebook"
+      >
 
-        <a
-            href="https://www.google.com"
-            class="link-button"
-            target="_blank"
-        >
+        <div class="icon">👍</div>
 
-            <span class="icon">🌐</span>
+        <div class="link-text">
+          Síguenos en Facebook
+        </div>
 
-            Página web
+        <div class="arrow">›</div>
 
-        </a>
+      </a>
 
-    </div>
+
+      <a
+        href="#"
+        class="link-button"
+        data-action="website"
+      >
+
+        <div class="icon">🌐</div>
+
+        <div class="link-text">
+          Visita nuestra página web
+        </div>
+
+        <div class="arrow">›</div>
+
+      </a>
+
+
+      <a
+        href="#"
+        class="link-button"
+        data-action="whatsapp"
+      >
+
+        <div class="icon">💬</div>
+
+        <div class="link-text">
+          Escríbenos por WhatsApp
+        </div>
+
+        <div class="arrow">›</div>
+
+      </a>
+
+    </section>
 
 
     <!-- MAPA -->
 
-    <h2 class="map-title">
-        📍 Encuéntranos
-    </h2>
+    <section class="location">
 
-    <div class="map-container">
+      <div class="location-title">
+
+        <span>📍</span>
+
+        <div>Encuéntranos</div>
+
+      </div>
+
+      <div class="map-container">
 
         <iframe
-            src="https://www.google.com/maps?q=Miraflores,Lima,Peru&output=embed"
-            loading="lazy"
-            allowfullscreen
-        >
+          src="https://www.google.com/maps?q=Miraflores,Lima,Peru&output=embed"
+          loading="lazy"
+          allowfullscreen>
         </iframe>
 
-    </div>
+      </div>
+
+    </section>
 
 
     <!-- FOOTER -->
 
-    <div class="footer">
+    <footer>
+      Powered by <strong>ClicTracker</strong>
+    </footer>
 
-        Powered by <strong>ClicTracker</strong>
-
-    </div>
-
-</div>
+  </main>
 
 </body>
 </html>
