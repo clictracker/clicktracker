@@ -627,8 +627,6 @@
 
     <div class="content">
 
-      <!-- NEGOCIOS -->
-
       <section class="page active" id="page-businesses">
 
         <div class="page-header">
@@ -662,6 +660,7 @@
         </div>
 
         <div class="table-card">
+
           <div class="table-header">
             <div class="table-title">Negocios creados</div>
           </div>
@@ -682,11 +681,10 @@
               <tbody id="businesses-table"></tbody>
             </table>
           </div>
+
         </div>
 
       </section>
-
-      <!-- NFC -->
 
       <section class="page" id="page-nfc">
 
@@ -730,8 +728,6 @@
         </div>
 
       </section>
-
-      <!-- CLIENTES -->
 
       <section class="page" id="page-clients">
 
@@ -778,7 +774,6 @@
     </div>
   </main>
 </div>
-
 
 <!-- MODAL NEGOCIO -->
 
@@ -856,26 +851,17 @@
 
         <div class="form-group">
           <label>Google Reviews</label>
-          <input
-            type="url"
-            id="google-review-url"
-          />
+          <input type="url" id="google-review-url" />
         </div>
 
         <div class="form-group">
           <label>Instagram</label>
-          <input
-            type="url"
-            id="instagram-url"
-          />
+          <input type="url" id="instagram-url" />
         </div>
 
         <div class="form-group">
           <label>Facebook</label>
-          <input
-            type="url"
-            id="facebook-url"
-          />
+          <input type="url" id="facebook-url" />
         </div>
 
         <div class="form-group">
@@ -885,21 +871,14 @@
 
         <div class="form-group form-full">
           <label>Página web</label>
-
-          <input
-            type="url"
-            id="website-url"
-          />
+          <input type="url" id="website-url" />
         </div>
 
       </div>
 
       <div class="form-actions">
 
-        <button
-          type="submit"
-          class="btn btn-primary"
-        >
+        <button type="submit" class="btn btn-primary">
           Crear negocio
         </button>
 
@@ -917,7 +896,6 @@
 
   </div>
 </div>
-
 
 <!-- MODAL NFC -->
 
@@ -993,7 +971,6 @@
   </div>
 </div>
 
-
 <!-- MODAL CLIENTE -->
 
 <div class="modal-overlay" id="client-modal">
@@ -1017,11 +994,7 @@
 
       <div class="form-group">
         <label>Nombre completo</label>
-
-        <input
-          id="client-full-name"
-          required
-        />
+        <input id="client-full-name" required />
       </div>
 
       <br>
@@ -1090,9 +1063,7 @@
   </div>
 </div>
 
-
 <div class="alert" id="alert"></div>
-
 
 <script type="module">
 
@@ -2205,6 +2176,19 @@ document
 
       e.preventDefault();
 
+      const submitButton =
+        e.target.querySelector(
+          'button[type="submit"]'
+        );
+
+      const originalText =
+        submitButton.textContent;
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Creando cliente...";
+
       const full_name =
         document
           .getElementById("client-full-name")
@@ -2227,61 +2211,119 @@ document
           .getElementById("client-business")
           .value;
 
-      const {
-        data,
-        error
-      } =
-      await supabase
-        .functions
-        .invoke(
-          "create-client",
-          {
-            body: {
-              full_name,
-              email,
-              password,
-              business_id
+      try {
+
+        const {
+          data,
+          error
+        } =
+        await supabase
+          .functions
+          .invoke(
+            "create-client",
+            {
+              body: {
+                full_name,
+                email,
+                password,
+                business_id
+              }
             }
+          );
+
+        if (error) {
+
+          console.error(
+            "Error Edge Function:",
+            error
+          );
+
+          let errorMessage =
+            error.message ||
+            "No se pudo conectar con la función.";
+
+          try {
+
+            if (
+              error.context
+            ) {
+
+              const errorData =
+                await error.context.json();
+
+              if (
+                errorData?.error
+              ) {
+
+                errorMessage =
+                  errorData.error;
+
+              }
+
+            }
+
+          } catch (
+            parseError
+          ) {
+
+            console.error(
+              "Error leyendo respuesta:",
+              parseError
+            );
+
           }
+
+          throw new Error(
+            errorMessage
+          );
+
+        }
+
+        if (!data?.success) {
+
+          throw new Error(
+            data?.error ||
+            "No se pudo crear el cliente."
+          );
+
+        }
+
+        showAlert(
+          "Cliente creado correctamente."
         );
 
-      if (error) {
+        e.target.reset();
 
-        console.error(error);
+        closeModal(
+          "client-modal"
+        );
+
+        await loadClients();
+
+      } catch (error) {
+
+        console.error(
+          "Error creando cliente:",
+          error
+        );
 
         showAlert(
           "Error creando cliente: " +
-          error.message,
+          (
+            error?.message ||
+            "Error desconocido"
+          ),
           "error"
         );
 
-        return;
+      } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          originalText;
 
       }
-
-      if (!data?.success) {
-
-        showAlert(
-          data?.error ||
-          "No se pudo crear el cliente.",
-          "error"
-        );
-
-        return;
-
-      }
-
-      showAlert(
-        "Cliente creado correctamente."
-      );
-
-      e.target.reset();
-
-      closeModal(
-        "client-modal"
-      );
-
-      await loadClients();
 
     }
   );
