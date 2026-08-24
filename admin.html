@@ -6,6 +6,12 @@
 
   <title>ClickTracker | Administrador</title>
 
+  <!-- CONFIGURACIÓN -->
+  <script src="config.js"></script>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     :root {
       --bg: #090b10;
@@ -19,7 +25,6 @@
       --blue-hover: #3b82f6;
       --green: #22c55e;
       --red: #ef4444;
-      --yellow: #f59e0b;
     }
 
     * {
@@ -55,7 +60,11 @@
       justify-content: center;
       padding: 20px;
       background:
-        radial-gradient(circle at 50% 0%, rgba(37,99,235,.16), transparent 35%),
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(37, 99, 235, 0.16),
+          transparent 35%
+        ),
         var(--bg);
     }
 
@@ -85,7 +94,6 @@
       justify-content: center;
       font-weight: 800;
       background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      box-shadow: 0 0 30px rgba(37,99,235,.3);
     }
 
     .login-card h1 {
@@ -275,7 +283,6 @@
       background: #1b1e26;
       color: white;
       font-size: 13px;
-      transition: .18s;
     }
 
     .btn:hover {
@@ -439,7 +446,6 @@
     label {
       font-size: 12px;
       color: #c7ccd5;
-      font-weight: 500;
     }
 
     .optional {
@@ -470,7 +476,6 @@
     select:focus,
     textarea:focus {
       border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
     }
 
     .form-actions {
@@ -538,7 +543,6 @@
       color: white;
       background: #20242d;
       border: 1px solid var(--border);
-      box-shadow: 0 15px 50px rgba(0,0,0,.35);
       font-size: 13px;
     }
 
@@ -668,26 +672,17 @@
 
         <div class="sidebar-label">GESTIÓN</div>
 
-        <button
-          class="nav-button active"
-          data-page="businesses"
-        >
+        <button class="nav-button active" data-page="businesses">
           🏢
           <span>Negocios</span>
         </button>
 
-        <button
-          class="nav-button"
-          data-page="nfc"
-        >
+        <button class="nav-button" data-page="nfc">
           📱
           <span>NFC</span>
         </button>
 
-        <button
-          class="nav-button"
-          data-page="clients"
-        >
+        <button class="nav-button" data-page="clients">
           👤
           <span>Clientes</span>
         </button>
@@ -696,10 +691,7 @@
 
       <div class="sidebar-bottom">
 
-        <button
-          class="logout-btn"
-          id="logout-btn"
-        >
+        <button class="logout-btn" id="logout-btn">
           🚪
           <span>Cerrar sesión</span>
         </button>
@@ -727,13 +719,9 @@
 
       <div class="content">
 
-
         <!-- NEGOCIOS -->
 
-        <section
-          class="page active"
-          id="page-businesses"
-        >
+        <section class="page active" id="page-businesses">
 
           <div class="page-header">
 
@@ -742,10 +730,7 @@
               <p>Administra los negocios registrados en ClickTracker.</p>
             </div>
 
-            <button
-              class="btn btn-primary"
-              id="open-business-modal"
-            >
+            <button class="btn btn-primary" id="open-business-modal">
               + Crear negocio
             </button>
 
@@ -756,32 +741,17 @@
 
             <div class="stat-card">
               <div class="stat-label">TOTAL NEGOCIOS</div>
-              <div
-                class="stat-number"
-                id="total-businesses"
-              >
-                0
-              </div>
+              <div class="stat-number" id="total-businesses">0</div>
             </div>
 
             <div class="stat-card">
               <div class="stat-label">TOTAL NFC</div>
-              <div
-                class="stat-number"
-                id="total-nfc"
-              >
-                0
-              </div>
+              <div class="stat-number" id="total-nfc">0</div>
             </div>
 
             <div class="stat-card">
               <div class="stat-label">TOTAL CLIENTES</div>
-              <div
-                class="stat-number"
-                id="total-clients"
-              >
-                0
-              </div>
+              <div class="stat-number" id="total-clients">0</div>
             </div>
 
           </div>
@@ -821,10 +791,7 @@
 
         <!-- NFC -->
 
-        <section
-          class="page"
-          id="page-nfc"
-        >
+        <section class="page" id="page-nfc">
 
           <div class="page-header">
 
@@ -833,10 +800,7 @@
               <p>Crea y administra las tarjetas NFC.</p>
             </div>
 
-            <button
-              class="btn btn-primary"
-              id="open-nfc-modal"
-            >
+            <button class="btn btn-primary" id="open-nfc-modal">
               + Crear NFC
             </button>
 
@@ -884,10 +848,7 @@
 
         <!-- CLIENTES -->
 
-        <section
-          class="page"
-          id="page-clients"
-        >
+        <section class="page" id="page-clients">
 
           <div class="page-header">
 
@@ -896,10 +857,7 @@
               <p>Crea y administra las cuentas de tus clientes.</p>
             </div>
 
-            <button
-              class="btn btn-primary"
-              id="open-client-modal"
-            >
+            <button class="btn btn-primary" id="open-client-modal">
               + Crear cliente
             </button>
 
@@ -937,7 +895,6 @@
 
         </section>
 
-
       </div>
 
     </main>
@@ -947,10 +904,7 @@
 
   <!-- MODAL NEGOCIO -->
 
-  <div
-    class="modal-overlay"
-    id="business-modal"
-  >
+  <div class="modal-overlay" id="business-modal">
 
     <div class="modal">
 
@@ -996,8 +950,6 @@
           </div>
 
 
-          <!-- NUEVO CAMPO LOGO -->
-
           <div class="form-group form-full">
 
             <label>
@@ -1039,7 +991,7 @@
             <input
               type="url"
               id="google-review-url"
-              placeholder="https://g.page/..."
+              placeholder="https://..."
             />
 
           </div>
@@ -1111,13 +1063,13 @@
           <div class="form-group">
 
             <label>
-              Google Maps
+              Google Maps Embed URL
               <span class="optional">(Opcional)</span>
             </label>
 
             <input
-              id="google-maps-url"
-              placeholder="URL o dirección del negocio"
+              id="maps-embed-url"
+              placeholder="https://www.google.com/maps/embed?..."
             />
 
           </div>
@@ -1153,10 +1105,7 @@
 
   <!-- MODAL NFC -->
 
-  <div
-    class="modal-overlay"
-    id="nfc-modal"
-  >
+  <div class="modal-overlay" id="nfc-modal">
 
     <div class="modal" style="max-width:600px;">
 
@@ -1208,10 +1157,7 @@
 
           <label>Negocio</label>
 
-          <select
-            id="nfc-business"
-            required
-          >
+          <select id="nfc-business" required>
             <option value="">
               Selecciona un negocio
             </option>
@@ -1262,10 +1208,7 @@
 
   <!-- MODAL CLIENTE -->
 
-  <div
-    class="modal-overlay"
-    id="client-modal"
-  >
+  <div class="modal-overlay" id="client-modal">
 
     <div class="modal" style="max-width:600px;">
 
@@ -1293,6 +1236,22 @@
             type="email"
             id="client-email"
             placeholder="cliente@ejemplo.com"
+            required
+          />
+
+        </div>
+
+        <br />
+
+        <div class="form-group">
+
+          <label>Contraseña</label>
+
+          <input
+            type="password"
+            id="client-password"
+            placeholder="Mínimo 6 caracteres"
+            minlength="6"
             required
           />
 
@@ -1342,46 +1301,35 @@
   </div>
 
 
-  <div
-    class="alert"
-    id="alert"
-  ></div>
+  <div class="alert" id="alert"></div>
 
 
-  <script type="module">
-
-    import {
-      createClient
-    } from "https://esm.sh/@supabase/supabase-js@2";
-
+  <script>
 
     /* =========================================
-       SUPABASE
+       CONFIGURACIÓN
     ========================================= */
 
     const SUPABASE_URL =
-      "https://zrbujdpmrgeotubirxip.supabase.co";
+      window.CLICKTRACKER_CONFIG.SUPABASE_URL;
 
     const SUPABASE_KEY =
-      "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
-
+      window.CLICKTRACKER_CONFIG.SUPABASE_ANON_KEY;
 
     const supabase =
-      createClient(
+      window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
       );
 
-
     const DOMAIN =
       "https://clicktracker-zeyw.vercel.app";
-
 
     let businesses = [];
 
 
     /* =========================================
-       ALERTA
+       ALERTAS
     ========================================= */
 
     function showAlert(message, type = "success") {
@@ -1389,8 +1337,7 @@
       const alert =
         document.getElementById("alert");
 
-      alert.textContent =
-        message;
+      alert.textContent = message;
 
       alert.className =
         `alert show ${type}`;
@@ -1424,40 +1371,68 @@
        LOGIN
     ========================================= */
 
+    async function isAdmin(user) {
+
+      if (!user?.id) return false;
+
+      const { data, error } =
+        await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .maybeSingle();
+
+      if (!error && data?.role === "admin") {
+        return true;
+      }
+
+      /* Compatibilidad con tu tabla admins */
+
+      const { data: legacyAdmin } =
+        await supabase
+          .from("admins")
+          .select("id")
+          .eq("email", user.email)
+          .maybeSingle();
+
+      return !!legacyAdmin;
+
+    }
+
+
+    async function enterAdmin(user) {
+
+      document
+        .getElementById("login-screen")
+        .style.display = "none";
+
+      document
+        .getElementById("app")
+        .style.display = "block";
+
+      document
+        .getElementById("admin-email")
+        .textContent =
+        user.email || "";
+
+      await loadEverything();
+
+    }
+
+
     async function checkSession() {
 
       const {
-        data: {
-          session
-        }
+        data: { session }
       } =
       await supabase.auth.getSession();
 
+      if (!session) return;
 
-      if (!session) {
-        return;
-      }
+      const allowed =
+        await isAdmin(session.user);
 
-
-      const email =
-        session.user.email;
-
-
-      const {
-        data: admin,
-        error
-      } =
-      await supabase
-        .from("admins")
-        .select("*")
-        .eq("email", email)
-        .maybeSingle();
-
-
-      if (
-        error ||
-        !admin
-      ) {
+      if (!allowed) {
 
         await supabase.auth.signOut();
 
@@ -1470,22 +1445,7 @@
 
       }
 
-
-      document
-        .getElementById("login-screen")
-        .style.display = "none";
-
-      document
-        .getElementById("app")
-        .style.display = "block";
-
-
-      document
-        .getElementById("admin-email")
-        .textContent = email;
-
-
-      await loadEverything();
+      await enterAdmin(session.user);
 
     }
 
@@ -1498,7 +1458,6 @@
 
           e.preventDefault();
 
-
           const email =
             document
               .getElementById("login-email")
@@ -1510,16 +1469,16 @@
               .getElementById("login-password")
               .value;
 
-
           const {
             data,
             error
           } =
-          await supabase.auth.signInWithPassword({
-            email,
-            password
-          });
-
+          await supabase
+            .auth
+            .signInWithPassword({
+              email,
+              password
+            });
 
           if (error) {
 
@@ -1532,21 +1491,10 @@
 
           }
 
+          const allowed =
+            await isAdmin(data.user);
 
-          const {
-            data: admin
-          } =
-          await supabase
-            .from("admins")
-            .select("*")
-            .eq(
-              "email",
-              data.user.email
-            )
-            .maybeSingle();
-
-
-          if (!admin) {
+          if (!allowed) {
 
             await supabase.auth.signOut();
 
@@ -1559,23 +1507,7 @@
 
           }
 
-
-          document
-            .getElementById("login-screen")
-            .style.display = "none";
-
-          document
-            .getElementById("app")
-            .style.display = "block";
-
-
-          document
-            .getElementById("admin-email")
-            .textContent =
-            data.user.email;
-
-
-          await loadEverything();
+          await enterAdmin(data.user);
 
         }
       );
@@ -1591,9 +1523,7 @@
         "click",
         async () => {
 
-          await supabase
-            .auth
-            .signOut();
+          await supabase.auth.signOut();
 
           location.reload();
 
@@ -1616,23 +1546,19 @@
             const page =
               button.dataset.page;
 
-
             document
               .querySelectorAll(".nav-button")
               .forEach(btn =>
                 btn.classList.remove("active")
               );
 
-
             button.classList.add("active");
-
 
             document
               .querySelectorAll(".page")
               .forEach(p =>
                 p.classList.remove("active")
               );
-
 
             document
               .getElementById(
@@ -1651,22 +1577,16 @@
     ========================================= */
 
     function openModal(id) {
-
       document
         .getElementById(id)
         .classList.add("show");
-
     }
 
-
     function closeModal(id) {
-
       document
         .getElementById(id)
         .classList.remove("show");
-
     }
-
 
     document
       .getElementById("open-business-modal")
@@ -1675,14 +1595,12 @@
         () => openModal("business-modal")
       );
 
-
     document
       .getElementById("open-nfc-modal")
       .addEventListener(
         "click",
         () => openModal("nfc-modal")
       );
-
 
     document
       .getElementById("open-client-modal")
@@ -1691,27 +1609,23 @@
         () => openModal("client-modal")
       );
 
-
     document
       .querySelectorAll("[data-close]")
       .forEach(button => {
 
         button.addEventListener(
           "click",
-          () => {
-
+          () =>
             closeModal(
               button.dataset.close
-            );
-
-          }
+            )
         );
 
       });
 
 
     /* =========================================
-       AUTOGENERAR SLUG NEGOCIO
+       SLUG AUTOMÁTICO
     ========================================= */
 
     document
@@ -1725,18 +1639,13 @@
               "business-slug"
             );
 
-          if (
-            !slugInput.dataset.manual
-          ) {
-
+          if (!slugInput.dataset.manual) {
             slugInput.value =
               slugify(e.target.value);
-
           }
 
         }
       );
-
 
     document
       .getElementById("business-slug")
@@ -1745,17 +1654,11 @@
         e => {
 
           e.target.dataset.manual = "true";
-
           e.target.value =
             slugify(e.target.value);
 
         }
       );
-
-
-    /* =========================================
-       AUTOGENERAR SLUG NFC
-    ========================================= */
 
     document
       .getElementById("nfc-name")
@@ -1768,18 +1671,13 @@
               "nfc-slug"
             );
 
-          if (
-            !slugInput.dataset.manual
-          ) {
-
+          if (!slugInput.dataset.manual) {
             slugInput.value =
               slugify(e.target.value);
-
           }
 
         }
       );
-
 
     document
       .getElementById("nfc-slug")
@@ -1788,7 +1686,6 @@
         e => {
 
           e.target.dataset.manual = "true";
-
           e.target.value =
             slugify(e.target.value);
 
@@ -1804,11 +1701,11 @@
 
       await loadBusinesses();
 
+      populateBusinessSelects();
+
       await loadNfc();
 
       await loadClients();
-
-      populateBusinessSelects();
 
     }
 
@@ -1833,7 +1730,6 @@
           }
         );
 
-
       if (error) {
 
         console.error(error);
@@ -1848,25 +1744,19 @@
 
       }
 
-
-      businesses =
-        data || [];
-
+      businesses = data || [];
 
       document
         .getElementById("total-businesses")
         .textContent =
         businesses.length;
 
-
       const table =
         document.getElementById(
           "businesses-table"
         );
 
-
       table.innerHTML = "";
-
 
       if (!businesses.length) {
 
@@ -1884,26 +1774,26 @@
 
       }
 
-
       businesses.forEach(
         business => {
 
           const logo =
             business.logo_url
-              ? `<img
+              ? `
+                <img
                   src="${business.logo_url}"
+                  alt=""
                   style="
                     width:34px;
                     height:34px;
                     object-fit:cover;
                     border-radius:8px;
                   "
-                >`
+                >
+              `
               : "—";
 
-
           table.innerHTML += `
-
             <tr>
 
               <td>
@@ -1921,18 +1811,15 @@
               </td>
 
               <td>
-
                 <button
                   class="btn btn-small btn-danger"
                   onclick="deleteBusiness('${business.id}')"
                 >
                   Eliminar
                 </button>
-
               </td>
 
             </tr>
-
           `;
 
         }
@@ -1953,13 +1840,11 @@
 
           e.preventDefault();
 
-
           const name =
             document
               .getElementById("business-name")
               .value
               .trim();
-
 
           const slug =
             slugify(
@@ -1968,97 +1853,82 @@
                 .value
             );
 
+          if (!name || !slug) {
 
-          /* NUEVO: URL DEL LOGO */
+            showAlert(
+              "El nombre y slug son obligatorios.",
+              "error"
+            );
 
-          const logo_url =
-            document
-              .getElementById("business-logo-url")
-              .value
-              .trim() || null;
+            return;
 
+          }
 
-          const description =
-            document
-              .getElementById("business-description")
-              .value
-              .trim() || null;
+          const payload = {
 
+            name,
+            slug,
 
-          const google_review_url =
-            document
-              .getElementById("google-review-url")
-              .value
-              .trim() || null;
+            logo_url:
+              document
+                .getElementById("business-logo-url")
+                .value
+                .trim() || null,
 
+            description:
+              document
+                .getElementById("business-description")
+                .value
+                .trim() || null,
 
-          const instagram_url =
-            document
-              .getElementById("instagram-url")
-              .value
-              .trim() || null;
+            google_review_url:
+              document
+                .getElementById("google-review-url")
+                .value
+                .trim() || null,
 
+            instagram_url:
+              document
+                .getElementById("instagram-url")
+                .value
+                .trim() || null,
 
-          const facebook_url =
-            document
-              .getElementById("facebook-url")
-              .value
-              .trim() || null;
+            facebook_url:
+              document
+                .getElementById("facebook-url")
+                .value
+                .trim() || null,
 
+            whatsapp:
+              document
+                .getElementById("whatsapp-url")
+                .value
+                .trim() || null,
 
-          const whatsapp_url =
-            document
-              .getElementById("whatsapp-url")
-              .value
-              .trim() || null;
+            website_url:
+              document
+                .getElementById("website-url")
+                .value
+                .trim() || null,
 
+            maps_embed_url:
+              document
+                .getElementById("maps-embed-url")
+                .value
+                .trim() || null,
 
-          const website_url =
-            document
-              .getElementById("website-url")
-              .value
-              .trim() || null;
+            status: "active"
 
-
-          const google_maps_url =
-            document
-              .getElementById("google-maps-url")
-              .value
-              .trim() || null;
-
+          };
 
           const {
             error
           } =
           await supabase
             .from("businesses")
-            .insert({
-
-              name,
-              slug,
-
-              logo_url,
-
-              description,
-
-              google_review_url,
-
-              instagram_url,
-
-              facebook_url,
-
-              whatsapp_url,
-
-              website_url,
-
-              google_maps_url
-
-            });
-
+            .insert(payload);
 
           if (error) {
-
-            console.error(error);
 
             showAlert(
               "Error creando el negocio: " +
@@ -2070,11 +1940,9 @@
 
           }
 
-
           showAlert(
             "Negocio creado correctamente."
           );
-
 
           e.target.reset();
 
@@ -2082,15 +1950,9 @@
             .getElementById("business-slug")
             .dataset.manual = "";
 
+          closeModal("business-modal");
 
-          closeModal(
-            "business-modal"
-          );
-
-
-          await loadBusinesses();
-
-          populateBusinessSelects();
+          await loadEverything();
 
         }
       );
@@ -2103,48 +1965,31 @@
     function populateBusinessSelects() {
 
       const selects = [
-
-        document.getElementById(
-          "nfc-business"
-        ),
-
-        document.getElementById(
-          "client-business"
-        )
-
+        document.getElementById("nfc-business"),
+        document.getElementById("client-business")
       ];
-
 
       selects.forEach(select => {
 
-        if (!select) return;
-
         const currentValue =
           select.value;
-
 
         select.innerHTML =
           `<option value="">
             Selecciona un negocio
           </option>`;
 
-
         businesses.forEach(
           business => {
 
             select.innerHTML += `
-
-              <option
-                value="${business.id}"
-              >
+              <option value="${business.id}">
                 ${business.name}
               </option>
-
             `;
 
           }
         );
-
 
         select.value =
           currentValue;
@@ -2174,40 +2019,37 @@
           }
         );
 
-
       if (error) {
 
-        console.error(error);
+        showAlert(
+          "Error cargando NFC: " +
+          error.message,
+          "error"
+        );
 
         return;
 
       }
 
-
       const nfcList =
         data || [];
-
 
       document
         .getElementById("total-nfc")
         .textContent =
         nfcList.length;
 
-
       document
         .getElementById("nfc-count-text")
         .textContent =
         `${nfcList.length} tarjetas`;
-
 
       const table =
         document.getElementById(
           "nfc-table"
         );
 
-
       table.innerHTML = "";
-
 
       if (!nfcList.length) {
 
@@ -2225,7 +2067,6 @@
 
       }
 
-
       nfcList.forEach(
         nfc => {
 
@@ -2235,27 +2076,17 @@
                 b.id === nfc.business_id
             );
 
-
-          const businessSlug =
-            business?.slug || "";
-
-
           const url =
-            `${DOMAIN}/${businessSlug}/${nfc.slug}`;
-
+            `${DOMAIN}/${nfc.slug}`;
 
           const active =
             nfc.status === "active";
 
-
           table.innerHTML += `
-
             <tr>
 
               <td>
-                <strong>
-                  ${nfc.name}
-                </strong>
+                <strong>${nfc.name}</strong>
               </td>
 
               <td>
@@ -2267,30 +2098,22 @@
               </td>
 
               <td>
-
-                <span
-                  class="badge ${
-                    active
-                      ? "badge-active"
-                      : "badge-inactive"
-                  }"
-                >
-
+                <span class="badge ${
+                  active
+                    ? "badge-active"
+                    : "badge-inactive"
+                }">
                   ${
                     active
                       ? "● Activo"
                       : "● Inactivo"
                   }
-
                 </span>
-
               </td>
 
               <td>
 
-                <div
-                  class="url-text"
-                >
+                <div class="url-text">
                   ${url}
                 </div>
 
@@ -2330,7 +2153,6 @@
               </td>
 
             </tr>
-
           `;
 
         }
@@ -2351,13 +2173,11 @@
 
           e.preventDefault();
 
-
           const name =
             document
               .getElementById("nfc-name")
               .value
               .trim();
-
 
           const code =
             document
@@ -2365,12 +2185,10 @@
               .value
               .trim();
 
-
           const business_id =
             document
               .getElementById("nfc-business")
               .value;
-
 
           const slug =
             slugify(
@@ -2379,22 +2197,18 @@
                 .value
             );
 
-
           const {
             error
           } =
           await supabase
             .from("nfc_devices")
             .insert({
-
               name,
               code,
               business_id,
               slug,
               status: "active"
-
             });
-
 
           if (error) {
 
@@ -2408,18 +2222,17 @@
 
           }
 
-
           showAlert(
             "NFC creado correctamente."
           );
 
-
           e.target.reset();
 
-          closeModal(
-            "nfc-modal"
-          );
+          document
+            .getElementById("nfc-slug")
+            .dataset.manual = "";
 
+          closeModal("nfc-modal");
 
           await loadNfc();
 
@@ -2438,130 +2251,120 @@
           "clients-table"
         );
 
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-        await supabase
-          .from("clients")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-        if (error) {
-
-          console.log(
-            "Tabla clients:",
-            error.message
-          );
-
-          table.innerHTML = `
-            <tr>
-              <td colspan="4">
-                <div class="empty">
-                  No se pudieron cargar los clientes.
-                </div>
-              </td>
-            </tr>
-          `;
-
-          return;
-
-        }
-
-
-        const clients =
-          data || [];
-
-
-        document
-          .getElementById("total-clients")
-          .textContent =
-          clients.length;
-
-
-        table.innerHTML = "";
-
-
-        if (!clients.length) {
-
-          table.innerHTML = `
-            <tr>
-              <td colspan="4">
-                <div class="empty">
-                  Aún no hay clientes creados.
-                </div>
-              </td>
-            </tr>
-          `;
-
-          return;
-
-        }
-
-
-        clients.forEach(
-          client => {
-
-            const business =
-              businesses.find(
-                b =>
-                  b.id === client.business_id
-              );
-
-
-            table.innerHTML += `
-
-              <tr>
-
-                <td>
-                  ${client.email || "—"}
-                </td>
-
-                <td>
-                  ${business?.name || "—"}
-                </td>
-
-                <td>
-                  ${
-                    client.created_at
-                      ? new Date(
-                          client.created_at
-                        ).toLocaleDateString("es-PE")
-                      : "—"
-                  }
-                </td>
-
-                <td>
-
-                  <button
-                    class="btn btn-small btn-danger"
-                    onclick="deleteClient('${client.id}')"
-                  >
-                    Eliminar
-                  </button>
-
-                </td>
-
-              </tr>
-
-            `;
-
+      const {
+        data: clientList,
+        error
+      } =
+      await supabase
+        .from("clients")
+        .select(`
+          id,
+          user_id,
+          business_id,
+          created_at
+        `)
+        .order(
+          "created_at",
+          {
+            ascending: false
           }
         );
 
-      }
-      catch (error) {
+      if (error) {
 
         console.error(error);
+
+        table.innerHTML = `
+          <tr>
+            <td colspan="4">
+              <div class="empty">
+                Error cargando clientes.
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return;
+
+      }
+
+      const clients =
+        clientList || [];
+
+      document
+        .getElementById("total-clients")
+        .textContent =
+        clients.length;
+
+      table.innerHTML = "";
+
+      if (!clients.length) {
+
+        table.innerHTML = `
+          <tr>
+            <td colspan="4">
+              <div class="empty">
+                Aún no hay clientes creados.
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return;
+
+      }
+
+      for (const client of clients) {
+
+        const business =
+          businesses.find(
+            b =>
+              b.id === client.business_id
+          );
+
+        const {
+          data: profile
+        } =
+        await supabase
+          .from("profiles")
+          .select("email")
+          .eq("id", client.user_id)
+          .maybeSingle();
+
+        table.innerHTML += `
+          <tr>
+
+            <td>
+              ${profile?.email || "—"}
+            </td>
+
+            <td>
+              ${business?.name || "—"}
+            </td>
+
+            <td>
+              ${
+                client.created_at
+                  ? new Date(
+                      client.created_at
+                    ).toLocaleDateString("es-PE")
+                  : "—"
+              }
+            </td>
+
+            <td>
+
+              <button
+                class="btn btn-small btn-danger"
+                onclick="deleteClient('${client.id}')"
+              >
+                Eliminar
+              </button>
+
+            </td>
+
+          </tr>
+        `;
 
       }
 
@@ -2580,32 +2383,55 @@
 
           e.preventDefault();
 
-
           const email =
             document
               .getElementById("client-email")
               .value
               .trim();
 
+          const password =
+            document
+              .getElementById("client-password")
+              .value;
 
           const business_id =
             document
               .getElementById("client-business")
               .value;
 
+          if (password.length < 6) {
+
+            showAlert(
+              "La contraseña debe tener al menos 6 caracteres.",
+              "error"
+            );
+
+            return;
+
+          }
+
+          showAlert(
+            "Creando cuenta de cliente..."
+          );
 
           const {
+            data,
             error
           } =
-          await supabase
-            .from("clients")
-            .insert({
-              email,
-              business_id
-            });
-
+          await supabase.functions.invoke(
+            "create-client",
+            {
+              body: {
+                email,
+                password,
+                business_id
+              }
+            }
+          );
 
           if (error) {
+
+            console.error(error);
 
             showAlert(
               "Error creando cliente: " +
@@ -2617,18 +2443,25 @@
 
           }
 
+          if (data?.error) {
+
+            showAlert(
+              "Error creando cliente: " +
+              data.error,
+              "error"
+            );
+
+            return;
+
+          }
 
           showAlert(
             "Cliente creado correctamente."
           );
 
-
           e.target.reset();
 
-          closeModal(
-            "client-modal"
-          );
-
+          closeModal("client-modal");
 
           await loadClients();
 
@@ -2643,13 +2476,24 @@
     window.copyLink =
       async function(url) {
 
-        await navigator
-          .clipboard
-          .writeText(url);
+        try {
 
-        showAlert(
-          "Link copiado."
-        );
+          await navigator
+            .clipboard
+            .writeText(url);
+
+          showAlert(
+            "Link copiado."
+          );
+
+        } catch {
+
+          showAlert(
+            "No se pudo copiar el link.",
+            "error"
+          );
+
+        }
 
       };
 
@@ -2665,7 +2509,6 @@
             ? "inactive"
             : "active";
 
-
         const {
           error
         } =
@@ -2675,7 +2518,6 @@
             status: newStatus
           })
           .eq("id", id);
-
 
         if (error) {
 
@@ -2687,7 +2529,6 @@
           return;
 
         }
-
 
         await loadNfc();
 
@@ -2703,7 +2544,6 @@
           )
         ) return;
 
-
         const {
           error
         } =
@@ -2711,7 +2551,6 @@
           .from("nfc_devices")
           .delete()
           .eq("id", id);
-
 
         if (error) {
 
@@ -2724,11 +2563,9 @@
 
         }
 
-
         showAlert(
           "NFC eliminado."
         );
-
 
         await loadNfc();
 
@@ -2740,10 +2577,9 @@
 
         if (
           !confirm(
-            "¿Eliminar este negocio?"
+            "¿Eliminar este negocio? Esto puede afectar sus NFC y clientes asociados."
           )
         ) return;
-
 
         const {
           error
@@ -2752,7 +2588,6 @@
           .from("businesses")
           .delete()
           .eq("id", id);
-
 
         if (error) {
 
@@ -2765,11 +2600,9 @@
 
         }
 
-
         showAlert(
           "Negocio eliminado."
         );
-
 
         await loadEverything();
 
@@ -2781,10 +2614,9 @@
 
         if (
           !confirm(
-            "¿Eliminar este cliente?"
+            "¿Eliminar esta cuenta de cliente?"
           )
         ) return;
-
 
         const {
           error
@@ -2793,7 +2625,6 @@
           .from("clients")
           .delete()
           .eq("id", id);
-
 
         if (error) {
 
@@ -2806,11 +2637,9 @@
 
         }
 
-
         showAlert(
           "Cliente eliminado."
         );
-
 
         await loadClients();
 
