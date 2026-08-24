@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ClickTracker</title>
 
@@ -30,19 +27,13 @@
 
     body {
       min-height: 100vh;
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
 
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(37, 99, 235, 0.12),
+          rgba(37, 99, 235, 0.13),
           transparent 35%
         ),
         var(--bg);
@@ -50,33 +41,24 @@
       color: var(--text);
     }
 
-    /* =========================
-       LOADING
-    ========================= */
+    /* LOADING */
 
     #loading {
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
-
       align-items: center;
       justify-content: center;
-
       gap: 16px;
-
       color: var(--muted);
     }
 
     .loader {
-      width: 38px;
-      height: 38px;
-
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-
       border: 3px solid rgba(255,255,255,0.08);
       border-top-color: var(--blue-light);
-
       animation: spin 0.8s linear infinite;
     }
 
@@ -86,21 +68,47 @@
       }
     }
 
-    /* =========================
-       APP
-    ========================= */
+    /* ERROR */
+
+    #error-page {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .error-card {
+      max-width: 460px;
+    }
+
+    .error-icon {
+      font-size: 50px;
+      margin-bottom: 18px;
+    }
+
+    .error-card h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .error-card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* APP */
 
     #app {
       display: none;
       min-height: 100vh;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     header {
-      height: 76px;
+      height: 72px;
 
       display: flex;
       align-items: center;
@@ -110,13 +118,9 @@
 
       border-bottom: 1px solid var(--border);
 
-      background: rgba(8,11,18,0.8);
+      background: rgba(8, 11, 18, 0.8);
 
       backdrop-filter: blur(14px);
-
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
     .clicktracker-brand {
@@ -126,40 +130,34 @@
 
       font-weight: 700;
       font-size: 17px;
-
-      letter-spacing: -0.4px;
     }
 
     .ct-icon {
       width: 38px;
       height: 38px;
 
-      border-radius: 12px;
-
       display: flex;
       align-items: center;
       justify-content: center;
 
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #1d4ed8
-        );
+      border-radius: 12px;
+
+      background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+      );
 
       box-shadow:
         0 0 25px
-        rgba(37,99,235,0.35);
-
-      font-size: 17px;
-      font-weight: 800;
+        rgba(37, 99, 235, 0.35);
 
       color: white;
+      font-weight: 800;
+      font-size: 14px;
     }
 
-    /* =========================
-       MAIN
-    ========================= */
+    /* MAIN */
 
     main {
       width: 100%;
@@ -167,19 +165,13 @@
 
       margin: 0 auto;
 
-      padding:
-        52px
-        20px
-        60px;
+      padding: 52px 20px 60px;
     }
 
-    /* =========================
-       BUSINESS HEADER
-    ========================= */
+    /* BUSINESS */
 
     .business-header {
       text-align: center;
-
       margin-bottom: 38px;
     }
 
@@ -187,9 +179,9 @@
       width: 100px;
       height: 100px;
 
-      border-radius: 26px;
-
       object-fit: cover;
+
+      border-radius: 26px;
 
       margin-bottom: 18px;
 
@@ -206,23 +198,19 @@
       width: 100px;
       height: 100px;
 
-      margin:
-        0 auto
-        18px;
-
-      border-radius: 26px;
+      margin: 0 auto 18px;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
-      background:
-        linear-gradient(
-          135deg,
-          #172033,
-          #0f1726
-        );
+      border-radius: 26px;
+
+      background: linear-gradient(
+        135deg,
+        #172033,
+        #0f1726
+      );
 
       border: 1px solid var(--border);
 
@@ -234,11 +222,8 @@
 
     .business-name {
       font-size: 30px;
-
       font-weight: 750;
-
       letter-spacing: -1px;
-
       margin-bottom: 8px;
     }
 
@@ -246,33 +231,25 @@
       color: var(--muted);
 
       font-size: 15px;
-
       line-height: 1.6;
 
       max-width: 430px;
-
       margin: 0 auto;
     }
 
-    /* =========================
-       BUTTONS
-    ========================= */
+    /* BUTTONS */
 
     .links {
       display: flex;
-
       flex-direction: column;
-
       gap: 14px;
     }
 
     .link-button {
       width: 100%;
-
       min-height: 68px;
 
       display: flex;
-
       align-items: center;
 
       padding: 10px 20px;
@@ -281,24 +258,19 @@
 
       border: 1px solid var(--border);
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,0.08),
-          rgba(255,255,255,0.035)
-        );
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.035)
+      );
 
       color: var(--text);
 
       text-decoration: none;
 
-      cursor: pointer;
+      transition: 0.18s ease;
 
-      transition:
-        transform 0.18s ease,
-        border-color 0.18s ease,
-        background 0.18s ease,
-        box-shadow 0.18s ease;
+      cursor: pointer;
     }
 
     .link-button:hover {
@@ -307,12 +279,11 @@
       border-color:
         rgba(59,130,246,0.55);
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(37,99,235,0.20),
-          rgba(255,255,255,0.05)
-        );
+      background: linear-gradient(
+        135deg,
+        rgba(37,99,235,0.20),
+        rgba(255,255,255,0.05)
+      );
 
       box-shadow:
         0 12px 35px
@@ -330,7 +301,6 @@
       flex-shrink: 0;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
@@ -348,7 +318,6 @@
       text-align: center;
 
       font-size: 16px;
-
       font-weight: 600;
 
       padding-right: 42px;
@@ -356,19 +325,17 @@
 
     .button-arrow {
       color: var(--muted);
-
       font-size: 21px;
     }
 
-    /* GOOGLE REVIEW DESTACADO */
+    /* GOOGLE */
 
     .google-review {
-      background:
-        linear-gradient(
-          135deg,
-          #1d4ed8,
-          #2563eb
-        );
+      background: linear-gradient(
+        135deg,
+        #1d4ed8,
+        #2563eb
+      );
 
       border-color:
         rgba(96,165,250,0.6);
@@ -379,12 +346,11 @@
     }
 
     .google-review:hover {
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #3b82f6
-        );
+      background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+      );
     }
 
     .google-review .button-icon {
@@ -396,9 +362,7 @@
       color: white;
     }
 
-    /* =========================
-       MAP
-    ========================= */
+    /* MAP */
 
     .map-section {
       margin-top: 42px;
@@ -406,17 +370,12 @@
 
     .map-title {
       font-size: 17px;
-
       font-weight: 650;
-
       margin-bottom: 14px;
-
-      color: var(--text);
     }
 
     .map-container {
       width: 100%;
-
       height: 300px;
 
       overflow: hidden;
@@ -431,13 +390,10 @@
     .map-container iframe {
       width: 100%;
       height: 100%;
-
       border: 0;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
       text-align: center;
@@ -451,9 +407,7 @@
 
     .powered {
       display: inline-flex;
-
       align-items: center;
-
       gap: 7px;
     }
 
@@ -461,79 +415,30 @@
       width: 20px;
       height: 20px;
 
-      border-radius: 7px;
-
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
+
+      border-radius: 7px;
 
       background:
         rgba(37,99,235,0.2);
 
       color: var(--blue-light);
 
-      font-size: 10px;
-
+      font-size: 9px;
       font-weight: 800;
     }
-
-    /* =========================
-       ERROR
-    ========================= */
-
-    #error-page {
-      display: none;
-
-      min-height: 100vh;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 25px;
-
-      text-align: center;
-    }
-
-    .error-card {
-      max-width: 460px;
-    }
-
-    .error-icon {
-      font-size: 50px;
-
-      margin-bottom: 18px;
-    }
-
-    .error-card h1 {
-      font-size: 30px;
-
-      margin-bottom: 12px;
-    }
-
-    .error-card p {
-      color: var(--muted);
-
-      line-height: 1.6;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
 
     @media (max-width: 600px) {
 
       header {
         height: 66px;
-
         padding: 0 18px;
       }
 
       main {
-        padding:
-          38px
-          16px
-          50px;
+        padding: 38px 16px 50px;
       }
 
       .business-name {
@@ -544,8 +449,6 @@
       .business-logo-placeholder {
         width: 88px;
         height: 88px;
-
-        border-radius: 24px;
       }
 
       .map-container {
@@ -557,896 +460,759 @@
   </style>
 </head>
 
-
 <body>
 
+  <!-- LOADING -->
 
-<!-- =========================
-     LOADING
-========================= -->
-
-<div id="loading">
-
-  <div class="loader"></div>
-
-  <p>Cargando...</p>
-
-</div>
+  <div id="loading">
+    <div class="loader"></div>
+    <p>Cargando...</p>
+  </div>
 
 
-<!-- =========================
-     ERROR
-========================= -->
+  <!-- ERROR -->
 
-<div id="error-page">
+  <div id="error-page">
 
-  <div class="error-card">
+    <div class="error-card">
 
-    <div class="error-icon">
-      ⚠️
+      <div class="error-icon">
+        ⚠️
+      </div>
+
+      <h1 id="error-title">
+        NFC no encontrado
+      </h1>
+
+      <p id="error-message">
+        Esta tarjeta no está registrada o ya no se encuentra activa.
+      </p>
+
     </div>
-
-    <h1>NFC no encontrado</h1>
-
-    <p id="error-message">
-      Esta tarjeta no está registrada o ya no se encuentra activa.
-    </p>
 
   </div>
 
-</div>
 
+  <!-- APP -->
 
-<!-- =========================
-     APP
-========================= -->
+  <div id="app">
 
-<div id="app">
+    <header>
 
+      <div class="clicktracker-brand">
 
-  <!-- HEADER -->
-
-  <header>
-
-    <div class="clicktracker-brand">
-
-      <div class="ct-icon">
-        CT
-      </div>
-
-      <span>
-        ClickTracker
-      </span>
-
-    </div>
-
-  </header>
-
-
-  <!-- MAIN -->
-
-  <main>
-
-
-    <!-- BUSINESS -->
-
-    <section class="business-header">
-
-      <div id="logo-container">
-
-        <div class="business-logo-placeholder">
-          •
+        <div class="ct-icon">
+          CT
         </div>
 
-      </div>
-
-
-      <h1
-        class="business-name"
-        id="business-name"
-      >
-        Cargando...
-      </h1>
-
-
-      <p
-        class="business-description"
-        id="business-description"
-      >
-      </p>
-
-    </section>
-
-
-    <!-- LINKS -->
-
-    <section
-      class="links"
-      id="links-container"
-    >
-    </section>
-
-
-    <!-- MAP -->
-
-    <section
-      class="map-section"
-      id="map-section"
-      style="display:none;"
-    >
-
-      <h2 class="map-title">
-        📍 Encuéntranos aquí
-      </h2>
-
-      <div class="map-container">
-
-        <iframe
-          id="google-map"
-          loading="lazy"
-          allowfullscreen
-        >
-        </iframe>
-
-      </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-      <div class="powered">
-
-        <span class="powered-icon">
-          CT
-        </span>
-
         <span>
-          Powered by ClickTracker
+          ClickTracker
         </span>
 
       </div>
 
-    </footer>
+    </header>
 
 
-  </main>
+    <main>
 
-</div>
+      <!-- BUSINESS -->
 
+      <section class="business-header">
 
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
-<script type="module">
-
-  import {
-    createClient
-  } from
-  "https://esm.sh/@supabase/supabase-js@2";
-
-
-  /* =========================
-     SUPABASE
-  ========================= */
-
-  const SUPABASE_URL =
-    "https://zrbujdpmrgeotubirxip.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
-
-
-  const supabase =
-    createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-
-  /* =========================
-     ELEMENTOS
-  ========================= */
-
-  const loading =
-    document.getElementById("loading");
-
-  const app =
-    document.getElementById("app");
-
-  const errorPage =
-    document.getElementById("error-page");
-
-  const errorMessage =
-    document.getElementById("error-message");
-
-  const businessName =
-    document.getElementById("business-name");
-
-  const businessDescription =
-    document.getElementById("business-description");
-
-  const logoContainer =
-    document.getElementById("logo-container");
-
-  const linksContainer =
-    document.getElementById("links-container");
-
-  const mapSection =
-    document.getElementById("map-section");
-
-  const googleMap =
-    document.getElementById("google-map");
-
-
-  /* =========================
-     OBTENER SLUG
-  ========================= */
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  let slug =
-    params.get("slug");
-
-
-  /*
-    También permite:
-
-    https://dominio.com/tanta-caja
-
-    si en el futuro configuras
-    rewrites en Vercel.
-  */
-
-  if (!slug) {
-
-    const path =
-      window.location.pathname
-        .replace(/^\/+|\/+$/g, "");
-
-    if (
-      path &&
-      path !== "index.html"
-    ) {
-      slug = path;
-    }
-
-  }
-
-
-  /* =========================
-     MOSTRAR ERROR
-  ========================= */
-
-  function showError(message) {
-
-    loading.style.display =
-      "none";
-
-    app.style.display =
-      "none";
-
-    errorPage.style.display =
-      "flex";
-
-    errorMessage.textContent =
-      message;
-
-  }
-
-
-  /* =========================
-     CREAR BOTÓN
-  ========================= */
-
-  function createButton(
-    icon,
-    title,
-    url,
-    type = "normal"
-  ) {
-
-    if (
-      !url ||
-      url.trim() === ""
-    ) {
-      return;
-    }
-
-
-    const button =
-      document.createElement("a");
-
-
-    button.href =
-      url;
-
-    button.target =
-      "_blank";
-
-    button.rel =
-      "noopener noreferrer";
-
-
-    button.className =
-      "link-button";
-
-
-    if (
-      type === "google"
-    ) {
-      button.classList.add(
-        "google-review"
-      );
-    }
-
-
-    button.innerHTML = `
-
-      <div class="button-icon">
-        ${icon}
-      </div>
-
-      <div class="button-content">
-        ${title}
-      </div>
-
-      <div class="button-arrow">
-        ›
-      </div>
-
-    `;
-
-
-    /*
-      Registrar click
-    */
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        registerClick(
-          type,
-          url
-        );
-
-      }
-    );
-
-
-    linksContainer.appendChild(
-      button
-    );
-
-  }
-
-
-  /* =========================
-     REGISTRAR CLICK
-  ========================= */
-
-  async function registerClick(
-    destination,
-    url
-  ) {
-
-    try {
-
-      await supabase
-        .from("clicks")
-        .insert({
-
-          nfc_id:
-            window.currentNfcId,
-
-          business_id:
-            window.currentBusinessId,
-
-          destination:
-            destination,
-
-          url:
-            url
-
-        });
-
-    }
-    catch (error) {
-
-      /*
-        Si la estructura de tu tabla clicks
-        es diferente, la página seguirá
-        funcionando normalmente.
-      */
-
-      console.log(
-        "No se pudo registrar el click:",
-        error.message
-      );
-
-    }
-
-  }
-
-
-  /* =========================
-     REGISTRAR VISITA
-  ========================= */
-
-  async function registerVisit() {
-
-    try {
-
-      await supabase
-        .from("clicks")
-        .insert({
-
-          nfc_id:
-            window.currentNfcId,
-
-          business_id:
-            window.currentBusinessId,
-
-          destination:
-            "visit"
-
-        });
-
-    }
-    catch (error) {
-
-      console.log(
-        "No se pudo registrar la visita"
-      );
-
-    }
-
-  }
-
-
-  /* =========================
-     CARGAR NFC
-  ========================= */
-
-  async function loadNfc() {
-
-
-    /*
-      Si no existe slug
-    */
-
-    if (!slug) {
-
-      showError(
-        "No se especificó ningún NFC en el enlace."
-      );
-
-      return;
-
-    }
-
-
-    try {
-
-
-      /*
-        Buscar NFC + negocio relacionado
-      */
-
-      const {
-        data: nfc,
-        error
-      } =
-      await supabase
-
-        .from("nfc_devices")
-
-        .select(`
-          *,
-          businesses (*)
-        `)
-
-        .eq(
-          "slug",
-          slug
-        )
-
-        .single();
-
-
-      /*
-        Error o NFC inexistente
-      */
-
-      if (
-        error ||
-        !nfc
-      ) {
-
-        console.log(error);
-
-        showError(
-          "Esta tarjeta no está registrada o el enlace no es correcto."
-        );
-
-        return;
-
-      }
-
-
-      /*
-        Revisar estado.
-
-        Compatible con:
-        active
-        is_active
-      */
-
-      if (
-        nfc.active === false ||
-        nfc.is_active === false
-      ) {
-
-        showError(
-          "Esta tarjeta NFC se encuentra desactivada."
-        );
-
-        return;
-
-      }
-
-
-      /*
-        Guardar IDs globalmente
-        para tracking
-      */
-
-      window.currentNfcId =
-        nfc.id;
-
-      window.currentBusinessId =
-        nfc.business_id;
-
-
-      /*
-        Negocio
-      */
-
-      const business =
-        Array.isArray(nfc.businesses)
-          ? nfc.businesses[0]
-          : nfc.businesses;
-
-
-      if (!business) {
-
-        showError(
-          "Este NFC no tiene ningún negocio asociado."
-        );
-
-        return;
-
-      }
-
-
-      console.log(
-        "NFC encontrado:",
-        nfc
-      );
-
-      console.log(
-        "Negocio:",
-        business
-      );
-
-
-      /* =========================
-         NOMBRE
-      ========================= */
-
-      businessName.textContent =
-        business.name ||
-        business.business_name ||
-        "Nuestro negocio";
-
-
-      /* =========================
-         DESCRIPCIÓN
-      ========================= */
-
-      const description =
-        business.description ||
-        business.bio ||
-        "";
-
-      businessDescription.textContent =
-        description;
-
-
-      /*
-        Si no hay descripción,
-        no ocupa espacio
-      */
-
-      if (!description) {
-
-        businessDescription.style.display =
-          "none";
-
-      }
-
-
-      /* =========================
-         LOGO
-      ========================= */
-
-      const logoUrl =
-        business.logo_url ||
-        business.logo ||
-        "";
-
-
-      if (logoUrl) {
-
-        logoContainer.innerHTML = `
-
-          <img
-            src="${logoUrl}"
-            class="business-logo"
-            alt="Logo del negocio"
-          >
-
-        `;
-
-      }
-      else {
-
-        const firstLetter =
-          (
-            business.name ||
-            business.business_name ||
-            "C"
-          )
-          .charAt(0)
-          .toUpperCase();
-
-
-        logoContainer.innerHTML = `
+        <div id="logo-container">
 
           <div class="business-logo-placeholder">
-            ${firstLetter}
+            C
           </div>
 
-        `;
-
-      }
+        </div>
 
 
-      /* =========================
-         URLS
-      ========================= */
+        <h1
+          class="business-name"
+          id="business-name"
+        >
+          Cargando...
+        </h1>
 
 
-      /*
-        GOOGLE REVIEWS
-      */
+        <p
+          class="business-description"
+          id="business-description"
+        >
+        </p>
 
-      createButton(
+      </section>
 
-        "⭐",
 
-        "Déjanos una reseña en Google",
+      <!-- LINKS -->
 
-        business.google_review_url ||
-        business.google_reviews_url ||
-        business.google_url,
+      <section
+        class="links"
+        id="links-container"
+      >
+      </section>
 
-        "google"
 
+      <!-- MAP -->
+
+      <section
+        class="map-section"
+        id="map-section"
+        style="display:none;"
+      >
+
+        <h2 class="map-title">
+          📍 Encuéntranos aquí
+        </h2>
+
+        <div class="map-container">
+
+          <iframe
+            id="google-map"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+
+      <footer>
+
+        <div class="powered">
+
+          <span class="powered-icon">
+            CT
+          </span>
+
+          <span>
+            Powered by ClickTracker
+          </span>
+
+        </div>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <script type="module">
+
+    import {
+      createClient
+    } from
+    "https://esm.sh/@supabase/supabase-js@2";
+
+
+    /* =========================
+       SUPABASE
+    ========================= */
+
+    const SUPABASE_URL =
+      "https://zrbujdpmrgeotubirxip.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
+
+
+    const supabase =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
       );
 
 
-      /*
-        INSTAGRAM
-      */
+    /* =========================
+       ELEMENTOS
+    ========================= */
 
-      createButton(
+    const loading =
+      document.getElementById("loading");
 
-        "📸",
+    const app =
+      document.getElementById("app");
 
-        "Síguenos en Instagram",
+    const errorPage =
+      document.getElementById("error-page");
 
-        business.instagram_url ||
-        business.instagram,
+    const errorMessage =
+      document.getElementById("error-message");
 
-        "instagram"
+    const businessName =
+      document.getElementById("business-name");
 
+    const businessDescription =
+      document.getElementById("business-description");
+
+    const logoContainer =
+      document.getElementById("logo-container");
+
+    const linksContainer =
+      document.getElementById("links-container");
+
+    const mapSection =
+      document.getElementById("map-section");
+
+    const googleMap =
+      document.getElementById("google-map");
+
+
+    /* =========================
+       OBTENER SLUG
+    ========================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
       );
 
-
-      /*
-        FACEBOOK
-      */
-
-      createButton(
-
-        "👍",
-
-        "Síguenos en Facebook",
-
-        business.facebook_url ||
-        business.facebook,
-
-        "facebook"
-
-      );
+    const slug =
+      params.get("slug");
 
 
-      /*
-        WHATSAPP
-      */
+    /* =========================
+       MOSTRAR ERROR
+    ========================= */
 
-      let whatsappUrl =
-        business.whatsapp_url ||
-        business.whatsapp ||
-        "";
+    function showError(message) {
 
-
-      /*
-        Si guardas solamente
-        el número de WhatsApp
-      */
-
-      if (
-        whatsappUrl &&
-        !whatsappUrl.startsWith("http")
-      ) {
-
-        whatsappUrl =
-          "https://wa.me/" +
-          whatsappUrl
-            .replace(/\D/g, "");
-
-      }
-
-
-      createButton(
-
-        "💬",
-
-        "Escríbenos por WhatsApp",
-
-        whatsappUrl,
-
-        "whatsapp"
-
-      );
-
-
-      /*
-        PÁGINA WEB
-      */
-
-      createButton(
-
-        "🌐",
-
-        "Visita nuestra página web",
-
-        business.website_url ||
-        business.website ||
-        business.web_url,
-
-        "website"
-
-      );
-
-
-      /* =========================
-         MAPA
-      ========================= */
-
-      let mapsUrl =
-        business.google_maps_url ||
-        business.maps_url ||
-        business.map_url ||
-        "";
-
-
-      /*
-        Si existe URL de mapa
-      */
-
-      if (mapsUrl) {
-
-
-        /*
-          Si ya es embed URL
-        */
-
-        if (
-          mapsUrl.includes(
-            "google.com/maps/embed"
-          )
-        ) {
-
-          googleMap.src =
-            mapsUrl;
-
-        }
-
-
-        /*
-          Si es URL normal de Google Maps
-          se crea una búsqueda embebida
-        */
-
-        else {
-
-          googleMap.src =
-            "https://www.google.com/maps?q=" +
-            encodeURIComponent(
-              mapsUrl
-            ) +
-            "&output=embed";
-
-        }
-
-
-        mapSection.style.display =
-          "block";
-
-      }
-
-
-      /* =========================
-         MOSTRAR APP
-      ========================= */
+      console.error(message);
 
       loading.style.display =
         "none";
 
       app.style.display =
-        "block";
+        "none";
 
+      errorPage.style.display =
+        "flex";
 
-      /*
-        Registrar visita
-      */
-
-      registerVisit();
-
+      errorMessage.textContent =
+        message;
 
     }
-    catch (error) {
 
-      console.error(error);
 
-      showError(
-        "Ocurrió un error al cargar esta tarjeta NFC."
+    /* =========================
+       CREAR BOTON
+    ========================= */
+
+    function createButton(
+      icon,
+      title,
+      url,
+      type
+    ) {
+
+      if (!url) return;
+
+      if (
+        typeof url === "string" &&
+        url.trim() === ""
+      ) return;
+
+
+      const button =
+        document.createElement("a");
+
+
+      button.href = url;
+
+      button.target = "_blank";
+
+      button.rel =
+        "noopener noreferrer";
+
+
+      button.className =
+        "link-button";
+
+
+      if (type === "google") {
+
+        button.classList.add(
+          "google-review"
+        );
+
+      }
+
+
+      button.innerHTML = `
+
+        <div class="button-icon">
+          ${icon}
+        </div>
+
+        <div class="button-content">
+          ${title}
+        </div>
+
+        <div class="button-arrow">
+          ›
+        </div>
+
+      `;
+
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          registerClick(
+            type,
+            url
+          );
+
+        }
+      );
+
+
+      linksContainer.appendChild(
+        button
       );
 
     }
 
-  }
+
+    /* =========================
+       REGISTRAR CLICK
+    ========================= */
+
+    async function registerClick(
+      destination,
+      url
+    ) {
+
+      try {
+
+        if (!window.currentNfcId) return;
+
+        await supabase
+          .from("clicks")
+          .insert({
+
+            nfc_id:
+              window.currentNfcId,
+
+            business_id:
+              window.currentBusinessId,
+
+            destination:
+              destination,
+
+            url:
+              url
+
+          });
+
+      }
+      catch (error) {
+
+        console.log(
+          "Tracking pendiente:",
+          error.message
+        );
+
+      }
+
+    }
 
 
-  /* =========================
-     INICIAR
-  ========================= */
+    /* =========================
+       CARGAR NFC
+    ========================= */
 
-  loadNfc();
+    async function loadNfc() {
 
-</script>
 
+      /* NO HAY SLUG */
+
+      if (!slug) {
+
+        showError(
+          "No se especificó ningún NFC en el enlace."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+
+        /* =========================
+           BUSCAR NFC
+        ========================= */
+
+        const {
+          data: nfc,
+          error: nfcError
+        } =
+        await supabase
+
+          .from("nfc_devices")
+
+          .select("*")
+
+          .eq(
+            "slug",
+            slug
+          )
+
+          .eq(
+            "status",
+            "active"
+          )
+
+          .single();
+
+
+        console.log(
+          "Slug buscado:",
+          slug
+        );
+
+        console.log(
+          "NFC encontrado:",
+          nfc
+        );
+
+        console.log(
+          "Error NFC:",
+          nfcError
+        );
+
+
+        if (
+          nfcError ||
+          !nfc
+        ) {
+
+          showError(
+            "No encontramos una tarjeta NFC activa con este enlace."
+          );
+
+          return;
+
+        }
+
+
+        /* =========================
+           GUARDAR DATOS NFC
+        ========================= */
+
+        window.currentNfcId =
+          nfc.id;
+
+        window.currentBusinessId =
+          nfc.business_id;
+
+
+        /* =========================
+           BUSCAR NEGOCIO
+        ========================= */
+
+        const {
+          data: business,
+          error: businessError
+        } =
+        await supabase
+
+          .from("businesses")
+
+          .select("*")
+
+          .eq(
+            "id",
+            nfc.business_id
+          )
+
+          .single();
+
+
+        console.log(
+          "Negocio encontrado:",
+          business
+        );
+
+        console.log(
+          "Error negocio:",
+          businessError
+        );
+
+
+        if (
+          businessError ||
+          !business
+        ) {
+
+          showError(
+            "El NFC existe, pero no se encontró el negocio asociado."
+          );
+
+          return;
+
+        }
+
+
+        /* =========================
+           NOMBRE
+        ========================= */
+
+        businessName.textContent =
+          business.name ||
+          "Nuestro negocio";
+
+
+        /* =========================
+           DESCRIPCION
+        ========================= */
+
+        const description =
+          business.description ||
+          "";
+
+
+        if (description) {
+
+          businessDescription.textContent =
+            description;
+
+        }
+        else {
+
+          businessDescription.style.display =
+            "none";
+
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        const logoUrl =
+          business.logo_url ||
+          "";
+
+
+        if (logoUrl) {
+
+          logoContainer.innerHTML = `
+
+            <img
+              src="${logoUrl}"
+              class="business-logo"
+              alt="${business.name}"
+            >
+
+          `;
+
+        }
+        else {
+
+          const letter =
+            business.name
+              .charAt(0)
+              .toUpperCase();
+
+
+          logoContainer.innerHTML = `
+
+            <div class="business-logo-placeholder">
+              ${letter}
+            </div>
+
+          `;
+
+        }
+
+
+        /* =========================
+           GOOGLE REVIEWS
+        ========================= */
+
+        createButton(
+
+          "⭐",
+
+          "Déjanos una reseña en Google",
+
+          business.google_review_url,
+
+          "google"
+
+        );
+
+
+        /* =========================
+           INSTAGRAM
+        ========================= */
+
+        createButton(
+
+          "📸",
+
+          "Síguenos en Instagram",
+
+          business.instagram_url,
+
+          "instagram"
+
+        );
+
+
+        /* =========================
+           FACEBOOK
+        ========================= */
+
+        createButton(
+
+          "👍",
+
+          "Síguenos en Facebook",
+
+          business.facebook_url,
+
+          "facebook"
+
+        );
+
+
+        /* =========================
+           WHATSAPP
+        ========================= */
+
+        let whatsappUrl =
+          business.whatsapp_url;
+
+
+        if (
+          whatsappUrl &&
+          !whatsappUrl.startsWith("http")
+        ) {
+
+          whatsappUrl =
+            "https://wa.me/" +
+            whatsappUrl.replace(
+              /\D/g,
+              ""
+            );
+
+        }
+
+
+        createButton(
+
+          "💬",
+
+          "Escríbenos por WhatsApp",
+
+          whatsappUrl,
+
+          "whatsapp"
+
+        );
+
+
+        /* =========================
+           PAGINA WEB
+        ========================= */
+
+        createButton(
+
+          "🌐",
+
+          "Visita nuestra página web",
+
+          business.website_url,
+
+          "website"
+
+        );
+
+
+        /* =========================
+           GOOGLE MAPS
+        ========================= */
+
+        const mapsUrl =
+          business.google_maps_url;
+
+
+        if (mapsUrl) {
+
+          if (
+            mapsUrl.includes(
+              "google.com/maps/embed"
+            )
+          ) {
+
+            googleMap.src =
+              mapsUrl;
+
+          }
+          else {
+
+            googleMap.src =
+              "https://www.google.com/maps?q=" +
+              encodeURIComponent(
+                mapsUrl
+              ) +
+              "&output=embed";
+
+          }
+
+
+          mapSection.style.display =
+            "block";
+
+        }
+
+
+        /* =========================
+           MOSTRAR PAGINA
+        ========================= */
+
+        loading.style.display =
+          "none";
+
+        app.style.display =
+          "block";
+
+
+      }
+      catch (error) {
+
+        console.error(
+          "ERROR GENERAL:",
+          error
+        );
+
+        showError(
+          "Ocurrió un error inesperado al cargar esta tarjeta."
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       INICIAR
+    ========================= */
+
+    loadNfc();
+
+  </script>
 
 </body>
 </html>
