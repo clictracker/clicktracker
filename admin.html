@@ -54,7 +54,7 @@
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(37,99,235,.16),
+          rgba(37, 99, 235, 0.16),
           transparent 35%
         ),
         var(--bg);
@@ -67,7 +67,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 35px;
-      box-shadow: 0 25px 80px rgba(0,0,0,.35);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
     }
 
     .login-logo {
@@ -340,7 +340,7 @@
     th {
       color: #737b8a;
       font-size: 10px;
-      letter-spacing: .8px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
       text-align: left;
       padding: 15px 20px;
@@ -374,12 +374,12 @@
 
     .badge-active {
       color: #5eea92;
-      background: rgba(34,197,94,.1);
+      background: rgba(34, 197, 94, 0.1);
     }
 
     .badge-inactive {
       color: #ff7272;
-      background: rgba(239,68,68,.1);
+      background: rgba(239, 68, 68, 0.1);
     }
 
     .url-text {
@@ -447,7 +447,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.68);
+      background: rgba(0, 0, 0, 0.68);
       z-index: 100;
       align-items: center;
       justify-content: center;
@@ -501,7 +501,7 @@
     }
 
     .alert.error {
-      border-color: rgba(239,68,68,.5);
+      border-color: rgba(239, 68, 68, 0.5);
     }
 
     @media (max-width: 800px) {
@@ -571,7 +571,7 @@
 
       <br>
 
-      <button type="submit" class="btn btn-primary" style="width:100%;">
+      <button type="submit" class="btn btn-primary" style="width: 100%;">
         Iniciar sesión
       </button>
 
@@ -626,6 +626,8 @@
     </header>
 
     <div class="content">
+
+      <!-- NEGOCIOS -->
 
       <section class="page active" id="page-businesses">
 
@@ -686,6 +688,8 @@
 
       </section>
 
+      <!-- NFC -->
+
       <section class="page" id="page-nfc">
 
         <div class="page-header">
@@ -708,7 +712,6 @@
 
           <div class="table-wrap">
             <table>
-
               <thead>
                 <tr>
                   <th>NFC</th>
@@ -729,10 +732,11 @@
 
       </section>
 
+      <!-- CLIENTES -->
+
       <section class="page" id="page-clients">
 
         <div class="page-header">
-
           <div>
             <h1>Clientes</h1>
             <p>Crea las cuentas de acceso de tus clientes.</p>
@@ -741,7 +745,6 @@
           <button class="btn btn-primary" id="open-client-modal">
             + Crear cliente
           </button>
-
         </div>
 
         <div class="table-card">
@@ -752,7 +755,6 @@
 
           <div class="table-wrap">
             <table>
-
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -772,7 +774,9 @@
       </section>
 
     </div>
+
   </main>
+
 </div>
 
 <!-- MODAL NEGOCIO -->
@@ -895,13 +899,14 @@
     </form>
 
   </div>
+
 </div>
 
 <!-- MODAL NFC -->
 
 <div class="modal-overlay" id="nfc-modal">
 
-  <div class="modal" style="max-width:600px;">
+  <div class="modal" style="max-width: 600px;">
 
     <div class="modal-header">
       <h2>Crear NFC</h2>
@@ -969,13 +974,14 @@
     </form>
 
   </div>
+
 </div>
 
 <!-- MODAL CLIENTE -->
 
 <div class="modal-overlay" id="client-modal">
 
-  <div class="modal" style="max-width:600px;">
+  <div class="modal" style="max-width: 600px;">
 
     <div class="modal-header">
 
@@ -1061,9 +1067,16 @@
     </form>
 
   </div>
+
 </div>
 
 <div class="alert" id="alert"></div>
+
+<!-- CARGAR CONFIGURACIÓN -->
+
+<script src="config.js"></script>
+
+<!-- SUPABASE Y JAVASCRIPT -->
 
 <script type="module">
 
@@ -1072,10 +1085,10 @@ import {
 } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL =
-  "https://zrbujdpmrgeotubirxip.supabase.co";
+  window.CLICKTRACKER_CONFIG.SUPABASE_URL;
 
 const SUPABASE_KEY =
-  "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
+  window.CLICKTRACKER_CONFIG.SUPABASE_ANON_KEY;
 
 const supabase =
   createClient(
@@ -1372,6 +1385,7 @@ function openModal(id) {
 
 }
 
+
 function closeModal(id) {
 
   document
@@ -1380,20 +1394,24 @@ function closeModal(id) {
 
 }
 
+
 document
   .getElementById("open-business-modal")
   .onclick =
   () => openModal("business-modal");
+
 
 document
   .getElementById("open-nfc-modal")
   .onclick =
   () => openModal("nfc-modal");
 
+
 document
   .getElementById("open-client-modal")
   .onclick =
   () => openModal("client-modal");
+
 
 document
   .querySelectorAll("[data-close]")
@@ -1431,6 +1449,7 @@ document
     }
   );
 
+
 document
   .getElementById("business-slug")
   .addEventListener(
@@ -1466,6 +1485,7 @@ document
 
     }
   );
+
 
 document
   .getElementById("nfc-slug")
@@ -1565,15 +1585,17 @@ async function loadBusinesses() {
 
       const logo =
         business.logo_url
-          ? `<img
+          ? `
+            <img
               src="${business.logo_url}"
               style="
-                width:34px;
-                height:34px;
-                object-fit:cover;
-                border-radius:8px;
+                width: 34px;
+                height: 34px;
+                object-fit: cover;
+                border-radius: 8px;
               "
-            >`
+            >
+          `
           : "—";
 
       const maps =
@@ -1719,7 +1741,6 @@ document
       await supabase
         .from("businesses")
         .insert({
-
           name,
           slug,
           address,
@@ -1732,12 +1753,9 @@ document
           whatsapp,
           website_url,
           status: "active"
-
         });
 
       if (error) {
-
-        console.error(error);
 
         showAlert(
           "Error creando el negocio: " +
@@ -1935,7 +1953,7 @@ async function loadNfc() {
 
             <button
               class="btn btn-small"
-              style="margin-top:7px;"
+              style="margin-top: 7px;"
               onclick="copyLink('${url}')"
             >
               Copiar
@@ -2244,16 +2262,12 @@ document
 
           try {
 
-            if (
-              error.context
-            ) {
+            if (error.context) {
 
               const errorData =
                 await error.context.json();
 
-              if (
-                errorData?.error
-              ) {
+              if (errorData?.error) {
 
                 errorMessage =
                   errorData.error;
@@ -2262,9 +2276,7 @@ document
 
             }
 
-          } catch (
-            parseError
-          ) {
+          } catch (parseError) {
 
             console.error(
               "Error leyendo respuesta:",
@@ -2334,9 +2346,22 @@ document
 window.copyLink =
   async function(url) {
 
-    await navigator.clipboard.writeText(url);
+    try {
 
-    showAlert("Link copiado.");
+      await navigator.clipboard.writeText(url);
+
+      showAlert(
+        "Link copiado."
+      );
+
+    } catch (error) {
+
+      showAlert(
+        "No se pudo copiar el link.",
+        "error"
+      );
+
+    }
 
   };
 
@@ -2406,7 +2431,9 @@ window.deleteNfc =
 
     }
 
-    showAlert("NFC eliminado.");
+    showAlert(
+      "NFC eliminado."
+    );
 
     await loadNfc();
 
