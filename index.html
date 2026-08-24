@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ClickTracker</title>
@@ -16,7 +15,6 @@
 
     :root {
       --bg: #080b12;
-      --bg-soft: #0d111a;
       --card: #111722;
       --border: rgba(255,255,255,0.08);
       --text: #f5f7fb;
@@ -27,17 +25,14 @@
 
     body {
       min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
-
+      font-family: Inter, Arial, sans-serif;
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(37, 99, 235, 0.13),
+          rgba(37,99,235,0.13),
           transparent 35%
         ),
         var(--bg);
-
       color: var(--text);
     }
 
@@ -59,7 +54,7 @@
       border-radius: 50%;
       border: 3px solid rgba(255,255,255,0.08);
       border-top-color: var(--blue-light);
-      animation: spin 0.8s linear infinite;
+      animation: spin .8s linear infinite;
     }
 
     @keyframes spin {
@@ -75,16 +70,16 @@
       min-height: 100vh;
       align-items: center;
       justify-content: center;
-      padding: 25px;
       text-align: center;
+      padding: 25px;
     }
 
     .error-card {
-      max-width: 460px;
+      max-width: 500px;
     }
 
     .error-icon {
-      font-size: 50px;
+      font-size: 52px;
       margin-bottom: 18px;
     }
 
@@ -109,17 +104,12 @@
 
     header {
       height: 72px;
-
       display: flex;
       align-items: center;
       justify-content: flex-end;
-
       padding: 0 28px;
-
       border-bottom: 1px solid var(--border);
-
-      background: rgba(8, 11, 18, 0.8);
-
+      background: rgba(8,11,18,.82);
       backdrop-filter: blur(14px);
     }
 
@@ -127,7 +117,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-
       font-weight: 700;
       font-size: 17px;
     }
@@ -135,26 +124,15 @@
     .ct-icon {
       width: 38px;
       height: 38px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 12px;
-
-      background: linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-      );
-
-      box-shadow:
-        0 0 25px
-        rgba(37, 99, 235, 0.35);
-
+      background: linear-gradient(135deg,#2563eb,#1d4ed8);
+      box-shadow: 0 0 25px rgba(37,99,235,.35);
       color: white;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* MAIN */
@@ -162,9 +140,7 @@
     main {
       width: 100%;
       max-width: 650px;
-
       margin: 0 auto;
-
       padding: 52px 20px 60px;
     }
 
@@ -178,45 +154,26 @@
     .business-logo {
       width: 100px;
       height: 100px;
-
       object-fit: cover;
-
       border-radius: 26px;
-
       margin-bottom: 18px;
-
       background: var(--card);
-
       border: 1px solid var(--border);
-
-      box-shadow:
-        0 15px 45px
-        rgba(0,0,0,0.35);
+      box-shadow: 0 15px 45px rgba(0,0,0,.35);
     }
 
     .business-logo-placeholder {
       width: 100px;
       height: 100px;
-
       margin: 0 auto 18px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 26px;
-
-      background: linear-gradient(
-        135deg,
-        #172033,
-        #0f1726
-      );
-
+      background: linear-gradient(135deg,#172033,#0f1726);
       border: 1px solid var(--border);
-
       font-size: 38px;
       font-weight: 800;
-
       color: var(--blue-light);
     }
 
@@ -229,10 +186,8 @@
 
     .business-description {
       color: var(--muted);
-
       font-size: 15px;
       line-height: 1.6;
-
       max-width: 430px;
       margin: 0 auto;
     }
@@ -248,78 +203,54 @@
     .link-button {
       width: 100%;
       min-height: 68px;
-
       display: flex;
       align-items: center;
-
       padding: 10px 20px;
-
       border-radius: 18px;
-
       border: 1px solid var(--border);
-
       background: linear-gradient(
         135deg,
-        rgba(255,255,255,0.08),
-        rgba(255,255,255,0.035)
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.035)
       );
-
       color: var(--text);
-
       text-decoration: none;
-
-      transition: 0.18s ease;
-
+      transition: .18s ease;
       cursor: pointer;
     }
 
     .link-button:hover {
       transform: translateY(-2px);
-
-      border-color:
-        rgba(59,130,246,0.55);
-
+      border-color: rgba(59,130,246,.55);
       background: linear-gradient(
         135deg,
-        rgba(37,99,235,0.20),
-        rgba(255,255,255,0.05)
+        rgba(37,99,235,.20),
+        rgba(255,255,255,.05)
       );
-
-      box-shadow:
-        0 12px 35px
-        rgba(0,0,0,0.28);
+      box-shadow: 0 12px 35px rgba(0,0,0,.28);
     }
 
     .link-button:active {
-      transform: scale(0.985);
+      transform: scale(.985);
     }
 
     .button-icon {
       width: 42px;
       height: 42px;
-
       flex-shrink: 0;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 12px;
-
-      background:
-        rgba(255,255,255,0.06);
-
+      background: rgba(255,255,255,.06);
       font-size: 21px;
     }
 
     .button-content {
       flex: 1;
-
       text-align: center;
-
       font-size: 16px;
       font-weight: 600;
-
       padding-right: 42px;
     }
 
@@ -328,21 +259,14 @@
       font-size: 21px;
     }
 
-    /* GOOGLE */
-
     .google-review {
       background: linear-gradient(
         135deg,
         #1d4ed8,
         #2563eb
       );
-
-      border-color:
-        rgba(96,165,250,0.6);
-
-      box-shadow:
-        0 12px 35px
-        rgba(37,99,235,0.25);
+      border-color: rgba(96,165,250,.6);
+      box-shadow: 0 12px 35px rgba(37,99,235,.25);
     }
 
     .google-review:hover {
@@ -354,8 +278,7 @@
     }
 
     .google-review .button-icon {
-      background:
-        rgba(255,255,255,0.16);
+      background: rgba(255,255,255,.16);
     }
 
     .google-review .button-arrow {
@@ -377,13 +300,9 @@
     .map-container {
       width: 100%;
       height: 300px;
-
       overflow: hidden;
-
       border-radius: 20px;
-
       border: 1px solid var(--border);
-
       background: var(--card);
     }
 
@@ -397,11 +316,8 @@
 
     footer {
       text-align: center;
-
       color: #667085;
-
       font-size: 13px;
-
       padding-top: 40px;
     }
 
@@ -414,18 +330,12 @@
     .powered-icon {
       width: 20px;
       height: 20px;
-
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 7px;
-
-      background:
-        rgba(37,99,235,0.2);
-
+      background: rgba(37,99,235,.2);
       color: var(--blue-light);
-
       font-size: 9px;
       font-weight: 800;
     }
@@ -456,13 +366,12 @@
       }
 
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- LOADING -->
+  <!-- CARGANDO -->
 
   <div id="loading">
     <div class="loader"></div>
@@ -476,13 +385,9 @@
 
     <div class="error-card">
 
-      <div class="error-icon">
-        ⚠️
-      </div>
+      <div class="error-icon">⚠️</div>
 
-      <h1 id="error-title">
-        NFC no encontrado
-      </h1>
+      <h1>NFC no encontrado</h1>
 
       <p id="error-message">
         Esta tarjeta no está registrada o ya no se encuentra activa.
@@ -501,13 +406,9 @@
 
       <div class="clicktracker-brand">
 
-        <div class="ct-icon">
-          CT
-        </div>
+        <div class="ct-icon">CT</div>
 
-        <span>
-          ClickTracker
-        </span>
+        <span>ClickTracker</span>
 
       </div>
 
@@ -516,46 +417,37 @@
 
     <main>
 
-      <!-- BUSINESS -->
+      <!-- NEGOCIO -->
 
       <section class="business-header">
 
         <div id="logo-container">
-
           <div class="business-logo-placeholder">
             C
           </div>
-
         </div>
 
-
-        <h1
-          class="business-name"
-          id="business-name"
-        >
+        <h1 class="business-name" id="business-name">
           Cargando...
         </h1>
-
 
         <p
           class="business-description"
           id="business-description"
-        >
-        </p>
+        ></p>
 
       </section>
 
 
-      <!-- LINKS -->
+      <!-- BOTONES -->
 
       <section
         class="links"
         id="links-container"
-      >
-      </section>
+      ></section>
 
 
-      <!-- MAP -->
+      <!-- MAPA -->
 
       <section
         class="map-section"
@@ -572,8 +464,8 @@
           <iframe
             id="google-map"
             loading="lazy"
-            allowfullscreen>
-          </iframe>
+            allowfullscreen
+          ></iframe>
 
         </div>
 
@@ -611,9 +503,9 @@
     "https://esm.sh/@supabase/supabase-js@2";
 
 
-    /* =========================
+    /* =====================================
        SUPABASE
-    ========================= */
+    ===================================== */
 
     const SUPABASE_URL =
       "https://zrbujdpmrgeotubirxip.supabase.co";
@@ -629,9 +521,9 @@
       );
 
 
-    /* =========================
+    /* =====================================
        ELEMENTOS
-    ========================= */
+    ===================================== */
 
     const loading =
       document.getElementById("loading");
@@ -664,22 +556,71 @@
       document.getElementById("google-map");
 
 
-    /* =========================
-       OBTENER SLUG
-    ========================= */
+    /* =====================================
+       DETECTAR URL DEL NFC
+    ===================================== */
 
     const params =
       new URLSearchParams(
         window.location.search
       );
 
-    const slug =
+
+    /*
+      FORMATO 1:
+
+      ?slug=nfc-entrada
+
+      FORMATO 2:
+
+      /punto-azul/nfc-entrada
+    */
+
+    let nfcSlug =
       params.get("slug");
 
 
-    /* =========================
+    if (!nfcSlug) {
+
+      const pathParts =
+        window.location.pathname
+          .split("/")
+          .filter(Boolean);
+
+
+      /*
+        Si la URL es:
+
+        /punto-azul/nfc-entrada
+
+        el último elemento es:
+
+        nfc-entrada
+      */
+
+      if (
+        pathParts.length >= 2
+      ) {
+
+        nfcSlug =
+          pathParts[
+            pathParts.length - 1
+          ];
+
+      }
+
+    }
+
+
+    console.log(
+      "Slug NFC detectado:",
+      nfcSlug
+    );
+
+
+    /* =====================================
        MOSTRAR ERROR
-    ========================= */
+    ===================================== */
 
     function showError(message) {
 
@@ -700,9 +641,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        CREAR BOTON
-    ========================= */
+    ===================================== */
 
     function createButton(
       icon,
@@ -735,7 +676,9 @@
         "link-button";
 
 
-      if (type === "google") {
+      if (
+        type === "google"
+      ) {
 
         button.classList.add(
           "google-review"
@@ -763,7 +706,7 @@
 
       button.addEventListener(
         "click",
-        function() {
+        () => {
 
           registerClick(
             type,
@@ -781,9 +724,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        REGISTRAR CLICK
-    ========================= */
+    ===================================== */
 
     async function registerClick(
       destination,
@@ -792,10 +735,15 @@
 
       try {
 
-        if (!window.currentNfcId) return;
+        if (
+          !window.currentNfcId
+        ) return;
+
 
         await supabase
+
           .from("clicks")
+
           .insert({
 
             nfc_id:
@@ -815,8 +763,13 @@
       }
       catch (error) {
 
+        /*
+          El tracking no debe impedir
+          que el usuario abra el enlace.
+        */
+
         console.log(
-          "Tracking pendiente:",
+          "Tracking no registrado:",
           error.message
         );
 
@@ -825,19 +778,19 @@
     }
 
 
-    /* =========================
+    /* =====================================
        CARGAR NFC
-    ========================= */
+    ===================================== */
 
     async function loadNfc() {
 
 
-      /* NO HAY SLUG */
+      /* SIN NFC */
 
-      if (!slug) {
+      if (!nfcSlug) {
 
         showError(
-          "No se especificó ningún NFC en el enlace."
+          "No se especificó ningún NFC en este enlace."
         );
 
         return;
@@ -848,9 +801,9 @@
       try {
 
 
-        /* =========================
-           BUSCAR NFC
-        ========================= */
+        /* =============================
+           1. BUSCAR NFC
+        ============================= */
 
         const {
           data: nfc,
@@ -864,7 +817,7 @@
 
           .eq(
             "slug",
-            slug
+            nfcSlug
           )
 
           .eq(
@@ -872,13 +825,8 @@
             "active"
           )
 
-          .single();
+          .maybeSingle();
 
-
-        console.log(
-          "Slug buscado:",
-          slug
-        );
 
         console.log(
           "NFC encontrado:",
@@ -892,9 +840,20 @@
 
 
         if (
-          nfcError ||
-          !nfc
+          nfcError
         ) {
+
+          showError(
+            "Error al consultar la tarjeta NFC: " +
+            nfcError.message
+          );
+
+          return;
+
+        }
+
+
+        if (!nfc) {
 
           showError(
             "No encontramos una tarjeta NFC activa con este enlace."
@@ -905,9 +864,9 @@
         }
 
 
-        /* =========================
-           GUARDAR DATOS NFC
-        ========================= */
+        /* =============================
+           GUARDAR IDs
+        ============================= */
 
         window.currentNfcId =
           nfc.id;
@@ -916,9 +875,9 @@
           nfc.business_id;
 
 
-        /* =========================
-           BUSCAR NEGOCIO
-        ========================= */
+        /* =============================
+           2. BUSCAR NEGOCIO
+        ============================= */
 
         const {
           data: business,
@@ -935,7 +894,7 @@
             nfc.business_id
           )
 
-          .single();
+          .maybeSingle();
 
 
         console.log(
@@ -950,12 +909,12 @@
 
 
         if (
-          businessError ||
-          !business
+          businessError
         ) {
 
           showError(
-            "El NFC existe, pero no se encontró el negocio asociado."
+            "Error al cargar el negocio: " +
+            businessError.message
           );
 
           return;
@@ -963,21 +922,33 @@
         }
 
 
-        /* =========================
+        if (!business) {
+
+          showError(
+            "La tarjeta existe, pero no tiene un negocio asociado."
+          );
+
+          return;
+
+        }
+
+
+        /* =============================
            NOMBRE
-        ========================= */
+        ============================= */
 
         businessName.textContent =
           business.name ||
           "Nuestro negocio";
 
 
-        /* =========================
+        /* =============================
            DESCRIPCION
-        ========================= */
+        ============================= */
 
         const description =
           business.description ||
+          business.bio ||
           "";
 
 
@@ -986,8 +957,7 @@
           businessDescription.textContent =
             description;
 
-        }
-        else {
+        } else {
 
           businessDescription.style.display =
             "none";
@@ -995,12 +965,13 @@
         }
 
 
-        /* =========================
+        /* =============================
            LOGO
-        ========================= */
+        ============================= */
 
         const logoUrl =
           business.logo_url ||
+          business.logo ||
           "";
 
 
@@ -1011,7 +982,7 @@
             <img
               src="${logoUrl}"
               class="business-logo"
-              alt="${business.name}"
+              alt="Logo del negocio"
             >
 
           `;
@@ -1020,9 +991,12 @@
         else {
 
           const letter =
-            business.name
-              .charAt(0)
-              .toUpperCase();
+            (
+              business.name ||
+              "C"
+            )
+            .charAt(0)
+            .toUpperCase();
 
 
           logoContainer.innerHTML = `
@@ -1036,9 +1010,10 @@
         }
 
 
-        /* =========================
-           GOOGLE REVIEWS
-        ========================= */
+        /* =============================
+           BOTONES
+        ============================= */
+
 
         createButton(
 
@@ -1046,16 +1021,14 @@
 
           "Déjanos una reseña en Google",
 
-          business.google_review_url,
+          business.google_review_url ||
+          business.google_reviews_url ||
+          business.google_url,
 
           "google"
 
         );
 
-
-        /* =========================
-           INSTAGRAM
-        ========================= */
 
         createButton(
 
@@ -1063,16 +1036,13 @@
 
           "Síguenos en Instagram",
 
-          business.instagram_url,
+          business.instagram_url ||
+          business.instagram,
 
           "instagram"
 
         );
 
-
-        /* =========================
-           FACEBOOK
-        ========================= */
 
         createButton(
 
@@ -1080,20 +1050,25 @@
 
           "Síguenos en Facebook",
 
-          business.facebook_url,
+          business.facebook_url ||
+          business.facebook,
 
           "facebook"
 
         );
 
 
-        /* =========================
-           WHATSAPP
-        ========================= */
-
         let whatsappUrl =
-          business.whatsapp_url;
+          business.whatsapp_url ||
+          business.whatsapp ||
+          "";
 
+
+        /*
+          Si guardaste solo el número,
+          lo convierte automáticamente
+          a un enlace de WhatsApp.
+        */
 
         if (
           whatsappUrl &&
@@ -1123,32 +1098,34 @@
         );
 
 
-        /* =========================
-           PAGINA WEB
-        ========================= */
-
         createButton(
 
           "🌐",
 
           "Visita nuestra página web",
 
-          business.website_url,
+          business.website_url ||
+          business.website ||
+          business.web_url,
 
           "website"
 
         );
 
 
-        /* =========================
+        /* =============================
            GOOGLE MAPS
-        ========================= */
+        ============================= */
 
         const mapsUrl =
-          business.google_maps_url;
+          business.google_maps_url ||
+          business.maps_url ||
+          business.map_url ||
+          "";
 
 
         if (mapsUrl) {
+
 
           if (
             mapsUrl.includes(
@@ -1178,9 +1155,9 @@
         }
 
 
-        /* =========================
+        /* =============================
            MOSTRAR PAGINA
-        ========================= */
+        ============================= */
 
         loading.style.display =
           "none";
@@ -1198,7 +1175,8 @@
         );
 
         showError(
-          "Ocurrió un error inesperado al cargar esta tarjeta."
+          "Ocurrió un error inesperado: " +
+          error.message
         );
 
       }
@@ -1206,9 +1184,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        INICIAR
-    ========================= */
+    ===================================== */
 
     loadNfc();
 
