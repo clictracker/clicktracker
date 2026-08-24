@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/:business/:nfc",
       "destination": "/index.html"
     }
   ]
