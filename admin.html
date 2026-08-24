@@ -67,15 +67,16 @@
     }
 
     .login-logo-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 11px;
       background: white;
       color: black;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     .login-card h1 {
@@ -87,6 +88,7 @@
       color: var(--muted);
       font-size: 14px;
       margin-bottom: 25px;
+      line-height: 1.5;
     }
 
     .login-form-group {
@@ -126,10 +128,15 @@
       font-weight: bold;
       cursor: pointer;
       margin-top: 5px;
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      opacity: 0.9;
     }
 
     .login-btn:disabled {
-      opacity: .6;
+      opacity: 0.6;
       cursor: not-allowed;
     }
 
@@ -138,13 +145,14 @@
       margin-top: 16px;
       padding: 11px;
       border-radius: 8px;
-      background: rgba(239, 68, 68, .1);
+      background: rgba(239, 68, 68, 0.1);
       color: #fb7185;
       font-size: 13px;
+      line-height: 1.4;
     }
 
     /* =========================
-       ADMIN PANEL
+       PANEL ADMIN
     ========================== */
 
     #adminPanel {
@@ -155,6 +163,8 @@
       display: flex;
       min-height: 100vh;
     }
+
+    /* SIDEBAR */
 
     .sidebar {
       position: fixed;
@@ -184,7 +194,7 @@
       color: black;
       display: grid;
       place-items: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
     }
 
@@ -206,7 +216,7 @@
       border-radius: 9px;
       cursor: pointer;
       margin-bottom: 3px;
-      transition: .2s;
+      transition: 0.2s;
       font-size: 14px;
     }
 
@@ -223,6 +233,8 @@
     .logout {
       margin-top: auto;
     }
+
+    /* MAIN */
 
     .main {
       margin-left: 220px;
@@ -299,6 +311,8 @@
       font-weight: 700;
     }
 
+    /* DASHBOARD */
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -323,6 +337,8 @@
       font-size: 30px;
       font-weight: 700;
     }
+
+    /* TABLAS */
 
     .table-card {
       background: var(--surface);
@@ -352,6 +368,10 @@
       font-size: 13px;
     }
 
+    tr:last-child td {
+      border-bottom: none;
+    }
+
     .empty {
       text-align: center;
       color: var(--muted);
@@ -365,122 +385,16 @@
     }
 
     .active-status {
-      background: rgba(34, 197, 94, .1);
+      background: rgba(34, 197, 94, 0.1);
       color: #4ade80;
     }
 
     .inactive-status {
-      background: rgba(239, 68, 68, .1);
+      background: rgba(239, 68, 68, 0.1);
       color: #fb7185;
     }
 
-    .action-btn {
-      border: 0;
-      background: var(--surface-2);
-      color: #d1d5db;
-      padding: 8px 10px;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-
-    .danger {
-      color: #fb7185;
-    }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.75);
-      backdrop-filter: blur(5px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 100;
-    }
-
-    .modal-overlay.show {
-      display: flex;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 650px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: #151922;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 25px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .close-btn {
-      width: 34px;
-      height: 34px;
-      border: 0;
-      border-radius: 8px;
-      background: #242936;
-      color: white;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .form-group.full {
-      grid-column: span 2;
-    }
-
-    select,
-    textarea {
-      background: #0e1117;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: white;
-      padding: 12px;
-      outline: none;
-    }
-
-    .form-section {
-      grid-column: span 2;
-      padding-top: 15px;
-      border-top: 1px solid var(--border);
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .modal-footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .secondary-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: #d1d5db;
-      padding: 11px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+    /* RESPONSIVE */
 
     @media (max-width: 800px) {
 
@@ -494,6 +408,15 @@
         display: none;
       }
 
+      .brand {
+        justify-content: center;
+      }
+
+      .nav-item {
+        text-align: center;
+        font-size: 18px;
+      }
+
       .main {
         margin-left: 70px;
         width: calc(100% - 70px);
@@ -503,22 +426,28 @@
         grid-template-columns: 1fr;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 500px) {
+
+      .content {
+        padding: 22px 15px;
       }
 
-      .form-group.full,
-      .form-section {
-        grid-column: span 1;
+      .topbar {
+        padding: 0 16px;
       }
 
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- LOGIN -->
+  <!-- =========================
+       LOGIN
+  ========================== -->
 
   <section id="loginScreen">
 
@@ -532,13 +461,13 @@
       <h1>Panel administrativo</h1>
 
       <p class="login-subtitle">
-        Inicia sesión para acceder al panel.
+        Inicia sesión para acceder al panel de administración.
       </p>
 
       <form id="loginForm">
 
         <div class="login-form-group">
-          <label>Correo electrónico</label>
+          <label for="email">Correo electrónico</label>
 
           <input
             type="email"
@@ -549,7 +478,7 @@
         </div>
 
         <div class="login-form-group">
-          <label>Contraseña</label>
+          <label for="password">Contraseña</label>
 
           <input
             type="password"
@@ -559,11 +488,18 @@
           >
         </div>
 
-        <button class="login-btn" id="loginButton">
+        <button
+          type="submit"
+          class="login-btn"
+          id="loginButton"
+        >
           Iniciar sesión
         </button>
 
-        <div class="error-message" id="errorMessage"></div>
+        <div
+          class="error-message"
+          id="errorMessage"
+        ></div>
 
       </form>
 
@@ -572,11 +508,15 @@
   </section>
 
 
-  <!-- ADMIN PANEL -->
+  <!-- =========================
+       PANEL ADMIN
+  ========================== -->
 
   <div id="adminPanel">
 
     <div class="app">
+
+      <!-- SIDEBAR -->
 
       <aside class="sidebar">
 
@@ -585,83 +525,143 @@
           <span>ClicTracker</span>
         </div>
 
+
         <div class="menu-label">PRINCIPAL</div>
 
-        <button class="nav-item active"
-          onclick="showPage('dashboard', this)">
+        <button
+          class="nav-item active"
+          onclick="showPage('dashboard', this)"
+        >
           📊 <span>Dashboard</span>
         </button>
 
+
         <div class="menu-label">GESTIÓN</div>
 
-        <button class="nav-item"
-          onclick="showPage('businesses', this)">
+        <button
+          class="nav-item"
+          onclick="showPage('businesses', this)"
+        >
           🏢 <span>Negocios</span>
         </button>
 
-        <button class="nav-item"
-          onclick="showPage('nfc', this)">
+        <button
+          class="nav-item"
+          onclick="showPage('nfc', this)"
+        >
           📱 <span>NFC</span>
         </button>
 
-        <button class="nav-item"
-          onclick="showPage('clients', this)">
+        <button
+          class="nav-item"
+          onclick="showPage('clients', this)"
+        >
           👤 <span>Clientes</span>
         </button>
 
+
         <button
           class="nav-item logout"
-          onclick="logout()">
+          onclick="logout()"
+        >
           🚪 <span>Cerrar sesión</span>
         </button>
 
       </aside>
 
 
+      <!-- MAIN -->
+
       <main class="main">
 
         <header class="topbar">
-          <div class="top-title" id="topTitle">
+
+          <div
+            class="top-title"
+            id="topTitle"
+          >
             Dashboard
           </div>
 
           <div class="online">
             Admin conectado
           </div>
+
         </header>
 
 
         <section class="content">
 
+
           <!-- DASHBOARD -->
 
-          <div class="page active" id="dashboard">
+          <div
+            class="page active"
+            id="dashboard"
+          >
 
             <div class="page-header">
+
               <div>
+
                 <h1>Dashboard</h1>
 
                 <p class="subtitle">
                   Resumen general de ClicTracker.
                 </p>
+
               </div>
+
             </div>
+
 
             <div class="stats-grid">
 
               <div class="stat-card">
-                <div class="stat-label">NEGOCIOS</div>
-                <div class="stat-number" id="businessCount">0</div>
+
+                <div class="stat-label">
+                  NEGOCIOS
+                </div>
+
+                <div
+                  class="stat-number"
+                  id="businessCount"
+                >
+                  0
+                </div>
+
               </div>
 
-              <div class="stat-card">
-                <div class="stat-label">NFC</div>
-                <div class="stat-number" id="nfcCount">0</div>
-              </div>
 
               <div class="stat-card">
-                <div class="stat-label">CLIENTES</div>
-                <div class="stat-number" id="clientCount">0</div>
+
+                <div class="stat-label">
+                  TARJETAS NFC
+                </div>
+
+                <div
+                  class="stat-number"
+                  id="nfcCount"
+                >
+                  0
+                </div>
+
+              </div>
+
+
+              <div class="stat-card">
+
+                <div class="stat-label">
+                  CLIENTES
+                </div>
+
+                <div
+                  class="stat-number"
+                  id="clientCount"
+                >
+                  0
+                </div>
+
               </div>
 
             </div>
@@ -671,16 +671,21 @@
 
           <!-- NEGOCIOS -->
 
-          <div class="page" id="businesses">
+          <div
+            class="page"
+            id="businesses"
+          >
 
             <div class="page-header">
 
               <div>
+
                 <h1>Negocios</h1>
 
                 <p class="subtitle">
                   Administra los negocios registrados.
                 </p>
+
               </div>
 
               <button class="primary-btn">
@@ -689,24 +694,33 @@
 
             </div>
 
+
             <div class="table-card">
 
               <table>
 
                 <thead>
+
                   <tr>
                     <th>NEGOCIO</th>
                     <th>UBICACIÓN</th>
                     <th>ESTADO</th>
                   </tr>
+
                 </thead>
+
 
                 <tbody>
 
                   <tr>
-                    <td colspan="3" class="empty">
-                      Próximamente conectado con Supabase.
+
+                    <td
+                      colspan="3"
+                      class="empty"
+                    >
+                      Aún no hay negocios registrados.
                     </td>
+
                   </tr>
 
                 </tbody>
@@ -720,16 +734,21 @@
 
           <!-- NFC -->
 
-          <div class="page" id="nfc">
+          <div
+            class="page"
+            id="nfc"
+          >
 
             <div class="page-header">
 
               <div>
-                <h1>NFC</h1>
+
+                <h1>Tarjetas NFC</h1>
 
                 <p class="subtitle">
-                  Administra las tarjetas NFC.
+                  Administra las tarjetas NFC de tus clientes.
                 </p>
+
               </div>
 
               <button class="primary-btn">
@@ -738,25 +757,34 @@
 
             </div>
 
+
             <div class="table-card">
 
               <table>
 
                 <thead>
+
                   <tr>
                     <th>NOMBRE</th>
                     <th>CÓDIGO</th>
                     <th>NEGOCIO</th>
                     <th>ESTADO</th>
                   </tr>
+
                 </thead>
+
 
                 <tbody>
 
                   <tr>
-                    <td colspan="4" class="empty">
-                      Aún no hay NFC registrados.
+
+                    <td
+                      colspan="4"
+                      class="empty"
+                    >
+                      Aún no hay tarjetas NFC registradas.
                     </td>
+
                   </tr>
 
                 </tbody>
@@ -770,16 +798,21 @@
 
           <!-- CLIENTES -->
 
-          <div class="page" id="clients">
+          <div
+            class="page"
+            id="clients"
+          >
 
             <div class="page-header">
 
               <div>
+
                 <h1>Clientes</h1>
 
                 <p class="subtitle">
                   Administra las cuentas de tus clientes.
                 </p>
+
               </div>
 
               <button class="primary-btn">
@@ -788,24 +821,33 @@
 
             </div>
 
+
             <div class="table-card">
 
               <table>
 
                 <thead>
+
                   <tr>
                     <th>NOMBRE</th>
                     <th>EMAIL</th>
                     <th>NEGOCIO</th>
                   </tr>
+
                 </thead>
+
 
                 <tbody>
 
                   <tr>
-                    <td colspan="3" class="empty">
+
+                    <td
+                      colspan="3"
+                      class="empty"
+                    >
                       Aún no hay clientes registrados.
                     </td>
+
                   </tr>
 
                 </tbody>
@@ -816,6 +858,7 @@
 
           </div>
 
+
         </section>
 
       </main>
@@ -825,15 +868,21 @@
   </div>
 
 
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
 
     /* =========================================
-       CONFIGURACIÓN SUPABASE
+       SUPABASE
     ========================================= */
 
-    const SUPABASE_URL = "TU_SUPABASE_URL";
+    const SUPABASE_URL =
+      "https://zrbujdpmrgeotubirxip.supabase.co";
 
-    const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY";
+    const SUPABASE_ANON_KEY =
+      "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
 
 
     const supabaseClient =
@@ -855,17 +904,38 @@
 
     async function checkUser() {
 
-      const {
-        data: { session }
-      } = await supabaseClient.auth.getSession();
+      try {
+
+        const {
+          data: { session },
+          error
+        } =
+        await supabaseClient.auth.getSession();
 
 
-      if (!session) {
-        return;
+        if (error) {
+          console.error(error);
+          return;
+        }
+
+
+        if (!session) {
+          return;
+        }
+
+
+        await checkAdmin(session.user);
+
       }
 
+      catch (error) {
 
-      await checkAdmin(session.user);
+        console.error(
+          "Error comprobando la sesión:",
+          error
+        );
+
+      }
 
     }
 
@@ -884,61 +954,98 @@
 
 
           const email =
-            document.getElementById("email").value;
+            document
+              .getElementById("email")
+              .value
+              .trim();
+
 
           const password =
-            document.getElementById("password").value;
+            document
+              .getElementById("password")
+              .value;
+
 
           const button =
-            document.getElementById("loginButton");
+            document
+              .getElementById("loginButton");
+
 
           const errorBox =
-            document.getElementById("errorMessage");
+            document
+              .getElementById("errorMessage");
 
 
           errorBox.style.display = "none";
 
+
           button.disabled = true;
 
-          button.textContent = "Iniciando sesión...";
+          button.textContent =
+            "Iniciando sesión...";
 
 
-          const {
-            data,
-            error
-          } =
-          await supabaseClient.auth.signInWithPassword({
+          try {
 
-            email: email,
+            const {
+              data,
+              error
+            } =
+            await supabaseClient
+              .auth
+              .signInWithPassword({
 
-            password: password
+                email: email,
 
-          });
+                password: password
+
+              });
 
 
-          if (error) {
+            if (error) {
+
+              showError(
+                "Correo o contraseña incorrectos."
+              );
+
+              return;
+
+            }
+
+
+            if (!data.user) {
+
+              showError(
+                "No se pudo iniciar sesión."
+              );
+
+              return;
+
+            }
+
+
+            await checkAdmin(data.user);
+
+          }
+
+          catch (error) {
+
+            console.error(error);
 
             showError(
-              "Correo o contraseña incorrectos."
+              "Ocurrió un error al iniciar sesión."
             );
+
+          }
+
+          finally {
 
             button.disabled = false;
 
             button.textContent =
               "Iniciar sesión";
 
-            return;
-
           }
-
-
-          await checkAdmin(data.user);
-
-
-          button.disabled = false;
-
-          button.textContent =
-            "Iniciar sesión";
 
         }
       );
@@ -950,113 +1057,202 @@
 
     async function checkAdmin(user) {
 
-      const {
-        data: admin,
-        error
-      } =
-      await supabaseClient
-        .from("admins")
-        .select("id")
-        .eq("id", user.id)
-        .maybeSingle();
+      try {
+
+        const {
+          data: admin,
+          error
+        } =
+        await supabaseClient
+          .from("admins")
+          .select("id")
+          .eq("id", user.id)
+          .maybeSingle();
 
 
-      if (error || !admin) {
+        if (error) {
 
-        await supabaseClient.auth.signOut();
+          console.error(
+            "Error verificando admin:",
+            error
+          );
 
-        showError(
-          "No tienes permisos para acceder al panel administrativo."
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          showError(
+            "No se pudo verificar el acceso administrativo."
+          );
+
+          return;
+
+        }
+
+
+        if (!admin) {
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          showError(
+            "No tienes permisos para acceder al panel administrativo."
+          );
+
+          return;
+
+        }
+
+
+        /* LOGIN CORRECTO */
+
+        document
+          .getElementById("loginScreen")
+          .style.display = "none";
+
+
+        document
+          .getElementById("adminPanel")
+          .style.display = "block";
+
+
+        console.log(
+          "Admin autenticado:",
+          user.email
         );
-
-        return;
 
       }
 
+      catch (error) {
 
-      document.getElementById(
-        "loginScreen"
-      ).style.display = "none";
+        console.error(error);
+
+        await supabaseClient
+          .auth
+          .signOut();
 
 
-      document.getElementById(
-        "adminPanel"
-      ).style.display = "block";
+        showError(
+          "Error al verificar permisos."
+        );
+
+      }
 
     }
 
 
     /* =========================================
-       ERROR
+       MOSTRAR ERROR
     ========================================= */
 
     function showError(message) {
 
       const errorBox =
-        document.getElementById("errorMessage");
+        document.getElementById(
+          "errorMessage"
+        );
 
-      errorBox.textContent = message;
 
-      errorBox.style.display = "block";
+      errorBox.textContent =
+        message;
+
+
+      errorBox.style.display =
+        "block";
 
     }
 
 
     /* =========================================
-       LOGOUT
+       CERRAR SESIÓN
     ========================================= */
 
     async function logout() {
 
-      await supabaseClient.auth.signOut();
+      try {
 
-      document.getElementById(
-        "adminPanel"
-      ).style.display = "none";
+        await supabaseClient
+          .auth
+          .signOut();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Error cerrando sesión:",
+          error
+        );
+
+      }
 
 
-      document.getElementById(
-        "loginScreen"
-      ).style.display = "flex";
+      document
+        .getElementById("adminPanel")
+        .style.display = "none";
+
+
+      document
+        .getElementById("loginScreen")
+        .style.display = "flex";
 
 
       document
         .getElementById("loginForm")
         .reset();
 
+
+      document
+        .getElementById("errorMessage")
+        .style.display = "none";
+
     }
 
 
     /* =========================================
-       CAMBIAR SECCIÓN
+       CAMBIAR PÁGINAS
     ========================================= */
 
-    function showPage(pageId, button) {
+    function showPage(
+      pageId,
+      button
+    ) {
 
       document
         .querySelectorAll(".page")
         .forEach(page => {
 
-          page.classList.remove("active");
+          page.classList.remove(
+            "active"
+          );
 
         });
 
 
       document
         .getElementById(pageId)
-        .classList.add("active");
+        .classList.add(
+          "active"
+        );
 
 
       document
         .querySelectorAll(".nav-item")
         .forEach(btn => {
 
-          btn.classList.remove("active");
+          btn.classList.remove(
+            "active"
+          );
 
         });
 
 
-      button.classList.add("active");
+      button.classList.add(
+        "active"
+      );
 
 
       document
