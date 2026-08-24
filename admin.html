@@ -19,7 +19,6 @@
       --blue-hover: #3b82f6;
       --green: #22c55e;
       --red: #ef4444;
-      --yellow: #f59e0b;
     }
 
     * {
@@ -46,8 +45,6 @@
       cursor: pointer;
     }
 
-    /* LOGIN */
-
     #login-screen {
       min-height: 100vh;
       display: flex;
@@ -55,7 +52,11 @@
       justify-content: center;
       padding: 20px;
       background:
-        radial-gradient(circle at 50% 0%, rgba(37,99,235,.16), transparent 35%),
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(37,99,235,.16),
+          transparent 35%
+        ),
         var(--bg);
     }
 
@@ -76,16 +77,19 @@
       margin-bottom: 30px;
     }
 
-    .logo-box {
-      width: 45px;
-      height: 45px;
-      border-radius: 13px;
+    .logo-box,
+    .brand-logo {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      box-shadow: 0 0 30px rgba(37,99,235,.3);
+    }
+
+    .logo-box {
+      width: 45px;
+      height: 45px;
+      border-radius: 13px;
     }
 
     .login-card h1 {
@@ -98,8 +102,6 @@
       margin-bottom: 25px;
       font-size: 14px;
     }
-
-    /* APP */
 
     #app {
       display: none;
@@ -134,12 +136,7 @@
       width: 35px;
       height: 35px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 12px;
-      font-weight: 800;
     }
 
     .sidebar-section {
@@ -163,17 +160,12 @@
       padding: 12px 13px;
       border-radius: 9px;
       margin-bottom: 5px;
-      transition: .18s;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .nav-button:hover {
-      background: #1a1d25;
-      color: white;
-    }
-
+    .nav-button:hover,
     .nav-button.active {
       background: #272a34;
       color: white;
@@ -200,8 +192,6 @@
       color: var(--red);
     }
 
-    /* MAIN */
-
     .main {
       margin-left: 210px;
       min-height: 100vh;
@@ -214,12 +204,6 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
-      background: rgba(9,11,16,.9);
-    }
-
-    .topbar-title {
-      font-weight: 700;
-      font-size: 15px;
     }
 
     .admin-info {
@@ -250,10 +234,10 @@
 
     .page-header {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 28px;
+      align-items: flex-start;
       gap: 20px;
+      margin-bottom: 28px;
     }
 
     .page-header h1 {
@@ -266,8 +250,6 @@
       font-size: 14px;
     }
 
-    /* BUTTONS */
-
     .btn {
       border: 1px solid var(--border);
       border-radius: 9px;
@@ -275,7 +257,6 @@
       background: #1b1e26;
       color: white;
       font-size: 13px;
-      transition: .18s;
     }
 
     .btn:hover {
@@ -300,19 +281,22 @@
       font-size: 11px;
     }
 
-    /* STATS */
-
     .stats {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
       margin-bottom: 25px;
     }
 
-    .stat-card {
+    .stat-card,
+    .table-card,
+    .form-card {
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
+    }
+
+    .stat-card {
       padding: 21px;
     }
 
@@ -327,12 +311,7 @@
       font-weight: 700;
     }
 
-    /* TABLE */
-
     .table-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 15px;
       overflow: hidden;
     }
 
@@ -387,7 +366,6 @@
 
     .badge {
       display: inline-flex;
-      align-items: center;
       padding: 5px 9px;
       border-radius: 20px;
       font-size: 10px;
@@ -410,19 +388,9 @@
       word-break: break-all;
     }
 
-    /* FORM */
-
-    .form-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 25px;
-      max-width: 850px;
-    }
-
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 17px;
     }
 
@@ -439,12 +407,10 @@
     label {
       font-size: 12px;
       color: #c7ccd5;
-      font-weight: 500;
     }
 
     .optional {
       color: #737b8a;
-      font-weight: 400;
       font-size: 11px;
     }
 
@@ -458,7 +424,6 @@
       border-radius: 9px;
       padding: 12px 13px;
       outline: none;
-      font-size: 13px;
     }
 
     textarea {
@@ -470,7 +435,6 @@
     select:focus,
     textarea:focus {
       border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
     }
 
     .form-actions {
@@ -478,8 +442,6 @@
       display: flex;
       gap: 10px;
     }
-
-    /* MODAL */
 
     .modal-overlay {
       display: none;
@@ -514,18 +476,12 @@
       margin-bottom: 24px;
     }
 
-    .modal-header h2 {
-      font-size: 19px;
-    }
-
     .close-btn {
       border: 0;
       background: transparent;
       color: var(--muted);
       font-size: 24px;
     }
-
-    /* ALERT */
 
     .alert {
       display: none;
@@ -538,20 +494,14 @@
       color: white;
       background: #20242d;
       border: 1px solid var(--border);
-      box-shadow: 0 15px 50px rgba(0,0,0,.35);
-      font-size: 13px;
     }
 
     .alert.show {
       display: block;
     }
 
-    .alert.success {
-      border-color: rgba(34,197,94,.4);
-    }
-
     .alert.error {
-      border-color: rgba(239,68,68,.4);
+      border-color: rgba(239,68,68,.5);
     }
 
     @media (max-width: 800px) {
@@ -593,1253 +543,742 @@
 
 <body>
 
-  <!-- LOGIN -->
+<section id="login-screen">
+  <div class="login-card">
 
-  <section id="login-screen">
+    <div class="login-logo">
+      <div class="logo-box">CT</div>
+      <strong>ClickTracker</strong>
+    </div>
 
-    <div class="login-card">
+    <h1>Panel administrativo</h1>
 
-      <div class="login-logo">
-        <div class="logo-box">CT</div>
-        <strong>ClickTracker</strong>
+    <p>Inicia sesión para administrar tus negocios y tarjetas NFC.</p>
+
+    <form id="login-form">
+
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input
+          type="email"
+          id="login-email"
+          required
+        />
       </div>
 
-      <h1>Panel administrativo</h1>
+      <br>
 
-      <p>
-        Inicia sesión para administrar tus negocios y tarjetas NFC.
-      </p>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input
+          type="password"
+          id="login-password"
+          required
+        />
+      </div>
 
-      <form id="login-form">
+      <br>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="width:100%;"
+      >
+        Iniciar sesión
+      </button>
+
+    </form>
+  </div>
+</section>
+
+<div id="app">
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-logo">CT</div>
+      <span>ClickTracker</span>
+    </div>
+
+    <div class="sidebar-section">
+
+      <div class="sidebar-label">GESTIÓN</div>
+
+      <button class="nav-button active" data-page="businesses">
+        🏢 <span>Negocios</span>
+      </button>
+
+      <button class="nav-button" data-page="nfc">
+        📱 <span>NFC</span>
+      </button>
+
+      <button class="nav-button" data-page="clients">
+        👤 <span>Clientes</span>
+      </button>
+
+    </div>
+
+    <div class="sidebar-bottom">
+      <button class="logout-btn" id="logout-btn">
+        🚪 <span>Cerrar sesión</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <strong>Administración</strong>
+
+      <div class="admin-info">
+        <span class="online">● Sistema online</span>
+        <span id="admin-email"></span>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- NEGOCIOS -->
+
+      <section class="page active" id="page-businesses">
+
+        <div class="page-header">
+          <div>
+            <h1>Negocios</h1>
+            <p>Administra los negocios registrados en ClickTracker.</p>
+          </div>
+
+          <button class="btn btn-primary" id="open-business-modal">
+            + Crear negocio
+          </button>
+        </div>
+
+        <div class="stats">
+
+          <div class="stat-card">
+            <div class="stat-label">TOTAL NEGOCIOS</div>
+            <div class="stat-number" id="total-businesses">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">TOTAL NFC</div>
+            <div class="stat-number" id="total-nfc">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">TOTAL CLIENTES</div>
+            <div class="stat-number" id="total-clients">0</div>
+          </div>
+
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">Negocios creados</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Negocio</th>
+                  <th>Slug</th>
+                  <th>Logo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="businesses-table"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- NFC -->
+
+      <section class="page" id="page-nfc">
+
+        <div class="page-header">
+          <div>
+            <h1>NFC</h1>
+            <p>Crea y administra las tarjetas NFC.</p>
+          </div>
+
+          <button class="btn btn-primary" id="open-nfc-modal">
+            + Crear NFC
+          </button>
+        </div>
+
+        <div class="table-card">
+
+          <div class="table-header">
+            <div class="table-title">Tarjetas creadas</div>
+            <div id="nfc-count-text">0 tarjetas</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+
+              <thead>
+                <tr>
+                  <th>NFC</th>
+                  <th>Código</th>
+                  <th>Negocio</th>
+                  <th>Estado</th>
+                  <th>Link</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="nfc-table"></tbody>
+
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CLIENTES -->
+
+      <section class="page" id="page-clients">
+
+        <div class="page-header">
+
+          <div>
+            <h1>Clientes</h1>
+            <p>Crea las cuentas de acceso de tus clientes.</p>
+          </div>
+
+          <button class="btn btn-primary" id="open-client-modal">
+            + Crear cliente
+          </button>
+
+        </div>
+
+        <div class="table-card">
+
+          <div class="table-header">
+            <div class="table-title">Cuentas de clientes</div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Negocio</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+
+              <tbody id="clients-table"></tbody>
+
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODAL NEGOCIO -->
+
+<div class="modal-overlay" id="business-modal">
+
+  <div class="modal">
+
+    <div class="modal-header">
+      <h2>Crear negocio</h2>
+
+      <button
+        class="close-btn"
+        data-close="business-modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form id="business-form">
+
+      <div class="form-grid">
 
         <div class="form-group">
-          <label>Correo electrónico</label>
+          <label>Nombre del negocio</label>
+          <input id="business-name" required />
+        </div>
+
+        <div class="form-group">
+          <label>Slug del negocio</label>
+          <input id="business-slug" required />
+        </div>
+
+        <div class="form-group form-full">
+          <label>
+            URL del logo
+            <span class="optional">(Opcional)</span>
+          </label>
 
           <input
-            type="email"
-            id="login-email"
-            placeholder="correo@ejemplo.com"
-            required
+            type="url"
+            id="business-logo-url"
           />
         </div>
 
-        <br />
+        <div class="form-group form-full">
+          <label>
+            Descripción
+            <span class="optional">(Opcional)</span>
+          </label>
+
+          <textarea id="business-description"></textarea>
+        </div>
 
         <div class="form-group">
-          <label>Contraseña</label>
-
+          <label>Google Reviews</label>
           <input
-            type="password"
-            id="login-password"
-            placeholder="••••••••"
-            required
+            type="url"
+            id="google-review-url"
           />
         </div>
 
-        <br />
+        <div class="form-group">
+          <label>Instagram</label>
+          <input
+            type="url"
+            id="instagram-url"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Facebook</label>
+          <input
+            type="url"
+            id="facebook-url"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input id="whatsapp-url" />
+        </div>
+
+        <div class="form-group">
+          <label>Página web</label>
+          <input
+            type="url"
+            id="website-url"
+          />
+        </div>
+
+      </div>
+
+      <div class="form-actions">
 
         <button
           type="submit"
           class="btn btn-primary"
-          style="width:100%;"
         >
-          Iniciar sesión
-        </button>
-
-      </form>
-
-    </div>
-
-  </section>
-
-
-  <!-- APP -->
-
-  <div id="app">
-
-    <aside class="sidebar">
-
-      <div class="brand">
-        <div class="brand-logo">CT</div>
-        <span>ClickTracker</span>
-      </div>
-
-      <div class="sidebar-section">
-
-        <div class="sidebar-label">GESTIÓN</div>
-
-        <button
-          class="nav-button active"
-          data-page="businesses"
-        >
-          🏢
-          <span>Negocios</span>
+          Crear negocio
         </button>
 
         <button
-          class="nav-button"
-          data-page="nfc"
-        >
-          📱
-          <span>NFC</span>
-        </button>
-
-        <button
-          class="nav-button"
-          data-page="clients"
-        >
-          👤
-          <span>Clientes</span>
-        </button>
-
-      </div>
-
-      <div class="sidebar-bottom">
-
-        <button
-          class="logout-btn"
-          id="logout-btn"
-        >
-          🚪
-          <span>Cerrar sesión</span>
-        </button>
-
-      </div>
-
-    </aside>
-
-
-    <main class="main">
-
-      <header class="topbar">
-
-        <div class="topbar-title">
-          Administración
-        </div>
-
-        <div class="admin-info">
-          <span class="online">● Sistema online</span>
-          <span id="admin-email"></span>
-        </div>
-
-      </header>
-
-
-      <div class="content">
-
-
-        <!-- NEGOCIOS -->
-
-        <section
-          class="page active"
-          id="page-businesses"
-        >
-
-          <div class="page-header">
-
-            <div>
-              <h1>Negocios</h1>
-              <p>Administra los negocios registrados en ClickTracker.</p>
-            </div>
-
-            <button
-              class="btn btn-primary"
-              id="open-business-modal"
-            >
-              + Crear negocio
-            </button>
-
-          </div>
-
-
-          <div class="stats">
-
-            <div class="stat-card">
-              <div class="stat-label">TOTAL NEGOCIOS</div>
-              <div
-                class="stat-number"
-                id="total-businesses"
-              >
-                0
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-label">TOTAL NFC</div>
-              <div
-                class="stat-number"
-                id="total-nfc"
-              >
-                0
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-label">TOTAL CLIENTES</div>
-              <div
-                class="stat-number"
-                id="total-clients"
-              >
-                0
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="table-card">
-
-            <div class="table-header">
-              <div class="table-title">
-                Negocios creados
-              </div>
-            </div>
-
-            <div class="table-wrap">
-
-              <table>
-
-                <thead>
-                  <tr>
-                    <th>Negocio</th>
-                    <th>Slug</th>
-                    <th>Logo</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-
-                <tbody id="businesses-table"></tbody>
-
-              </table>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- NFC -->
-
-        <section
-          class="page"
-          id="page-nfc"
-        >
-
-          <div class="page-header">
-
-            <div>
-              <h1>NFC</h1>
-              <p>Crea y administra las tarjetas NFC.</p>
-            </div>
-
-            <button
-              class="btn btn-primary"
-              id="open-nfc-modal"
-            >
-              + Crear NFC
-            </button>
-
-          </div>
-
-
-          <div class="table-card">
-
-            <div class="table-header">
-              <div class="table-title">
-                Tarjetas creadas
-              </div>
-
-              <div id="nfc-count-text">
-                0 tarjetas
-              </div>
-            </div>
-
-
-            <div class="table-wrap">
-
-              <table>
-
-                <thead>
-                  <tr>
-                    <th>NFC</th>
-                    <th>Código</th>
-                    <th>Negocio</th>
-                    <th>Estado</th>
-                    <th>Link</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-
-                <tbody id="nfc-table"></tbody>
-
-              </table>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- CLIENTES -->
-
-        <section
-          class="page"
-          id="page-clients"
-        >
-
-          <div class="page-header">
-
-            <div>
-              <h1>Clientes</h1>
-              <p>Crea y administra las cuentas de tus clientes.</p>
-            </div>
-
-            <button
-              class="btn btn-primary"
-              id="open-client-modal"
-            >
-              + Crear cliente
-            </button>
-
-          </div>
-
-
-          <div class="table-card">
-
-            <div class="table-header">
-              <div class="table-title">
-                Cuentas de clientes
-              </div>
-            </div>
-
-            <div class="table-wrap">
-
-              <table>
-
-                <thead>
-                  <tr>
-                    <th>Correo</th>
-                    <th>Negocio</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-
-                <tbody id="clients-table"></tbody>
-
-              </table>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
-      </div>
-
-    </main>
-
-  </div>
-
-
-  <!-- MODAL NEGOCIO -->
-
-  <div
-    class="modal-overlay"
-    id="business-modal"
-  >
-
-    <div class="modal">
-
-      <div class="modal-header">
-        <h2>Crear negocio</h2>
-
-        <button
-          class="close-btn"
+          type="button"
+          class="btn"
           data-close="business-modal"
         >
-          ×
+          Cancelar
         </button>
+
       </div>
 
-
-      <form id="business-form">
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label>Nombre del negocio</label>
-
-            <input
-              id="business-name"
-              placeholder="Ej: Punto Azul"
-              required
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>Slug del negocio</label>
-
-            <input
-              id="business-slug"
-              placeholder="punto-azul"
-              required
-            />
-
-          </div>
-
-
-          <!-- NUEVO CAMPO LOGO -->
-
-          <div class="form-group form-full">
-
-            <label>
-              URL del logo
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              type="url"
-              id="business-logo-url"
-              placeholder="https://ejemplo.com/logo.png"
-            />
-
-          </div>
-
-
-          <div class="form-group form-full">
-
-            <label>
-              Descripción
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <textarea
-              id="business-description"
-              placeholder="Breve descripción del negocio"
-            ></textarea>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Google Reviews
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              type="url"
-              id="google-review-url"
-              placeholder="https://g.page/..."
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Instagram
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              type="url"
-              id="instagram-url"
-              placeholder="https://instagram.com/..."
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Facebook
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              type="url"
-              id="facebook-url"
-              placeholder="https://facebook.com/..."
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              WhatsApp
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              id="whatsapp-url"
-              placeholder="51999999999"
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Página web
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              type="url"
-              id="website-url"
-              placeholder="https://..."
-            />
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Google Maps
-              <span class="optional">(Opcional)</span>
-            </label>
-
-            <input
-              id="google-maps-url"
-              placeholder="URL o dirección del negocio"
-            />
-
-          </div>
-
-        </div>
-
-
-        <div class="form-actions">
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-          >
-            Crear negocio
-          </button>
-
-          <button
-            type="button"
-            class="btn"
-            data-close="business-modal"
-          >
-            Cancelar
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
+    </form>
 
   </div>
+</div>
 
+<!-- MODAL NFC -->
 
-  <!-- MODAL NFC -->
+<div class="modal-overlay" id="nfc-modal">
 
-  <div
-    class="modal-overlay"
-    id="nfc-modal"
-  >
+  <div class="modal" style="max-width:600px;">
 
-    <div class="modal" style="max-width:600px;">
+    <div class="modal-header">
+      <h2>Crear NFC</h2>
 
-      <div class="modal-header">
+      <button
+        class="close-btn"
+        data-close="nfc-modal"
+      >
+        ×
+      </button>
+    </div>
 
-        <h2>Crear NFC</h2>
+    <form id="nfc-form">
+
+      <div class="form-group">
+        <label>Nombre del NFC</label>
+        <input id="nfc-name" required />
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label>Código</label>
+        <input id="nfc-code" required />
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label>Negocio</label>
+
+        <select id="nfc-business" required>
+          <option value="">
+            Selecciona un negocio
+          </option>
+        </select>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label>Slug del NFC</label>
+        <input id="nfc-slug" required />
+      </div>
+
+      <div class="form-actions">
 
         <button
-          class="close-btn"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Crear NFC
+        </button>
+
+        <button
+          type="button"
+          class="btn"
           data-close="nfc-modal"
         >
-          ×
+          Cancelar
         </button>
 
       </div>
 
+    </form>
 
-      <form id="nfc-form">
+  </div>
+</div>
 
-        <div class="form-group">
+<!-- MODAL CLIENTE -->
 
-          <label>Nombre del NFC</label>
+<div class="modal-overlay" id="client-modal">
 
-          <input
-            id="nfc-name"
-            placeholder="Ej: NFC Entrada"
-            required
-          />
+  <div class="modal" style="max-width:600px;">
 
-        </div>
+    <div class="modal-header">
 
-        <br />
+      <h2>Crear cuenta de cliente</h2>
 
-        <div class="form-group">
-
-          <label>Código</label>
-
-          <input
-            id="nfc-code"
-            placeholder="Ej: NFC-001"
-            required
-          />
-
-        </div>
-
-        <br />
-
-        <div class="form-group">
-
-          <label>Negocio</label>
-
-          <select
-            id="nfc-business"
-            required
-          >
-            <option value="">
-              Selecciona un negocio
-            </option>
-          </select>
-
-        </div>
-
-        <br />
-
-        <div class="form-group">
-
-          <label>Slug del NFC</label>
-
-          <input
-            id="nfc-slug"
-            placeholder="nfc-entrada"
-            required
-          />
-
-        </div>
-
-
-        <div class="form-actions">
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-          >
-            Crear NFC
-          </button>
-
-          <button
-            type="button"
-            class="btn"
-            data-close="nfc-modal"
-          >
-            Cancelar
-          </button>
-
-        </div>
-
-      </form>
+      <button
+        class="close-btn"
+        data-close="client-modal"
+      >
+        ×
+      </button>
 
     </div>
 
-  </div>
+    <form id="client-form">
 
+      <div class="form-group">
+        <label>Nombre completo</label>
 
-  <!-- MODAL CLIENTE -->
+        <input
+          id="client-full-name"
+          required
+        />
+      </div>
 
-  <div
-    class="modal-overlay"
-    id="client-modal"
-  >
+      <br>
 
-    <div class="modal" style="max-width:600px;">
+      <div class="form-group">
+        <label>Correo electrónico</label>
 
-      <div class="modal-header">
+        <input
+          type="email"
+          id="client-email"
+          required
+        />
+      </div>
 
-        <h2>Crear cuenta de cliente</h2>
+      <br>
+
+      <div class="form-group">
+        <label>Contraseña</label>
+
+        <input
+          type="password"
+          id="client-password"
+          minlength="6"
+          required
+        />
+      </div>
+
+      <br>
+
+      <div class="form-group">
+
+        <label>Negocio asociado</label>
+
+        <select
+          id="client-business"
+          required
+        >
+          <option value="">
+            Selecciona un negocio
+          </option>
+        </select>
+
+      </div>
+
+      <div class="form-actions">
 
         <button
-          class="close-btn"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Crear cliente
+        </button>
+
+        <button
+          type="button"
+          class="btn"
           data-close="client-modal"
         >
-          ×
+          Cancelar
         </button>
 
       </div>
 
-
-      <form id="client-form">
-
-        <div class="form-group">
-
-          <label>Correo electrónico</label>
-
-          <input
-            type="email"
-            id="client-email"
-            placeholder="cliente@ejemplo.com"
-            required
-          />
-
-        </div>
-
-        <br />
-
-        <div class="form-group">
-
-          <label>Negocio asociado</label>
-
-          <select
-            id="client-business"
-            required
-          >
-            <option value="">
-              Selecciona un negocio
-            </option>
-          </select>
-
-        </div>
-
-
-        <div class="form-actions">
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-          >
-            Crear cliente
-          </button>
-
-          <button
-            type="button"
-            class="btn"
-            data-close="client-modal"
-          >
-            Cancelar
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
+    </form>
 
   </div>
+</div>
+
+<div class="alert" id="alert"></div>
+
+<script type="module">
+
+import {
+  createClient
+} from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL =
+  "https://zrbujdpmrgeotubirxip.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+const DOMAIN =
+  "https://clicktracker-zeyw.vercel.app";
+
+let businesses = [];
 
 
-  <div
-    class="alert"
-    id="alert"
-  ></div>
+/* ALERTAS */
+
+function showAlert(message, type = "success") {
+
+  const alert =
+    document.getElementById("alert");
+
+  alert.textContent = message;
+
+  alert.className =
+    `alert show ${type}`;
+
+  setTimeout(() => {
+    alert.className = "alert";
+  }, 4000);
+
+}
 
 
-  <script type="module">
+/* SLUG */
 
-    import {
-      createClient
-    } from "https://esm.sh/@supabase/supabase-js@2";
+function slugify(text) {
 
+  return text
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
-    /* =========================================
-       SUPABASE
-    ========================================= */
-
-    const SUPABASE_URL =
-      "https://zrbujdpmrgeotubirxip.supabase.co";
-
-    const SUPABASE_KEY =
-      "sb_publishable_nH8fy-c0R_JQ_RHFpOY-kg_2gJW01mD";
+}
 
 
-    const supabase =
-      createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+/* VERIFICAR ADMIN */
+
+async function isAdmin(user) {
+
+  if (!user?.id) {
+    return false;
+  }
+
+  const {
+    data: profile,
+    error: profileError
+  } =
+  await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (
+    !profileError &&
+    profile?.role === "admin"
+  ) {
+    return true;
+  }
+
+  const {
+    data: admin,
+    error: adminError
+  } =
+  await supabase
+    .from("admins")
+    .select("id")
+    .eq(
+      "email",
+      user.email
+    )
+    .maybeSingle();
+
+  if (
+    !adminError &&
+    admin
+  ) {
+    return true;
+  }
+
+  return false;
+}
 
 
-    const DOMAIN =
-      "https://clicktracker-zeyw.vercel.app";
+/* SESIÓN */
+
+async function openAdmin(user) {
+
+  document
+    .getElementById("login-screen")
+    .style.display = "none";
+
+  document
+    .getElementById("app")
+    .style.display = "block";
+
+  document
+    .getElementById("admin-email")
+    .textContent =
+    user.email;
+
+  await loadEverything();
+
+}
 
 
-    let businesses = [];
+async function checkSession() {
 
-
-    /* =========================================
-       ALERTA
-    ========================================= */
-
-    function showAlert(message, type = "success") {
-
-      const alert =
-        document.getElementById("alert");
-
-      alert.textContent =
-        message;
-
-      alert.className =
-        `alert show ${type}`;
-
-      setTimeout(() => {
-        alert.className = "alert";
-      }, 4000);
-
+  const {
+    data: {
+      session
     }
+  } =
+  await supabase.auth.getSession();
+
+  if (!session) {
+    return;
+  }
+
+  const admin =
+    await isAdmin(session.user);
+
+  if (!admin) {
+
+    await supabase
+      .auth
+      .signOut();
+
+    showAlert(
+      "No tienes permisos de administrador.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  await openAdmin(
+    session.user
+  );
+
+}
 
 
-    /* =========================================
-       SLUG
-    ========================================= */
+/* LOGIN */
 
-    function slugify(text) {
+document
+  .getElementById("login-form")
+  .addEventListener(
+    "submit",
+    async e => {
 
-      return text
-        .toString()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-
-    }
-
-
-    /* =========================================
-       LOGIN
-    ========================================= */
-
-    async function checkSession() {
-
-      const {
-        data: {
-          session
-        }
-      } =
-      await supabase.auth.getSession();
-
-
-      if (!session) {
-        return;
-      }
-
+      e.preventDefault();
 
       const email =
-        session.user.email;
-
-
-      const {
-        data: admin,
-        error
-      } =
-      await supabase
-        .from("admins")
-        .select("*")
-        .eq("email", email)
-        .maybeSingle();
-
-
-      if (
-        error ||
-        !admin
-      ) {
-
-        await supabase.auth.signOut();
-
-        showAlert(
-          "No tienes permisos de administrador.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      document
-        .getElementById("login-screen")
-        .style.display = "none";
-
-      document
-        .getElementById("app")
-        .style.display = "block";
-
-
-      document
-        .getElementById("admin-email")
-        .textContent = email;
-
-
-      await loadEverything();
-
-    }
-
-
-    document
-      .getElementById("login-form")
-      .addEventListener(
-        "submit",
-        async (e) => {
-
-          e.preventDefault();
-
-
-          const email =
-            document
-              .getElementById("login-email")
-              .value
-              .trim();
-
-          const password =
-            document
-              .getElementById("login-password")
-              .value;
-
-
-          const {
-            data,
-            error
-          } =
-          await supabase.auth.signInWithPassword({
-            email,
-            password
-          });
-
-
-          if (error) {
-
-            showAlert(
-              error.message,
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          const {
-            data: admin
-          } =
-          await supabase
-            .from("admins")
-            .select("*")
-            .eq(
-              "email",
-              data.user.email
-            )
-            .maybeSingle();
-
-
-          if (!admin) {
-
-            await supabase.auth.signOut();
-
-            showAlert(
-              "No tienes permisos para acceder al panel administrativo.",
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          document
-            .getElementById("login-screen")
-            .style.display = "none";
-
-          document
-            .getElementById("app")
-            .style.display = "block";
-
-
-          document
-            .getElementById("admin-email")
-            .textContent =
-            data.user.email;
-
-
-          await loadEverything();
-
-        }
-      );
-
-
-    /* =========================================
-       LOGOUT
-    ========================================= */
-
-    document
-      .getElementById("logout-btn")
-      .addEventListener(
-        "click",
-        async () => {
-
-          await supabase
-            .auth
-            .signOut();
-
-          location.reload();
-
-        }
-      );
-
-
-    /* =========================================
-       NAVEGACIÓN
-    ========================================= */
-
-    document
-      .querySelectorAll(".nav-button")
-      .forEach(button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            const page =
-              button.dataset.page;
-
-
-            document
-              .querySelectorAll(".nav-button")
-              .forEach(btn =>
-                btn.classList.remove("active")
-              );
-
-
-            button.classList.add("active");
-
-
-            document
-              .querySelectorAll(".page")
-              .forEach(p =>
-                p.classList.remove("active")
-              );
-
-
-            document
-              .getElementById(
-                `page-${page}`
-              )
-              .classList.add("active");
-
-          }
-        );
-
-      });
-
-
-    /* =========================================
-       MODALES
-    ========================================= */
-
-    function openModal(id) {
-
-      document
-        .getElementById(id)
-        .classList.add("show");
-
-    }
-
-
-    function closeModal(id) {
-
-      document
-        .getElementById(id)
-        .classList.remove("show");
-
-    }
-
-
-    document
-      .getElementById("open-business-modal")
-      .addEventListener(
-        "click",
-        () => openModal("business-modal")
-      );
-
-
-    document
-      .getElementById("open-nfc-modal")
-      .addEventListener(
-        "click",
-        () => openModal("nfc-modal")
-      );
-
-
-    document
-      .getElementById("open-client-modal")
-      .addEventListener(
-        "click",
-        () => openModal("client-modal")
-      );
-
-
-    document
-      .querySelectorAll("[data-close]")
-      .forEach(button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            closeModal(
-              button.dataset.close
-            );
-
-          }
-        );
-
-      });
-
-
-    /* =========================================
-       AUTOGENERAR SLUG NEGOCIO
-    ========================================= */
-
-    document
-      .getElementById("business-name")
-      .addEventListener(
-        "input",
-        e => {
-
-          const slugInput =
-            document.getElementById(
-              "business-slug"
-            );
-
-          if (
-            !slugInput.dataset.manual
-          ) {
-
-            slugInput.value =
-              slugify(e.target.value);
-
-          }
-
-        }
-      );
-
-
-    document
-      .getElementById("business-slug")
-      .addEventListener(
-        "input",
-        e => {
-
-          e.target.dataset.manual = "true";
-
-          e.target.value =
-            slugify(e.target.value);
-
-        }
-      );
-
-
-    /* =========================================
-       AUTOGENERAR SLUG NFC
-    ========================================= */
-
-    document
-      .getElementById("nfc-name")
-      .addEventListener(
-        "input",
-        e => {
-
-          const slugInput =
-            document.getElementById(
-              "nfc-slug"
-            );
-
-          if (
-            !slugInput.dataset.manual
-          ) {
-
-            slugInput.value =
-              slugify(e.target.value);
-
-          }
-
-        }
-      );
-
-
-    document
-      .getElementById("nfc-slug")
-      .addEventListener(
-        "input",
-        e => {
-
-          e.target.dataset.manual = "true";
-
-          e.target.value =
-            slugify(e.target.value);
-
-        }
-      );
-
-
-    /* =========================================
-       CARGAR TODO
-    ========================================= */
-
-    async function loadEverything() {
-
-      await loadBusinesses();
-
-      await loadNfc();
-
-      await loadClients();
-
-      populateBusinessSelects();
-
-    }
-
-
-    /* =========================================
-       NEGOCIOS
-    ========================================= */
-
-    async function loadBusinesses() {
+        document
+          .getElementById("login-email")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("login-password")
+          .value;
 
       const {
         data,
         error
       } =
       await supabase
-        .from("businesses")
-        .select("*")
-        .order(
-          "created_at",
-          {
-            ascending: false
-          }
-        );
-
+        .auth
+        .signInWithPassword({
+          email,
+          password
+        });
 
       if (error) {
 
-        console.error(error);
-
         showAlert(
-          "Error cargando negocios: " +
           error.message,
           "error"
         );
@@ -1848,982 +1287,1077 @@
 
       }
 
-
-      businesses =
-        data || [];
-
-
-      document
-        .getElementById("total-businesses")
-        .textContent =
-        businesses.length;
-
-
-      const table =
-        document.getElementById(
-          "businesses-table"
+      const admin =
+        await isAdmin(
+          data.user
         );
 
+      if (!admin) {
 
-      table.innerHTML = "";
+        await supabase
+          .auth
+          .signOut();
 
-
-      if (!businesses.length) {
-
-        table.innerHTML = `
-          <tr>
-            <td colspan="4">
-              <div class="empty">
-                Aún no hay negocios creados.
-              </div>
-            </td>
-          </tr>
-        `;
+        showAlert(
+          "No tienes permisos para acceder al panel.",
+          "error"
+        );
 
         return;
 
       }
 
-
-      businesses.forEach(
-        business => {
-
-          const logo =
-            business.logo_url
-              ? `<img
-                  src="${business.logo_url}"
-                  style="
-                    width:34px;
-                    height:34px;
-                    object-fit:cover;
-                    border-radius:8px;
-                  "
-                >`
-              : "—";
-
-
-          table.innerHTML += `
-
-            <tr>
-
-              <td>
-                <strong>
-                  ${business.name || ""}
-                </strong>
-              </td>
-
-              <td>
-                ${business.slug || ""}
-              </td>
-
-              <td>
-                ${logo}
-              </td>
-
-              <td>
-
-                <button
-                  class="btn btn-small btn-danger"
-                  onclick="deleteBusiness('${business.id}')"
-                >
-                  Eliminar
-                </button>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        }
+      await openAdmin(
+        data.user
       );
 
     }
+  );
 
 
-    /* =========================================
-       CREAR NEGOCIO
-    ========================================= */
+/* LOGOUT */
 
-    document
-      .getElementById("business-form")
-      .addEventListener(
-        "submit",
-        async e => {
+document
+  .getElementById("logout-btn")
+  .addEventListener(
+    "click",
+    async () => {
 
-          e.preventDefault();
+      await supabase
+        .auth
+        .signOut();
 
+      location.reload();
 
-          const name =
-            document
-              .getElementById("business-name")
-              .value
-              .trim();
+    }
+  );
 
 
-          const slug =
-            slugify(
-              document
-                .getElementById("business-slug")
-                .value
-            );
+/* NAVEGACIÓN */
 
+document
+  .querySelectorAll(".nav-button")
+  .forEach(button => {
 
-          /* NUEVO: URL DEL LOGO */
+    button.addEventListener(
+      "click",
+      () => {
 
-          const logo_url =
-            document
-              .getElementById("business-logo-url")
-              .value
-              .trim() || null;
+        const page =
+          button.dataset.page;
 
-
-          const description =
-            document
-              .getElementById("business-description")
-              .value
-              .trim() || null;
-
-
-          const google_review_url =
-            document
-              .getElementById("google-review-url")
-              .value
-              .trim() || null;
-
-
-          const instagram_url =
-            document
-              .getElementById("instagram-url")
-              .value
-              .trim() || null;
-
-
-          const facebook_url =
-            document
-              .getElementById("facebook-url")
-              .value
-              .trim() || null;
-
-
-          const whatsapp_url =
-            document
-              .getElementById("whatsapp-url")
-              .value
-              .trim() || null;
-
-
-          const website_url =
-            document
-              .getElementById("website-url")
-              .value
-              .trim() || null;
-
-
-          const google_maps_url =
-            document
-              .getElementById("google-maps-url")
-              .value
-              .trim() || null;
-
-
-          const {
-            error
-          } =
-          await supabase
-            .from("businesses")
-            .insert({
-
-              name,
-              slug,
-
-              logo_url,
-
-              description,
-
-              google_review_url,
-
-              instagram_url,
-
-              facebook_url,
-
-              whatsapp_url,
-
-              website_url,
-
-              google_maps_url
-
-            });
-
-
-          if (error) {
-
-            console.error(error);
-
-            showAlert(
-              "Error creando el negocio: " +
-              error.message,
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          showAlert(
-            "Negocio creado correctamente."
+        document
+          .querySelectorAll(".nav-button")
+          .forEach(btn =>
+            btn.classList.remove("active")
           );
 
+        button.classList.add("active");
 
-          e.target.reset();
-
-          document
-            .getElementById("business-slug")
-            .dataset.manual = "";
-
-
-          closeModal(
-            "business-modal"
+        document
+          .querySelectorAll(".page")
+          .forEach(p =>
+            p.classList.remove("active")
           );
 
+        document
+          .getElementById(
+            `page-${page}`
+          )
+          .classList.add("active");
 
-          await loadBusinesses();
+      }
+    );
 
-          populateBusinessSelects();
-
-        }
-      );
-
-
-    /* =========================================
-       SELECTS DE NEGOCIOS
-    ========================================= */
-
-    function populateBusinessSelects() {
-
-      const selects = [
-
-        document.getElementById(
-          "nfc-business"
-        ),
-
-        document.getElementById(
-          "client-business"
-        )
-
-      ];
+  });
 
 
-      selects.forEach(select => {
+/* MODALES */
 
-        if (!select) return;
+function openModal(id) {
 
-        const currentValue =
-          select.value;
+  document
+    .getElementById(id)
+    .classList.add("show");
 
+}
 
-        select.innerHTML =
-          `<option value="">
-            Selecciona un negocio
-          </option>`;
+function closeModal(id) {
 
+  document
+    .getElementById(id)
+    .classList.remove("show");
 
-        businesses.forEach(
-          business => {
+}
 
-            select.innerHTML += `
+document
+  .getElementById("open-business-modal")
+  .onclick =
+  () => openModal("business-modal");
 
-              <option
-                value="${business.id}"
-              >
-                ${business.name}
-              </option>
+document
+  .getElementById("open-nfc-modal")
+  .onclick =
+  () => openModal("nfc-modal");
 
-            `;
+document
+  .getElementById("open-client-modal")
+  .onclick =
+  () => openModal("client-modal");
 
-          }
+document
+  .querySelectorAll("[data-close]")
+  .forEach(button => {
+
+    button.onclick =
+      () =>
+        closeModal(
+          button.dataset.close
         );
 
+  });
 
-        select.value =
-          currentValue;
 
-      });
+/* SLUGS AUTOMÁTICOS */
+
+document
+  .getElementById("business-name")
+  .addEventListener(
+    "input",
+    e => {
+
+      const input =
+        document.getElementById(
+          "business-slug"
+        );
+
+      if (!input.dataset.manual) {
+
+        input.value =
+          slugify(e.target.value);
+
+      }
 
     }
+  );
+
+document
+  .getElementById("business-slug")
+  .addEventListener(
+    "input",
+    e => {
+
+      e.target.dataset.manual = "true";
+
+      e.target.value =
+        slugify(e.target.value);
+
+    }
+  );
 
 
-    /* =========================================
-       NFC
-    ========================================= */
+document
+  .getElementById("nfc-name")
+  .addEventListener(
+    "input",
+    e => {
 
-    async function loadNfc() {
+      const input =
+        document.getElementById(
+          "nfc-slug"
+        );
+
+      if (!input.dataset.manual) {
+
+        input.value =
+          slugify(e.target.value);
+
+      }
+
+    }
+  );
+
+document
+  .getElementById("nfc-slug")
+  .addEventListener(
+    "input",
+    e => {
+
+      e.target.dataset.manual = "true";
+
+      e.target.value =
+        slugify(e.target.value);
+
+    }
+  );
+
+
+/* CARGAR TODO */
+
+async function loadEverything() {
+
+  await loadBusinesses();
+
+  await loadNfc();
+
+  await loadClients();
+
+  populateBusinessSelects();
+
+}
+
+
+/* NEGOCIOS */
+
+async function loadBusinesses() {
+
+  const {
+    data,
+    error
+  } =
+  await supabase
+    .from("businesses")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending: false
+      }
+    );
+
+  if (error) {
+
+    console.error(error);
+
+    showAlert(
+      "Error cargando negocios: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+  businesses =
+    data || [];
+
+  document
+    .getElementById("total-businesses")
+    .textContent =
+    businesses.length;
+
+  const table =
+    document.getElementById(
+      "businesses-table"
+    );
+
+  table.innerHTML = "";
+
+  if (!businesses.length) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="4">
+          <div class="empty">
+            Aún no hay negocios creados.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+  businesses.forEach(
+    business => {
+
+      const logo =
+        business.logo_url
+          ? `<img
+              src="${business.logo_url}"
+              style="
+                width:34px;
+                height:34px;
+                object-fit:cover;
+                border-radius:8px;
+              "
+            >`
+          : "—";
+
+      table.innerHTML += `
+
+        <tr>
+
+          <td>
+            <strong>
+              ${business.name || ""}
+            </strong>
+          </td>
+
+          <td>
+            ${business.slug || ""}
+          </td>
+
+          <td>
+            ${logo}
+          </td>
+
+          <td>
+
+            <button
+              class="btn btn-small btn-danger"
+              onclick="deleteBusiness('${business.id}')"
+            >
+              Eliminar
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* CREAR NEGOCIO */
+
+document
+  .getElementById("business-form")
+  .addEventListener(
+    "submit",
+    async e => {
+
+      e.preventDefault();
+
+      const name =
+        document
+          .getElementById("business-name")
+          .value
+          .trim();
+
+      const slug =
+        slugify(
+          document
+            .getElementById("business-slug")
+            .value
+        );
+
+      const logo_url =
+        document
+          .getElementById("business-logo-url")
+          .value
+          .trim() || null;
+
+      const description =
+        document
+          .getElementById("business-description")
+          .value
+          .trim() || null;
+
+      const google_review_url =
+        document
+          .getElementById("google-review-url")
+          .value
+          .trim() || null;
+
+      const instagram_url =
+        document
+          .getElementById("instagram-url")
+          .value
+          .trim() || null;
+
+      const facebook_url =
+        document
+          .getElementById("facebook-url")
+          .value
+          .trim() || null;
+
+      const whatsapp_url =
+        document
+          .getElementById("whatsapp-url")
+          .value
+          .trim() || null;
+
+      const website_url =
+        document
+          .getElementById("website-url")
+          .value
+          .trim() || null;
+
+      const {
+        error
+      } =
+      await supabase
+        .from("businesses")
+        .insert({
+
+          name,
+          slug,
+          logo_url,
+          description,
+          google_review_url,
+          instagram_url,
+          facebook_url,
+          whatsapp_url,
+          website_url
+
+        });
+
+      if (error) {
+
+        console.error(error);
+
+        showAlert(
+          "Error creando el negocio: " +
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+      showAlert(
+        "Negocio creado correctamente."
+      );
+
+      e.target.reset();
+
+      document
+        .getElementById("business-slug")
+        .dataset.manual = "";
+
+      closeModal(
+        "business-modal"
+      );
+
+      await loadBusinesses();
+
+      populateBusinessSelects();
+
+    }
+  );
+
+
+/* SELECTS NEGOCIOS */
+
+function populateBusinessSelects() {
+
+  const selects = [
+
+    document.getElementById(
+      "nfc-business"
+    ),
+
+    document.getElementById(
+      "client-business"
+    )
+
+  ];
+
+  selects.forEach(select => {
+
+    if (!select) return;
+
+    select.innerHTML = `
+      <option value="">
+        Selecciona un negocio
+      </option>
+    `;
+
+    businesses.forEach(
+      business => {
+
+        select.innerHTML += `
+          <option value="${business.id}">
+            ${business.name}
+          </option>
+        `;
+
+      }
+    );
+
+  });
+
+}
+
+
+/* NFC */
+
+async function loadNfc() {
+
+  const {
+    data,
+    error
+  } =
+  await supabase
+    .from("nfc_devices")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending: false
+      }
+    );
+
+  if (error) {
+
+    console.error(error);
+
+    return;
+
+  }
+
+  const nfcList =
+    data || [];
+
+  document
+    .getElementById("total-nfc")
+    .textContent =
+    nfcList.length;
+
+  document
+    .getElementById("nfc-count-text")
+    .textContent =
+    `${nfcList.length} tarjetas`;
+
+  const table =
+    document.getElementById(
+      "nfc-table"
+    );
+
+  table.innerHTML = "";
+
+  if (!nfcList.length) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="6">
+          <div class="empty">
+            Aún no hay tarjetas NFC creadas.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+  nfcList.forEach(
+    nfc => {
+
+      const business =
+        businesses.find(
+          b =>
+            b.id === nfc.business_id
+        );
+
+      const url =
+        `${DOMAIN}/${business?.slug || ""}/${nfc.slug}`;
+
+      const active =
+        nfc.status === "active";
+
+      table.innerHTML += `
+
+        <tr>
+
+          <td>
+            <strong>${nfc.name}</strong>
+          </td>
+
+          <td>
+            ${nfc.code || "—"}
+          </td>
+
+          <td>
+            ${business?.name || "Sin negocio"}
+          </td>
+
+          <td>
+
+            <span
+              class="badge ${
+                active
+                  ? "badge-active"
+                  : "badge-inactive"
+              }"
+            >
+
+              ${
+                active
+                  ? "● Activo"
+                  : "● Inactivo"
+              }
+
+            </span>
+
+          </td>
+
+          <td>
+
+            <div class="url-text">
+              ${url}
+            </div>
+
+            <button
+              class="btn btn-small"
+              style="margin-top:7px;"
+              onclick="copyLink('${url}')"
+            >
+              Copiar
+            </button>
+
+          </td>
+
+          <td>
+
+            <button
+              class="btn btn-small"
+              onclick="toggleNfc(
+                '${nfc.id}',
+                '${nfc.status}'
+              )"
+            >
+              ${
+                active
+                  ? "Desactivar"
+                  : "Activar"
+              }
+            </button>
+
+            <button
+              class="btn btn-small btn-danger"
+              onclick="deleteNfc('${nfc.id}')"
+            >
+              Eliminar
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* CREAR NFC */
+
+document
+  .getElementById("nfc-form")
+  .addEventListener(
+    "submit",
+    async e => {
+
+      e.preventDefault();
+
+      const name =
+        document
+          .getElementById("nfc-name")
+          .value
+          .trim();
+
+      const code =
+        document
+          .getElementById("nfc-code")
+          .value
+          .trim();
+
+      const business_id =
+        document
+          .getElementById("nfc-business")
+          .value;
+
+      const slug =
+        slugify(
+          document
+            .getElementById("nfc-slug")
+            .value
+        );
+
+      const {
+        error
+      } =
+      await supabase
+        .from("nfc_devices")
+        .insert({
+          name,
+          code,
+          business_id,
+          slug,
+          status: "active"
+        });
+
+      if (error) {
+
+        showAlert(
+          "Error creando NFC: " +
+          error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+      showAlert(
+        "NFC creado correctamente."
+      );
+
+      e.target.reset();
+
+      closeModal(
+        "nfc-modal"
+      );
+
+      await loadNfc();
+
+    }
+  );
+
+
+/* CLIENTES */
+
+async function loadClients() {
+
+  const table =
+    document.getElementById(
+      "clients-table"
+    );
+
+  const {
+    data,
+    error
+  } =
+  await supabase
+    .from("profiles")
+    .select("*")
+    .eq("role", "client")
+    .order(
+      "created_at",
+      {
+        ascending: false
+      }
+    );
+
+  if (error) {
+
+    console.error(error);
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="4">
+          <div class="empty">
+            Error cargando clientes.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+  const clients =
+    data || [];
+
+  document
+    .getElementById("total-clients")
+    .textContent =
+    clients.length;
+
+  table.innerHTML = "";
+
+  if (!clients.length) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="4">
+          <div class="empty">
+            Aún no hay clientes creados.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+  clients.forEach(
+    client => {
+
+      const business =
+        businesses.find(
+          b =>
+            b.id === client.business_id
+        );
+
+      table.innerHTML += `
+
+        <tr>
+
+          <td>
+            ${client.full_name || "—"}
+          </td>
+
+          <td>
+            ${client.email || "—"}
+          </td>
+
+          <td>
+            ${business?.name || "—"}
+          </td>
+
+          <td>
+            ${
+              client.created_at
+                ? new Date(
+                    client.created_at
+                  ).toLocaleDateString("es-PE")
+                : "—"
+            }
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* CREAR CLIENTE CON EDGE FUNCTION */
+
+document
+  .getElementById("client-form")
+  .addEventListener(
+    "submit",
+    async e => {
+
+      e.preventDefault();
+
+      const full_name =
+        document
+          .getElementById("client-full-name")
+          .value
+          .trim();
+
+      const email =
+        document
+          .getElementById("client-email")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("client-password")
+          .value;
+
+      const business_id =
+        document
+          .getElementById("client-business")
+          .value;
 
       const {
         data,
         error
       } =
       await supabase
-        .from("nfc_devices")
-        .select("*")
-        .order(
-          "created_at",
+        .functions
+        .invoke(
+          "create-client",
           {
-            ascending: false
+            body: {
+              full_name,
+              email,
+              password,
+              business_id
+            }
           }
         );
-
 
       if (error) {
 
         console.error(error);
 
-        return;
-
-      }
-
-
-      const nfcList =
-        data || [];
-
-
-      document
-        .getElementById("total-nfc")
-        .textContent =
-        nfcList.length;
-
-
-      document
-        .getElementById("nfc-count-text")
-        .textContent =
-        `${nfcList.length} tarjetas`;
-
-
-      const table =
-        document.getElementById(
-          "nfc-table"
+        showAlert(
+          "Error creando cliente: " +
+          error.message,
+          "error"
         );
-
-
-      table.innerHTML = "";
-
-
-      if (!nfcList.length) {
-
-        table.innerHTML = `
-          <tr>
-            <td colspan="6">
-              <div class="empty">
-                Aún no hay tarjetas NFC creadas.
-              </div>
-            </td>
-          </tr>
-        `;
 
         return;
 
       }
 
-
-      nfcList.forEach(
-        nfc => {
-
-          const business =
-            businesses.find(
-              b =>
-                b.id === nfc.business_id
-            );
-
-
-          const businessSlug =
-            business?.slug || "";
-
-
-          const url =
-            `${DOMAIN}/${businessSlug}/${nfc.slug}`;
-
-
-          const active =
-            nfc.status === "active";
-
-
-          table.innerHTML += `
-
-            <tr>
-
-              <td>
-                <strong>
-                  ${nfc.name}
-                </strong>
-              </td>
-
-              <td>
-                ${nfc.code || "—"}
-              </td>
-
-              <td>
-                ${business?.name || "Sin negocio"}
-              </td>
-
-              <td>
-
-                <span
-                  class="badge ${
-                    active
-                      ? "badge-active"
-                      : "badge-inactive"
-                  }"
-                >
-
-                  ${
-                    active
-                      ? "● Activo"
-                      : "● Inactivo"
-                  }
-
-                </span>
-
-              </td>
-
-              <td>
-
-                <div
-                  class="url-text"
-                >
-                  ${url}
-                </div>
-
-                <button
-                  class="btn btn-small"
-                  style="margin-top:7px;"
-                  onclick="copyLink('${url}')"
-                >
-                  Copiar
-                </button>
-
-              </td>
-
-              <td>
-
-                <button
-                  class="btn btn-small"
-                  onclick="toggleNfc(
-                    '${nfc.id}',
-                    '${nfc.status}'
-                  )"
-                >
-                  ${
-                    active
-                      ? "Desactivar"
-                      : "Activar"
-                  }
-                </button>
-
-                <button
-                  class="btn btn-small btn-danger"
-                  onclick="deleteNfc('${nfc.id}')"
-                >
-                  Eliminar
-                </button>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        }
-      );
-
-    }
-
-
-    /* =========================================
-       CREAR NFC
-    ========================================= */
-
-    document
-      .getElementById("nfc-form")
-      .addEventListener(
-        "submit",
-        async e => {
-
-          e.preventDefault();
-
-
-          const name =
-            document
-              .getElementById("nfc-name")
-              .value
-              .trim();
-
-
-          const code =
-            document
-              .getElementById("nfc-code")
-              .value
-              .trim();
-
-
-          const business_id =
-            document
-              .getElementById("nfc-business")
-              .value;
-
-
-          const slug =
-            slugify(
-              document
-                .getElementById("nfc-slug")
-                .value
-            );
-
-
-          const {
-            error
-          } =
-          await supabase
-            .from("nfc_devices")
-            .insert({
-
-              name,
-              code,
-              business_id,
-              slug,
-              status: "active"
-
-            });
-
-
-          if (error) {
-
-            showAlert(
-              "Error creando NFC: " +
-              error.message,
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          showAlert(
-            "NFC creado correctamente."
-          );
-
-
-          e.target.reset();
-
-          closeModal(
-            "nfc-modal"
-          );
-
-
-          await loadNfc();
-
-        }
-      );
-
-
-    /* =========================================
-       CLIENTES
-    ========================================= */
-
-    async function loadClients() {
-
-      const table =
-        document.getElementById(
-          "clients-table"
+      if (!data?.success) {
+
+        showAlert(
+          data?.error ||
+          "No se pudo crear el cliente.",
+          "error"
         );
 
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-        await supabase
-          .from("clients")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-        if (error) {
-
-          console.log(
-            "Tabla clients:",
-            error.message
-          );
-
-          table.innerHTML = `
-            <tr>
-              <td colspan="4">
-                <div class="empty">
-                  No se pudieron cargar los clientes.
-                </div>
-              </td>
-            </tr>
-          `;
-
-          return;
-
-        }
-
-
-        const clients =
-          data || [];
-
-
-        document
-          .getElementById("total-clients")
-          .textContent =
-          clients.length;
-
-
-        table.innerHTML = "";
-
-
-        if (!clients.length) {
-
-          table.innerHTML = `
-            <tr>
-              <td colspan="4">
-                <div class="empty">
-                  Aún no hay clientes creados.
-                </div>
-              </td>
-            </tr>
-          `;
-
-          return;
-
-        }
-
-
-        clients.forEach(
-          client => {
-
-            const business =
-              businesses.find(
-                b =>
-                  b.id === client.business_id
-              );
-
-
-            table.innerHTML += `
-
-              <tr>
-
-                <td>
-                  ${client.email || "—"}
-                </td>
-
-                <td>
-                  ${business?.name || "—"}
-                </td>
-
-                <td>
-                  ${
-                    client.created_at
-                      ? new Date(
-                          client.created_at
-                        ).toLocaleDateString("es-PE")
-                      : "—"
-                  }
-                </td>
-
-                <td>
-
-                  <button
-                    class="btn btn-small btn-danger"
-                    onclick="deleteClient('${client.id}')"
-                  >
-                    Eliminar
-                  </button>
-
-                </td>
-
-              </tr>
-
-            `;
-
-          }
-        );
-
-      }
-      catch (error) {
-
-        console.error(error);
+        return;
 
       }
 
-    }
-
-
-    /* =========================================
-       CREAR CLIENTE
-    ========================================= */
-
-    document
-      .getElementById("client-form")
-      .addEventListener(
-        "submit",
-        async e => {
-
-          e.preventDefault();
-
-
-          const email =
-            document
-              .getElementById("client-email")
-              .value
-              .trim();
-
-
-          const business_id =
-            document
-              .getElementById("client-business")
-              .value;
-
-
-          const {
-            error
-          } =
-          await supabase
-            .from("clients")
-            .insert({
-              email,
-              business_id
-            });
-
-
-          if (error) {
-
-            showAlert(
-              "Error creando cliente: " +
-              error.message,
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          showAlert(
-            "Cliente creado correctamente."
-          );
-
-
-          e.target.reset();
-
-          closeModal(
-            "client-modal"
-          );
-
-
-          await loadClients();
-
-        }
+      showAlert(
+        "Cliente creado correctamente."
       );
 
+      e.target.reset();
 
-    /* =========================================
-       FUNCIONES GLOBALES
-    ========================================= */
+      closeModal(
+        "client-modal"
+      );
 
-    window.copyLink =
-      async function(url) {
+      await loadClients();
 
-        await navigator
-          .clipboard
-          .writeText(url);
+    }
+  );
 
-        showAlert(
-          "Link copiado."
-        );
 
-      };
+/* FUNCIONES GLOBALES */
 
+window.copyLink =
+  async function(url) {
 
-    window.toggleNfc =
-      async function(
-        id,
-        currentStatus
-      ) {
+    await navigator.clipboard.writeText(url);
 
-        const newStatus =
-          currentStatus === "active"
-            ? "inactive"
-            : "active";
+    showAlert("Link copiado.");
 
+  };
 
-        const {
-          error
-        } =
-        await supabase
-          .from("nfc_devices")
-          .update({
-            status: newStatus
-          })
-          .eq("id", id);
 
+window.toggleNfc =
+  async function(
+    id,
+    currentStatus
+  ) {
 
-        if (error) {
+    const newStatus =
+      currentStatus === "active"
+        ? "inactive"
+        : "active";
 
-          showAlert(
-            error.message,
-            "error"
-          );
+    const {
+      error
+    } =
+    await supabase
+      .from("nfc_devices")
+      .update({
+        status: newStatus
+      })
+      .eq("id", id);
 
-          return;
+    if (error) {
 
-        }
+      showAlert(
+        error.message,
+        "error"
+      );
 
+      return;
 
-        await loadNfc();
+    }
 
-      };
+    await loadNfc();
 
+  };
 
-    window.deleteNfc =
-      async function(id) {
 
-        if (
-          !confirm(
-            "¿Eliminar esta tarjeta NFC?"
-          )
-        ) return;
+window.deleteNfc =
+  async function(id) {
 
+    if (
+      !confirm(
+        "¿Eliminar esta tarjeta NFC?"
+      )
+    ) return;
 
-        const {
-          error
-        } =
-        await supabase
-          .from("nfc_devices")
-          .delete()
-          .eq("id", id);
+    const {
+      error
+    } =
+    await supabase
+      .from("nfc_devices")
+      .delete()
+      .eq("id", id);
 
+    if (error) {
 
-        if (error) {
+      showAlert(
+        error.message,
+        "error"
+      );
 
-          showAlert(
-            error.message,
-            "error"
-          );
+      return;
 
-          return;
+    }
 
-        }
+    showAlert("NFC eliminado.");
 
+    await loadNfc();
 
-        showAlert(
-          "NFC eliminado."
-        );
+  };
 
 
-        await loadNfc();
+window.deleteBusiness =
+  async function(id) {
 
-      };
+    if (
+      !confirm(
+        "¿Eliminar este negocio?"
+      )
+    ) return;
 
+    const {
+      error
+    } =
+    await supabase
+      .from("businesses")
+      .delete()
+      .eq("id", id);
 
-    window.deleteBusiness =
-      async function(id) {
+    if (error) {
 
-        if (
-          !confirm(
-            "¿Eliminar este negocio?"
-          )
-        ) return;
+      showAlert(
+        error.message,
+        "error"
+      );
 
+      return;
 
-        const {
-          error
-        } =
-        await supabase
-          .from("businesses")
-          .delete()
-          .eq("id", id);
+    }
 
+    showAlert(
+      "Negocio eliminado."
+    );
 
-        if (error) {
+    await loadEverything();
 
-          showAlert(
-            error.message,
-            "error"
-          );
+  };
 
-          return;
 
-        }
+/* INICIAR */
 
+checkSession();
 
-        showAlert(
-          "Negocio eliminado."
-        );
-
-
-        await loadEverything();
-
-      };
-
-
-    window.deleteClient =
-      async function(id) {
-
-        if (
-          !confirm(
-            "¿Eliminar este cliente?"
-          )
-        ) return;
-
-
-        const {
-          error
-        } =
-        await supabase
-          .from("clients")
-          .delete()
-          .eq("id", id);
-
-
-        if (error) {
-
-          showAlert(
-            error.message,
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        showAlert(
-          "Cliente eliminado."
-        );
-
-
-        await loadClients();
-
-      };
-
-
-    /* =========================================
-       INICIAR
-    ========================================= */
-
-    checkSession();
-
-  </script>
+</script>
 
 </body>
 </html>
