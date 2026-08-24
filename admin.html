@@ -494,6 +494,7 @@
       color: white;
       background: #20242d;
       border: 1px solid var(--border);
+      max-width: 500px;
     }
 
     .alert.show {
@@ -1072,7 +1073,7 @@
 
 <div class="alert" id="alert"></div>
 
-<!-- CARGAR CONFIGURACIÓN -->
+<!-- CONFIGURACIÓN -->
 
 <script src="config.js"></script>
 
@@ -1083,6 +1084,21 @@
 import {
   createClient
 } from "https://esm.sh/@supabase/supabase-js@2";
+
+
+/* CONFIGURACIÓN */
+
+if (
+  !window.CLICKTRACKER_CONFIG ||
+  !window.CLICKTRACKER_CONFIG.SUPABASE_URL ||
+  !window.CLICKTRACKER_CONFIG.SUPABASE_ANON_KEY
+) {
+
+  throw new Error(
+    "No se pudo cargar correctamente config.js"
+  );
+
+}
 
 const SUPABASE_URL =
   window.CLICKTRACKER_CONFIG.SUPABASE_URL;
@@ -1098,6 +1114,9 @@ const supabase =
 
 const DOMAIN =
   "https://clicktracker-zeyw.vercel.app";
+
+const CREATE_CLIENT_URL =
+  `${SUPABASE_URL}/functions/v1/create-client`;
 
 let businesses = [];
 
@@ -1115,8 +1134,10 @@ function showAlert(message, type = "success") {
     `alert show ${type}`;
 
   setTimeout(() => {
+
     alert.className = "alert";
-  }, 4000);
+
+  }, 5000);
 
 }
 
@@ -1169,10 +1190,7 @@ async function isAdmin(user) {
   await supabase
     .from("admins")
     .select("id")
-    .eq(
-      "email",
-      user.email
-    )
+    .eq("email", user.email)
     .maybeSingle();
 
   if (
@@ -1227,9 +1245,7 @@ async function checkSession() {
 
   if (!admin) {
 
-    await supabase
-      .auth
-      .signOut();
+    await supabase.auth.signOut();
 
     showAlert(
       "No tienes permisos de administrador.",
@@ -1240,9 +1256,7 @@ async function checkSession() {
 
   }
 
-  await openAdmin(
-    session.user
-  );
+  await openAdmin(session.user);
 
 }
 
@@ -2231,71 +2245,109 @@ document
 
       try {
 
+        console.log(
+          "Enviando petición a:",
+          CREATE_CLIENT_URL
+        );
+
         const {
-          data,
-          error
-        } =
-        await supabase
-          .functions
-          .invoke(
-            "create-client",
-            {
-              body: {
-                full_name,
-                email,
-                password,
-                business_id
-              }
-            }
-          );
-
-        if (error) {
-
-          console.error(
-            "Error Edge Function:",
-            error
-          );
-
-          let errorMessage =
-            error.message ||
-            "No se pudo conectar con la función.";
-
-          try {
-
-            if (error.context) {
-
-              const errorData =
-                await error.context.json();
-
-              if (errorData?.error) {
-
-                errorMessage =
-                  errorData.error;
-
-              }
-
-            }
-
-          } catch (parseError) {
-
-            console.error(
-              "Error leyendo respuesta:",
-              parseError
-            );
-
+          data: {
+            session
           }
+        } =
+        await supabase.auth.getSession();
+
+        if (!session) {
 
           throw new Error(
-            errorMessage
+            "No hay una sesión activa."
           );
 
         }
 
-        if (!data?.success) {
+        const response =
+          await fetch(
+            CREATE_CLIENT_URL,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+
+                "Authorization":
+                  `Bearer ${session.access_token}`,
+
+                "apikey":
+                  SUPABASE_KEY
+              },
+
+              body:
+                JSON.stringify({
+                  full_name,
+                  email,
+                  password,
+                  business_id
+                })
+            }
+          );
+
+        let responseData = null;
+        let responseText = "";
+
+        try {
+
+          responseText =
+            await response.text();
+
+          if (responseText) {
+
+            responseData =
+              JSON.parse(
+                responseText
+              );
+
+          }
+
+        } catch (parseError) {
+
+          console.error(
+            "Error leyendo respuesta:",
+            parseError
+          );
+
+        }
+
+        console.log(
+          "Respuesta create-client:",
+          {
+            status: response.status,
+            statusText: response.statusText,
+            data: responseData,
+            text: responseText
+          }
+        );
+
+        if (!response.ok) {
+
+          const serverError =
+            responseData?.error ||
+            responseData?.message ||
+            responseText ||
+            `Error HTTP ${response.status}`;
 
           throw new Error(
-            data?.error ||
-            "No se pudo crear el cliente."
+            serverError
+          );
+
+        }
+
+        if (!responseData?.success) {
+
+          throw new Error(
+            responseData?.error ||
+            responseData?.message ||
+            "La función no confirmó la creación del cliente."
           );
 
         }
@@ -2348,7 +2400,9 @@ window.copyLink =
 
     try {
 
-      await navigator.clipboard.writeText(url);
+      await navigator
+        .clipboard
+        .writeText(url);
 
       showAlert(
         "Link copiado."
