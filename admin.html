@@ -559,31 +559,19 @@
 
       <div class="form-group">
         <label>Correo electrónico</label>
-        <input
-          type="email"
-          id="login-email"
-          required
-        />
+        <input type="email" id="login-email" required />
       </div>
 
       <br>
 
       <div class="form-group">
         <label>Contraseña</label>
-        <input
-          type="password"
-          id="login-password"
-          required
-        />
+        <input type="password" id="login-password" required />
       </div>
 
       <br>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-        style="width:100%;"
-      >
+      <button type="submit" class="btn btn-primary" style="width:100%;">
         Iniciar sesión
       </button>
 
@@ -683,6 +671,8 @@
               <thead>
                 <tr>
                   <th>Negocio</th>
+                  <th>Dirección</th>
+                  <th>Google Maps</th>
                   <th>Slug</th>
                   <th>Logo</th>
                   <th>Acciones</th>
@@ -789,6 +779,7 @@
   </main>
 </div>
 
+
 <!-- MODAL NEGOCIO -->
 
 <div class="modal-overlay" id="business-modal">
@@ -798,10 +789,7 @@
     <div class="modal-header">
       <h2>Crear negocio</h2>
 
-      <button
-        class="close-btn"
-        data-close="business-modal"
-      >
+      <button class="close-btn" data-close="business-modal">
         ×
       </button>
     </div>
@@ -818,6 +806,31 @@
         <div class="form-group">
           <label>Slug del negocio</label>
           <input id="business-slug" required />
+        </div>
+
+        <div class="form-group form-full">
+          <label>
+            Dirección
+            <span class="optional">(Opcional)</span>
+          </label>
+
+          <input
+            id="business-address"
+            placeholder="Ej: Av. Larco 123, Miraflores"
+          />
+        </div>
+
+        <div class="form-group form-full">
+          <label>
+            Link de Google Maps
+            <span class="optional">(Opcional)</span>
+          </label>
+
+          <input
+            type="url"
+            id="business-maps-embed-url"
+            placeholder="Pega aquí el link de Google Maps"
+          />
         </div>
 
         <div class="form-group form-full">
@@ -870,8 +883,9 @@
           <input id="whatsapp-url" />
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-full">
           <label>Página web</label>
+
           <input
             type="url"
             id="website-url"
@@ -903,6 +917,7 @@
 
   </div>
 </div>
+
 
 <!-- MODAL NFC -->
 
@@ -977,6 +992,7 @@
 
   </div>
 </div>
+
 
 <!-- MODAL CLIENTE -->
 
@@ -1074,7 +1090,9 @@
   </div>
 </div>
 
+
 <div class="alert" id="alert"></div>
+
 
 <script type="module">
 
@@ -1181,6 +1199,7 @@ async function isAdmin(user) {
   }
 
   return false;
+
 }
 
 
@@ -1558,7 +1577,7 @@ async function loadBusinesses() {
 
     table.innerHTML = `
       <tr>
-        <td colspan="4">
+        <td colspan="6">
           <div class="empty">
             Aún no hay negocios creados.
           </div>
@@ -1586,6 +1605,19 @@ async function loadBusinesses() {
             >`
           : "—";
 
+      const maps =
+        business.maps_embed_url
+          ? `
+            <a
+              href="${business.maps_embed_url}"
+              target="_blank"
+              class="url-text"
+            >
+              Ver ubicación
+            </a>
+          `
+          : "—";
+
       table.innerHTML += `
 
         <tr>
@@ -1594,6 +1626,14 @@ async function loadBusinesses() {
             <strong>
               ${business.name || ""}
             </strong>
+          </td>
+
+          <td>
+            ${business.address || "—"}
+          </td>
+
+          <td>
+            ${maps}
           </td>
 
           <td>
@@ -1648,6 +1688,18 @@ document
             .value
         );
 
+      const address =
+        document
+          .getElementById("business-address")
+          .value
+          .trim() || null;
+
+      const maps_embed_url =
+        document
+          .getElementById("business-maps-embed-url")
+          .value
+          .trim() || null;
+
       const logo_url =
         document
           .getElementById("business-logo-url")
@@ -1678,7 +1730,7 @@ document
           .value
           .trim() || null;
 
-      const whatsapp_url =
+      const whatsapp =
         document
           .getElementById("whatsapp-url")
           .value
@@ -1699,13 +1751,16 @@ document
 
           name,
           slug,
+          address,
+          maps_embed_url,
           logo_url,
           description,
           google_review_url,
           instagram_url,
           facebook_url,
-          whatsapp_url,
-          website_url
+          whatsapp,
+          website_url,
+          status: "active"
 
         });
 
@@ -2140,7 +2195,7 @@ async function loadClients() {
 }
 
 
-/* CREAR CLIENTE CON EDGE FUNCTION */
+/* CREAR CLIENTE */
 
 document
   .getElementById("client-form")
