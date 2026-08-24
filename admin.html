@@ -6,6 +6,9 @@
 
   <title>Admin | ClicTracker</title>
 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -33,12 +36,125 @@
       min-height: 100vh;
     }
 
+    /* =========================
+       LOGIN
+    ========================== */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 35px;
+    }
+
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .login-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: white;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .login-card h1 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .login-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    label {
+      font-size: 12px;
+      color: #a5adba;
+    }
+
+    input {
+      width: 100%;
+      background: #0e1117;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 13px;
+      border-radius: 9px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 9px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .login-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 16px;
+      padding: 11px;
+      border-radius: 8px;
+      background: rgba(239, 68, 68, .1);
+      color: #fb7185;
+      font-size: 13px;
+    }
+
+    /* =========================
+       ADMIN PANEL
+    ========================== */
+
+    #adminPanel {
+      display: none;
+    }
+
     .app {
       display: flex;
       min-height: 100vh;
     }
-
-    /* SIDEBAR */
 
     .sidebar {
       position: fixed;
@@ -64,7 +180,8 @@
       width: 34px;
       height: 34px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      background: white;
+      color: black;
       display: grid;
       place-items: center;
       font-size: 12px;
@@ -106,8 +223,6 @@
     .logout {
       margin-top: auto;
     }
-
-    /* MAIN */
 
     .main {
       margin-left: 220px;
@@ -184,8 +299,6 @@
       font-weight: 700;
     }
 
-    /* CARDS DASHBOARD */
-
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -211,8 +324,6 @@
       font-weight: 700;
     }
 
-    /* TABLE */
-
     .table-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -223,7 +334,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 750px;
+      min-width: 700px;
     }
 
     th {
@@ -241,8 +352,10 @@
       font-size: 13px;
     }
 
-    tr:last-child td {
-      border-bottom: none;
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 45px;
     }
 
     .status {
@@ -268,21 +381,11 @@
       padding: 8px 10px;
       border-radius: 7px;
       cursor: pointer;
-      margin-right: 4px;
-      font-size: 11px;
     }
 
     .danger {
       color: #fb7185;
     }
-
-    .empty {
-      text-align: center;
-      color: var(--muted);
-      padding: 45px;
-    }
-
-    /* MODAL */
 
     .modal-overlay {
       display: none;
@@ -302,7 +405,7 @@
 
     .modal {
       width: 100%;
-      max-width: 700px;
+      max-width: 650px;
       max-height: 90vh;
       overflow-y: auto;
       background: #151922;
@@ -318,10 +421,6 @@
       margin-bottom: 24px;
     }
 
-    .modal-header h2 {
-      font-size: 21px;
-    }
-
     .close-btn {
       width: 34px;
       height: 34px;
@@ -332,8 +431,6 @@
       cursor: pointer;
       font-size: 20px;
     }
-
-    /* FORM */
 
     .form-grid {
       display: grid;
@@ -351,38 +448,19 @@
       grid-column: span 2;
     }
 
-    label {
-      color: #a5adba;
-      font-size: 12px;
-    }
-
-    input,
-    textarea,
-    select {
+    select,
+    textarea {
       background: #0e1117;
       border: 1px solid var(--border);
       border-radius: 8px;
       color: white;
       padding: 12px;
       outline: none;
-      font-size: 13px;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: var(--blue);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 85px;
     }
 
     .form-section {
       grid-column: span 2;
       padding-top: 15px;
-      margin-top: 5px;
       border-top: 1px solid var(--border);
       font-size: 15px;
       font-weight: 600;
@@ -405,6 +483,7 @@
     }
 
     @media (max-width: 800px) {
+
       .sidebar {
         width: 70px;
       }
@@ -413,15 +492,6 @@
       .menu-label,
       .nav-item span {
         display: none;
-      }
-
-      .brand {
-        justify-content: center;
-      }
-
-      .nav-item {
-        text-align: center;
-        font-size: 18px;
       }
 
       .main {
@@ -441,1062 +511,562 @@
       .form-section {
         grid-column: span 1;
       }
-    }
 
-    @media (max-width: 500px) {
-      .content {
-        padding: 22px 15px;
-      }
-
-      .topbar {
-        padding: 0 16px;
-      }
-
-      .page-header {
-        flex-direction: column;
-        gap: 17px;
-      }
-
-      .primary-btn {
-        width: 100%;
-      }
     }
   </style>
 </head>
 
 <body>
 
-<div class="app">
+  <!-- LOGIN -->
 
-  <aside class="sidebar">
+  <section id="loginScreen">
 
-    <div class="brand">
-      <div class="brand-icon">CT</div>
-      <span>ClicTracker</span>
-    </div>
+    <div class="login-card">
 
-    <div class="menu-label">PRINCIPAL</div>
-
-    <button class="nav-item active" onclick="showPage('dashboard', this)">
-      📊 <span>Dashboard</span>
-    </button>
-
-    <div class="menu-label">GESTIÓN</div>
-
-    <button class="nav-item" onclick="showPage('businesses', this)">
-      🏢 <span>Negocios</span>
-    </button>
-
-    <button class="nav-item" onclick="showPage('nfc', this)">
-      📱 <span>NFC</span>
-    </button>
-
-    <button class="nav-item" onclick="showPage('clients', this)">
-      👤 <span>Clientes</span>
-    </button>
-
-    <div class="menu-label">ESTADÍSTICAS</div>
-
-    <button class="nav-item">
-      📈 <span>Analytics</span>
-    </button>
-
-    <button class="nav-item">
-      👆 <span>Clics</span>
-    </button>
-
-    <div class="menu-label">SISTEMA</div>
-
-    <button class="nav-item">
-      ⚙️ <span>Configuración</span>
-    </button>
-
-    <button class="nav-item logout">
-      🚪 <span>Cerrar sesión</span>
-    </button>
-
-  </aside>
-
-
-  <main class="main">
-
-    <header class="topbar">
-      <div class="top-title" id="topTitle">Dashboard</div>
-      <div class="online">Sistema online</div>
-    </header>
-
-
-    <section class="content">
-
-      <!-- DASHBOARD -->
-
-      <div class="page active" id="dashboard">
-
-        <div class="page-header">
-          <div>
-            <h1>Dashboard</h1>
-            <p class="subtitle">Resumen general de ClicTracker.</p>
-          </div>
-        </div>
-
-        <div class="stats-grid">
-
-          <div class="stat-card">
-            <div class="stat-label">NEGOCIOS</div>
-            <div class="stat-number" id="businessCount">0</div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-label">DISPOSITIVOS NFC</div>
-            <div class="stat-number" id="nfcCount">0</div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-label">CLIENTES</div>
-            <div class="stat-number" id="clientCount">0</div>
-          </div>
-
-        </div>
-
+      <div class="login-logo">
+        <div class="login-logo-icon">CT</div>
+        ClicTracker
       </div>
 
+      <h1>Panel administrativo</h1>
 
-      <!-- NEGOCIOS -->
+      <p class="login-subtitle">
+        Inicia sesión para acceder al panel.
+      </p>
 
-      <div class="page" id="businesses">
+      <form id="loginForm">
 
-        <div class="page-header">
-          <div>
-            <h1>Negocios</h1>
-            <p class="subtitle">
-              Crea y administra los negocios registrados.
-            </p>
-          </div>
+        <div class="login-form-group">
+          <label>Correo electrónico</label>
 
-          <button class="primary-btn" onclick="openBusinessModal()">
-            + Crear negocio
-          </button>
+          <input
+            type="email"
+            id="email"
+            placeholder="tu@email.com"
+            required
+          >
         </div>
 
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>NEGOCIO</th>
-                <th>UBICACIÓN</th>
-                <th>ESTADO</th>
-                <th>ACCIONES</th>
-              </tr>
-            </thead>
-
-            <tbody id="businessTable"></tbody>
-          </table>
-        </div>
-
-      </div>
-
-
-      <!-- NFC -->
-
-      <div class="page" id="nfc">
-
-        <div class="page-header">
-          <div>
-            <h1>NFC</h1>
-            <p class="subtitle">
-              Crea tarjetas NFC y asígnalas a un negocio.
-            </p>
-          </div>
-
-          <button class="primary-btn" onclick="openNfcModal()">
-            + Crear NFC
-          </button>
-        </div>
-
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>NFC</th>
-                <th>CÓDIGO</th>
-                <th>NEGOCIO</th>
-                <th>ESTADO</th>
-                <th>ACCIONES</th>
-              </tr>
-            </thead>
-
-            <tbody id="nfcTable"></tbody>
-          </table>
-        </div>
-
-      </div>
-
-
-      <!-- CLIENTES -->
-
-      <div class="page" id="clients">
-
-        <div class="page-header">
-          <div>
-            <h1>Clientes</h1>
-            <p class="subtitle">
-              Crea las cuentas para los propietarios de cada negocio.
-            </p>
-          </div>
-
-          <button class="primary-btn" onclick="openClientModal()">
-            + Crear cliente
-          </button>
-        </div>
-
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>CLIENTE</th>
-                <th>EMAIL</th>
-                <th>NEGOCIO ASIGNADO</th>
-                <th>ACCIONES</th>
-              </tr>
-            </thead>
-
-            <tbody id="clientTable"></tbody>
-          </table>
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-</div>
-
-
-<!-- MODAL NEGOCIO -->
-
-<div class="modal-overlay" id="businessModal">
-
-  <div class="modal">
-
-    <div class="modal-header">
-      <h2>Crear negocio</h2>
-
-      <button class="close-btn" onclick="closeModal('businessModal')">
-        ×
-      </button>
-    </div>
-
-    <form id="businessForm">
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Nombre del negocio</label>
-          <input id="businessName" required placeholder="Ej: Restaurante La Mar">
-        </div>
-
-        <div class="form-group">
-          <label>Estado</label>
-
-          <select id="businessStatus">
-            <option value="active">Activo</option>
-            <option value="inactive">Inactivo</option>
-          </select>
-        </div>
-
-        <div class="form-group full">
-          <label>Logo del negocio (URL)</label>
-          <input id="businessLogo" placeholder="https://...">
-        </div>
-
-        <div class="form-group full">
-          <label>Descripción</label>
-          <textarea id="businessDescription"
-            placeholder="Todo lo que necesitas, en un solo lugar."></textarea>
-        </div>
-
-        <div class="form-section">
-          Enlaces del negocio
-        </div>
-
-        <div class="form-group">
-          <label>Google Reviews</label>
-          <input id="businessGoogle" placeholder="https://...">
-        </div>
-
-        <div class="form-group">
-          <label>Instagram</label>
-          <input id="businessInstagram" placeholder="https://instagram.com/...">
-        </div>
-
-        <div class="form-group">
-          <label>Facebook</label>
-          <input id="businessFacebook" placeholder="https://facebook.com/...">
-        </div>
-
-        <div class="form-group">
-          <label>Página web</label>
-          <input id="businessWebsite" placeholder="https://...">
-        </div>
-
-        <div class="form-group">
-          <label>WhatsApp</label>
-          <input id="businessWhatsapp" placeholder="51999999999">
-        </div>
-
-        <div class="form-group">
-          <label>Ubicación</label>
-          <input id="businessLocation" placeholder="Miraflores, Lima, Perú">
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-
-        <button type="button"
-          class="secondary-btn"
-          onclick="closeModal('businessModal')">
-          Cancelar
-        </button>
-
-        <button class="primary-btn">
-          Guardar negocio
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- MODAL NFC -->
-
-<div class="modal-overlay" id="nfcModal">
-
-  <div class="modal">
-
-    <div class="modal-header">
-      <h2>Crear NFC</h2>
-
-      <button class="close-btn" onclick="closeModal('nfcModal')">
-        ×
-      </button>
-    </div>
-
-    <form id="nfcForm">
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Nombre del NFC</label>
-          <input id="nfcName" required placeholder="Ej: NFC Principal">
-        </div>
-
-        <div class="form-group">
-          <label>Código NFC</label>
-          <input id="nfcCode" required placeholder="Ej: REST001">
-        </div>
-
-        <div class="form-group">
-          <label>Asignar negocio</label>
-
-          <select id="nfcBusiness" required>
-            <option value="">Selecciona un negocio</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Estado</label>
-
-          <select id="nfcStatus">
-            <option value="active">Activo</option>
-            <option value="inactive">Inactivo</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-
-        <button type="button"
-          class="secondary-btn"
-          onclick="closeModal('nfcModal')">
-          Cancelar
-        </button>
-
-        <button class="primary-btn">
-          Crear NFC
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- MODAL CLIENTE -->
-
-<div class="modal-overlay" id="clientModal">
-
-  <div class="modal">
-
-    <div class="modal-header">
-      <h2>Crear cuenta de cliente</h2>
-
-      <button class="close-btn" onclick="closeModal('clientModal')">
-        ×
-      </button>
-    </div>
-
-    <form id="clientForm">
-
-      <div class="form-grid">
-
-        <div class="form-group">
-          <label>Nombre del cliente</label>
-          <input id="clientName" required placeholder="Juan Pérez">
-        </div>
-
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="clientEmail" required placeholder="cliente@email.com">
-        </div>
-
-        <div class="form-group">
+        <div class="login-form-group">
           <label>Contraseña</label>
-          <input type="password" id="clientPassword" required>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="••••••••"
+            required
+          >
         </div>
 
-        <div class="form-group">
-          <label>Asignar negocio</label>
+        <button class="login-btn" id="loginButton">
+          Iniciar sesión
+        </button>
 
-          <select id="clientBusiness" required>
-            <option value="">Selecciona un negocio</option>
-          </select>
+        <div class="error-message" id="errorMessage"></div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- ADMIN PANEL -->
+
+  <div id="adminPanel">
+
+    <div class="app">
+
+      <aside class="sidebar">
+
+        <div class="brand">
+          <div class="brand-icon">CT</div>
+          <span>ClicTracker</span>
         </div>
 
-      </div>
+        <div class="menu-label">PRINCIPAL</div>
 
-      <div class="modal-footer">
-
-        <button type="button"
-          class="secondary-btn"
-          onclick="closeModal('clientModal')">
-          Cancelar
+        <button class="nav-item active"
+          onclick="showPage('dashboard', this)">
+          📊 <span>Dashboard</span>
         </button>
 
-        <button class="primary-btn">
-          Crear cliente
+        <div class="menu-label">GESTIÓN</div>
+
+        <button class="nav-item"
+          onclick="showPage('businesses', this)">
+          🏢 <span>Negocios</span>
         </button>
 
-      </div>
+        <button class="nav-item"
+          onclick="showPage('nfc', this)">
+          📱 <span>NFC</span>
+        </button>
 
-    </form>
+        <button class="nav-item"
+          onclick="showPage('clients', this)">
+          👤 <span>Clientes</span>
+        </button>
+
+        <button
+          class="nav-item logout"
+          onclick="logout()">
+          🚪 <span>Cerrar sesión</span>
+        </button>
+
+      </aside>
+
+
+      <main class="main">
+
+        <header class="topbar">
+          <div class="top-title" id="topTitle">
+            Dashboard
+          </div>
+
+          <div class="online">
+            Admin conectado
+          </div>
+        </header>
+
+
+        <section class="content">
+
+          <!-- DASHBOARD -->
+
+          <div class="page active" id="dashboard">
+
+            <div class="page-header">
+              <div>
+                <h1>Dashboard</h1>
+
+                <p class="subtitle">
+                  Resumen general de ClicTracker.
+                </p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+
+              <div class="stat-card">
+                <div class="stat-label">NEGOCIOS</div>
+                <div class="stat-number" id="businessCount">0</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-label">NFC</div>
+                <div class="stat-number" id="nfcCount">0</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-label">CLIENTES</div>
+                <div class="stat-number" id="clientCount">0</div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- NEGOCIOS -->
+
+          <div class="page" id="businesses">
+
+            <div class="page-header">
+
+              <div>
+                <h1>Negocios</h1>
+
+                <p class="subtitle">
+                  Administra los negocios registrados.
+                </p>
+              </div>
+
+              <button class="primary-btn">
+                + Crear negocio
+              </button>
+
+            </div>
+
+            <div class="table-card">
+
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>NEGOCIO</th>
+                    <th>UBICACIÓN</th>
+                    <th>ESTADO</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td colspan="3" class="empty">
+                      Próximamente conectado con Supabase.
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+
+          <!-- NFC -->
+
+          <div class="page" id="nfc">
+
+            <div class="page-header">
+
+              <div>
+                <h1>NFC</h1>
+
+                <p class="subtitle">
+                  Administra las tarjetas NFC.
+                </p>
+              </div>
+
+              <button class="primary-btn">
+                + Crear NFC
+              </button>
+
+            </div>
+
+            <div class="table-card">
+
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>NOMBRE</th>
+                    <th>CÓDIGO</th>
+                    <th>NEGOCIO</th>
+                    <th>ESTADO</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td colspan="4" class="empty">
+                      Aún no hay NFC registrados.
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+
+          <!-- CLIENTES -->
+
+          <div class="page" id="clients">
+
+            <div class="page-header">
+
+              <div>
+                <h1>Clientes</h1>
+
+                <p class="subtitle">
+                  Administra las cuentas de tus clientes.
+                </p>
+              </div>
+
+              <button class="primary-btn">
+                + Crear cliente
+              </button>
+
+            </div>
+
+            <div class="table-card">
+
+              <table>
+
+                <thead>
+                  <tr>
+                    <th>NOMBRE</th>
+                    <th>EMAIL</th>
+                    <th>NEGOCIO</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr>
+                    <td colspan="3" class="empty">
+                      Aún no hay clientes registrados.
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
 
   </div>
 
-</div>
+
+  <script>
+
+    /* =========================================
+       CONFIGURACIÓN SUPABASE
+    ========================================= */
+
+    const SUPABASE_URL = "TU_SUPABASE_URL";
+
+    const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY";
 
 
-<script>
-
-  let businesses =
-    JSON.parse(localStorage.getItem("ct_businesses")) || [];
-
-  let nfcs =
-    JSON.parse(localStorage.getItem("ct_nfcs")) || [];
-
-  let clients =
-    JSON.parse(localStorage.getItem("ct_clients")) || [];
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
 
 
-  function saveData() {
+    /* =========================================
+       COMPROBAR SESIÓN AL ABRIR
+    ========================================= */
 
-    localStorage.setItem(
-      "ct_businesses",
-      JSON.stringify(businesses)
+    document.addEventListener(
+      "DOMContentLoaded",
+      checkUser
     );
 
-    localStorage.setItem(
-      "ct_nfcs",
-      JSON.stringify(nfcs)
-    );
 
-    localStorage.setItem(
-      "ct_clients",
-      JSON.stringify(clients)
-    );
+    async function checkUser() {
 
-  }
+      const {
+        data: { session }
+      } = await supabaseClient.auth.getSession();
 
 
-  /* CAMBIAR PÁGINA */
+      if (!session) {
+        return;
+      }
 
-  function showPage(pageId, button) {
 
-    document
-      .querySelectorAll(".page")
-      .forEach(page => {
-        page.classList.remove("active");
-      });
+      await checkAdmin(session.user);
 
-    document
-      .getElementById(pageId)
-      .classList.add("active");
+    }
 
+
+    /* =========================================
+       LOGIN
+    ========================================= */
 
     document
-      .querySelectorAll(".nav-item")
-      .forEach(btn => {
-        btn.classList.remove("active");
-      });
+      .getElementById("loginForm")
+      .addEventListener(
+        "submit",
+        async function(event) {
 
-    button.classList.add("active");
-
-    document.getElementById("topTitle").textContent =
-      button.innerText.trim();
-
-  }
+          event.preventDefault();
 
 
-  /* MODALES */
+          const email =
+            document.getElementById("email").value;
 
-  function closeModal(id) {
-    document.getElementById(id).classList.remove("show");
-  }
+          const password =
+            document.getElementById("password").value;
 
+          const button =
+            document.getElementById("loginButton");
 
-  function openBusinessModal() {
-    document.getElementById("businessModal").classList.add("show");
-  }
-
-
-  function openNfcModal() {
-
-    const select =
-      document.getElementById("nfcBusiness");
-
-    select.innerHTML =
-      '<option value="">Selecciona un negocio</option>';
-
-    businesses.forEach(business => {
-
-      select.innerHTML += `
-        <option value="${business.id}">
-          ${business.name}
-        </option>
-      `;
-
-    });
-
-    document.getElementById("nfcModal").classList.add("show");
-
-  }
+          const errorBox =
+            document.getElementById("errorMessage");
 
 
-  function openClientModal() {
+          errorBox.style.display = "none";
 
-    const select =
-      document.getElementById("clientBusiness");
+          button.disabled = true;
 
-    select.innerHTML =
-      '<option value="">Selecciona un negocio</option>';
-
-    businesses.forEach(business => {
-
-      select.innerHTML += `
-        <option value="${business.id}">
-          ${business.name}
-        </option>
-      `;
-
-    });
-
-    document.getElementById("clientModal").classList.add("show");
-
-  }
+          button.textContent = "Iniciando sesión...";
 
 
-  /* CREAR NEGOCIO */
+          const {
+            data,
+            error
+          } =
+          await supabaseClient.auth.signInWithPassword({
 
-  document
-    .getElementById("businessForm")
-    .addEventListener("submit", function(event) {
+            email: email,
 
-      event.preventDefault();
+            password: password
 
-      businesses.push({
-
-        id: Date.now(),
-
-        name:
-          document.getElementById("businessName").value,
-
-        status:
-          document.getElementById("businessStatus").value,
-
-        logo:
-          document.getElementById("businessLogo").value,
-
-        description:
-          document.getElementById("businessDescription").value,
-
-        google:
-          document.getElementById("businessGoogle").value,
-
-        instagram:
-          document.getElementById("businessInstagram").value,
-
-        facebook:
-          document.getElementById("businessFacebook").value,
-
-        website:
-          document.getElementById("businessWebsite").value,
-
-        whatsapp:
-          document.getElementById("businessWhatsapp").value,
-
-        location:
-          document.getElementById("businessLocation").value
-
-      });
-
-      saveData();
-
-      renderBusinesses();
-      updateDashboard();
-
-      this.reset();
-
-      closeModal("businessModal");
-
-    });
+          });
 
 
-  /* CREAR NFC */
+          if (error) {
 
-  document
-    .getElementById("nfcForm")
-    .addEventListener("submit", function(event) {
+            showError(
+              "Correo o contraseña incorrectos."
+            );
 
-      event.preventDefault();
+            button.disabled = false;
 
-      const code =
-        document
-          .getElementById("nfcCode")
-          .value
-          .toUpperCase();
+            button.textContent =
+              "Iniciar sesión";
 
+            return;
 
-      const exists =
-        nfcs.some(nfc => nfc.code === code);
+          }
 
 
-      if (exists) {
+          await checkAdmin(data.user);
 
-        alert("Este código NFC ya existe.");
+
+          button.disabled = false;
+
+          button.textContent =
+            "Iniciar sesión";
+
+        }
+      );
+
+
+    /* =========================================
+       VERIFICAR SI ES ADMIN
+    ========================================= */
+
+    async function checkAdmin(user) {
+
+      const {
+        data: admin,
+        error
+      } =
+      await supabaseClient
+        .from("admins")
+        .select("id")
+        .eq("id", user.id)
+        .maybeSingle();
+
+
+      if (error || !admin) {
+
+        await supabaseClient.auth.signOut();
+
+        showError(
+          "No tienes permisos para acceder al panel administrativo."
+        );
 
         return;
 
       }
 
 
-      nfcs.push({
-
-        id: Date.now(),
-
-        name:
-          document.getElementById("nfcName").value,
-
-        code: code,
-
-        businessId:
-          Number(
-            document.getElementById("nfcBusiness").value
-          ),
-
-        status:
-          document.getElementById("nfcStatus").value,
-
-        clicks: 0
-
-      });
+      document.getElementById(
+        "loginScreen"
+      ).style.display = "none";
 
 
-      saveData();
-
-      renderNfcs();
-      updateDashboard();
-
-      this.reset();
-
-      closeModal("nfcModal");
-
-    });
-
-
-  /* CREAR CLIENTE */
-
-  document
-    .getElementById("clientForm")
-    .addEventListener("submit", function(event) {
-
-      event.preventDefault();
-
-      clients.push({
-
-        id: Date.now(),
-
-        name:
-          document.getElementById("clientName").value,
-
-        email:
-          document.getElementById("clientEmail").value,
-
-        password:
-          document.getElementById("clientPassword").value,
-
-        businessId:
-          Number(
-            document.getElementById("clientBusiness").value
-          )
-
-      });
-
-
-      saveData();
-
-      renderClients();
-      updateDashboard();
-
-      this.reset();
-
-      closeModal("clientModal");
-
-    });
-
-
-  /* RENDER NEGOCIOS */
-
-  function renderBusinesses() {
-
-    const table =
-      document.getElementById("businessTable");
-
-
-    if (!businesses.length) {
-
-      table.innerHTML = `
-        <tr>
-          <td colspan="4" class="empty">
-            Todavía no hay negocios.
-            <br><br>
-            Crea tu primer negocio.
-          </td>
-        </tr>
-      `;
-
-      return;
+      document.getElementById(
+        "adminPanel"
+      ).style.display = "block";
 
     }
 
 
-    table.innerHTML =
-      businesses.map(business => `
+    /* =========================================
+       ERROR
+    ========================================= */
 
-        <tr>
+    function showError(message) {
 
-          <td>
-            <strong>${business.name}</strong>
-          </td>
+      const errorBox =
+        document.getElementById("errorMessage");
 
-          <td>
-            ${business.location || "—"}
-          </td>
+      errorBox.textContent = message;
 
-          <td>
-
-            <span class="status ${
-              business.status === "active"
-                ? "active-status"
-                : "inactive-status"
-            }">
-
-              ${
-                business.status === "active"
-                  ? "Activo"
-                  : "Inactivo"
-              }
-
-            </span>
-
-          </td>
-
-          <td>
-
-            <button
-              class="action-btn danger"
-              onclick="deleteBusiness(${business.id})">
-
-              🗑 Eliminar
-
-            </button>
-
-          </td>
-
-        </tr>
-
-      `).join("");
-
-  }
-
-
-  /* RENDER NFC */
-
-  function renderNfcs() {
-
-    const table =
-      document.getElementById("nfcTable");
-
-
-    if (!nfcs.length) {
-
-      table.innerHTML = `
-        <tr>
-          <td colspan="5" class="empty">
-            Todavía no hay dispositivos NFC.
-          </td>
-        </tr>
-      `;
-
-      return;
+      errorBox.style.display = "block";
 
     }
 
 
-    table.innerHTML =
-      nfcs.map(nfc => {
+    /* =========================================
+       LOGOUT
+    ========================================= */
 
-        const business =
-          businesses.find(
-            b => b.id === nfc.businessId
-          );
+    async function logout() {
 
+      await supabaseClient.auth.signOut();
 
-        return `
-
-          <tr>
-
-            <td>
-              <strong>${nfc.name}</strong>
-            </td>
-
-            <td>
-              ${nfc.code}
-            </td>
-
-            <td>
-              ${business ? business.name : "Sin negocio"}
-            </td>
-
-            <td>
-
-              <span class="status ${
-                nfc.status === "active"
-                  ? "active-status"
-                  : "inactive-status"
-              }">
-
-                ${
-                  nfc.status === "active"
-                    ? "Activo"
-                    : "Inactivo"
-                }
-
-              </span>
-
-            </td>
-
-            <td>
-
-              <button
-                class="action-btn danger"
-                onclick="deleteNfc(${nfc.id})">
-
-                🗑 Eliminar
-
-              </button>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }).join("");
-
-  }
+      document.getElementById(
+        "adminPanel"
+      ).style.display = "none";
 
 
-  /* RENDER CLIENTES */
-
-  function renderClients() {
-
-    const table =
-      document.getElementById("clientTable");
+      document.getElementById(
+        "loginScreen"
+      ).style.display = "flex";
 
 
-    if (!clients.length) {
-
-      table.innerHTML = `
-        <tr>
-          <td colspan="4" class="empty">
-            Todavía no hay clientes registrados.
-          </td>
-        </tr>
-      `;
-
-      return;
+      document
+        .getElementById("loginForm")
+        .reset();
 
     }
 
 
-    table.innerHTML =
-      clients.map(client => {
+    /* =========================================
+       CAMBIAR SECCIÓN
+    ========================================= */
 
-        const business =
-          businesses.find(
-            b => b.id === client.businessId
-          );
+    function showPage(pageId, button) {
 
+      document
+        .querySelectorAll(".page")
+        .forEach(page => {
 
-        return `
+          page.classList.remove("active");
 
-          <tr>
-
-            <td>
-              <strong>${client.name}</strong>
-            </td>
-
-            <td>
-              ${client.email}
-            </td>
-
-            <td>
-              ${business ? business.name : "Sin negocio"}
-            </td>
-
-            <td>
-
-              <button
-                class="action-btn danger"
-                onclick="deleteClient(${client.id})">
-
-                🗑 Eliminar
-
-              </button>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }).join("");
-
-  }
+        });
 
 
-  /* ELIMINAR */
-
-  function deleteBusiness(id) {
-
-    if (!confirm("¿Eliminar este negocio?")) return;
-
-    businesses =
-      businesses.filter(
-        business => business.id !== id
-      );
-
-    saveData();
-
-    renderBusinesses();
-    renderNfcs();
-    renderClients();
-
-    updateDashboard();
-
-  }
+      document
+        .getElementById(pageId)
+        .classList.add("active");
 
 
-  function deleteNfc(id) {
+      document
+        .querySelectorAll(".nav-item")
+        .forEach(btn => {
 
-    if (!confirm("¿Eliminar este NFC?")) return;
+          btn.classList.remove("active");
 
-    nfcs =
-      nfcs.filter(
-        nfc => nfc.id !== id
-      );
-
-    saveData();
-
-    renderNfcs();
-
-    updateDashboard();
-
-  }
+        });
 
 
-  function deleteClient(id) {
-
-    if (!confirm("¿Eliminar este cliente?")) return;
-
-    clients =
-      clients.filter(
-        client => client.id !== id
-      );
-
-    saveData();
-
-    renderClients();
-
-    updateDashboard();
-
-  }
+      button.classList.add("active");
 
 
-  /* DASHBOARD */
+      document
+        .getElementById("topTitle")
+        .textContent =
+          button.innerText.trim();
 
-  function updateDashboard() {
+    }
 
-    document.getElementById("businessCount").textContent =
-      businesses.length;
-
-    document.getElementById("nfcCount").textContent =
-      nfcs.length;
-
-    document.getElementById("clientCount").textContent =
-      clients.length;
-
-  }
-
-
-  /* INICIAR */
-
-  renderBusinesses();
-  renderNfcs();
-  renderClients();
-
-  updateDashboard();
-
-</script>
+  </script>
 
 </body>
 </html>
